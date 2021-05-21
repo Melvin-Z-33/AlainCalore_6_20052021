@@ -1,3 +1,7 @@
+@import './scss/_variables';
+@import './scss/_mixins';
+@import './scss/_placeholders';
+
 html {
 	--main-color: #901c1c;
 	--shade-color: #d3573c;
@@ -46,7 +50,6 @@ ol {
 
 header {
 	grid-area: 1/1/2/3;
-
 	opacity: 0.4;
 	z-index: 3;
 	display: grid;
@@ -54,10 +57,7 @@ header {
 }
 
 #header-logo {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
+	@extend %flex-center;
 	color: var(--main-color);
 	font-size: 3rem;
 }
@@ -68,16 +68,19 @@ header {
 	grid-row: 1 / 2;
 	align-items: center;
 	justify-content: center;
-}
 
-#header-nav-list li {
-	margin: 0 10px;
-	color: var(--main-color);
+	#header-nav-list li {
+		margin: 0 10px;
+		color: var(--main-color);
+
+		a {
+			color: var(--main-color);
+		}
+	}
 }
 
 main {
 	grid-area: 1 / 1 / 4 / 4;
-
 	grid-template-columns: subgrid;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;

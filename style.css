@@ -1,3 +1,144 @@
+#header-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+html {
+  --main-color: #901c1c;
+  --shade-color: #d3573c;
+  --shade-color2: crimson;
+  --background-color: white;
+  --text-color-1: #525252;
+  --text-color-2: #fafafa;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+#context {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 20px;
+}
+
+#grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "header navbar photographer" "item1 item2 item3" "item4 item5 item6";
+  margin-top: 42px;
+}
+
+header {
+  grid-area: 1/1/2/3;
+  opacity: 0.4;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#header-logo {
+  color: var(--main-color);
+  font-size: 3rem;
+}
+
+#header-nav {
+  display: grid;
+  grid-column: 2/3;
+  grid-row: 1/2;
+  align-items: center;
+  justify-content: center;
+}
+#header-nav #header-nav-list li {
+  margin: 0 10px;
+  color: var(--main-color);
+}
+#header-nav #header-nav-list li a {
+  color: var(--main-color);
+}
+
+main {
+  grid-area: 1/1/4/4;
+  grid-template-columns: subgrid;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "header navbar photographer" "item1 item2 item3" "item4 item5 item6";
+}
+
+ul {
+  display: flex;
+}
+
+#logo {
+  /*grid-area:1/1/2/2;*/
+  justify-content: center;
+  display: grid;
+}
+
+.test {
+  display: contents;
+}
+
+#titre {
+  grid-area: 1/3/2/4;
+  justify-content: center;
+  display: grid;
+}
+
+#main-items-1 {
+  grid-area: item1;
+  justify-content: center;
+  display: grid;
+}
+
+#main-item2 {
+  grid-area: item2;
+  justify-content: center;
+  display: grid;
+}
+
+#main-item3 {
+  grid-area: item3;
+  justify-content: center;
+  display: grid;
+}
+
+#main-item4 {
+  grid-area: item4;
+  justify-content: center;
+  display: grid;
+}
+
+#main-item5 {
+  grid-area: item5;
+  justify-content: center;
+  display: grid;
+}
+
+#main-item6 {
+  grid-area: item6;
+  justify-content: center;
+  display: grid;
+}
 
 /*# sourceMappingURL=style.css.map */
