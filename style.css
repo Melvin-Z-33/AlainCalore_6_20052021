@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+#card-6, #card-5, #card-4, #card-3, #card-2, #card-1, #title, #header-nav {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
 html {
   --main-color: #901c1c;
   --shade-color: #d3573c;
@@ -11,6 +17,10 @@ html {
   --background-color: white;
   --text-color-1: #525252;
   --text-color-2: #fafafa;
+}
+
+body {
+  height: 100vh;
 }
 
 * {
@@ -36,11 +46,19 @@ ol {
   transform: translateX(-50%);
   width: 200px;
   height: 20px;
+  background-color: #901c1c;
+  color: black;
+  text-align: center;
+  display: none;
+}
+
+#context:focus {
+  display: block;
 }
 
 #grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 20% 60% 20%;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas: "header navbar photographer" "item1 item2 item3" "item4 item5 item6";
@@ -52,7 +70,7 @@ header {
   opacity: 0.4;
   z-index: 3;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 25% auto;
 }
 
 #header-logo {
@@ -61,11 +79,8 @@ header {
 }
 
 #header-nav {
-  display: grid;
   grid-column: 2/3;
   grid-row: 1/2;
-  align-items: center;
-  justify-content: center;
 }
 #header-nav #header-nav-list li {
   margin: 0 10px;
@@ -79,7 +94,7 @@ main {
   grid-area: 1/1/4/4;
   grid-template-columns: subgrid;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 20% 60% 20%;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas: "header navbar photographer" "item1 item2 item3" "item4 item5 item6";
@@ -89,56 +104,47 @@ ul {
   display: flex;
 }
 
-#logo {
-  /*grid-area:1/1/2/2;*/
-  justify-content: center;
-  display: grid;
-}
-
-.test {
-  display: contents;
-}
-
-#titre {
+#title {
   grid-area: 1/3/2/4;
-  justify-content: center;
-  display: grid;
+  font-size: 1.8rem;
+  color: var(--main-color);
+  text-align: center;
 }
 
-#main-items-1 {
+#card-1 {
   grid-area: item1;
-  justify-content: center;
-  display: grid;
 }
 
-#main-item2 {
+#card-2 {
   grid-area: item2;
-  justify-content: center;
-  display: grid;
 }
 
-#main-item3 {
+#card-3 {
   grid-area: item3;
-  justify-content: center;
-  display: grid;
 }
 
-#main-item4 {
+#card-4 {
   grid-area: item4;
-  justify-content: center;
-  display: grid;
 }
 
-#main-item5 {
+#card-5 {
   grid-area: item5;
-  justify-content: center;
-  display: grid;
 }
 
-#main-item6 {
+#card-6 {
   grid-area: item6;
-  justify-content: center;
-  display: grid;
+}
+
+#container-card {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */
