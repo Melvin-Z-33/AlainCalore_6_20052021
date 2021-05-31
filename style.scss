@@ -27,6 +27,11 @@ ol {
 	list-style: none;
 }
 
+h2 {
+	color: var(--shade-color);
+	font-weight: 300;
+}
+
 #context {
 	position: fixed;
 	top: 0;
@@ -45,7 +50,7 @@ ol {
 		'header navbar photographer'
 		'item1 item2 item3'
 		'item4 item5 item6';
-	margin-top: 42px;
+	margin-top: 20px;
 }
 
 header {
@@ -86,6 +91,7 @@ main {
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
 	gap: 0px 0px;
+	justify-items: center;
 	grid-template-areas:
 		'header navbar photographer'
 		'item1 item2 item3'
@@ -115,36 +121,68 @@ ul {
 
 #main-items-1 {
 	grid-area: item1;
+
 	justify-content: center;
 	display: grid;
 }
 
 #main-item2 {
 	grid-area: item2;
+
 	justify-content: center;
 	display: grid;
 }
 
 #main-item3 {
 	grid-area: item3;
+
 	justify-content: center;
 	display: grid;
 }
 
 #main-item4 {
 	grid-area: item4;
+
 	justify-content: center;
 	display: grid;
 }
 
 #main-item5 {
 	grid-area: item5;
+
 	justify-content: center;
 	display: grid;
 }
 
 #main-item6 {
 	grid-area: item6;
+
 	justify-content: center;
 	display: grid;
+}
+
+#container-card {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.cards {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	width: 300px;
+	height: 300px;
+}
+
+.card-header {
+	img {
+		width: 90%;
+		height: 200px;
+		clip-path: ellipse(50% 50%);
+	}
+
+	.card-title {
+		margin: 4px 0 5px;
+	}
 }
