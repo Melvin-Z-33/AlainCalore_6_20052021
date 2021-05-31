@@ -10,61 +10,45 @@ window.addEventListener('scroll', function () {
 
 // Request Api
 
-let url =
-	'https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/FishEyeData.json';
+let url = './FishEyeData.json';
+let photographers;
+const test = document.getElementById('test');
 
-// const json = () => {
-// 	fetch(
-// 		'https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/FishEyeData.json',
-// 	)
-// 		.then(function (res) {
-// 			if (res.ok) {
-// 				res.setHeader('Access-Control-Allow-Origin', '*');
-// 				return res.json();
-// 			}
-// 		})
-// 		.then(function (value) {
-// 			res.setHeader('Access-Control-Allow-Origin', '*');
-// 			console.log(value);
-// 		})
-// 		.catch(function (err) {
-// 			console.log('voici l erreur' + err);
-// 		});
-// };
-// const button = document.getElementById('touch');
+const fetchPhotographers = async () => {
+	photographers = await fetch(url)
+		.then((res) => res.json())
+		.then((value) => {
+			console.log(value.photographers);
+			let counter = 1;
 
-// button.addEventListener('click', json);
+			let affichage = '';
 
-// const test = () => {
-// 	fetch('https://mockbin.com/reques')
-// 		.then(function (res) {
-// 			if (res.ok) {
-// 				return res.json();
-// 			}
-// 		})
-// 		.then(function (value) {
-// 			console.log(value);
-// 		})
-// 		.catch(function (err) {
-// 			// Une erreur est survenue
-// 		});
-// };
+			for (let photographer of value.photographers) {
+				affichage += `
+				<div id="title">Nos photographes</div>
+				<div class="cards" id="card-${counter}">
+					<div class=card-header>
+						<a href="page.html?${photographer.id}"><img src="/img/Sample_Photos/Photographers_thumbnails/${photographer.portrait}" loading="lazy" alt="" /></a>
+						<h2 class="card-title">${photographer.name} </h2>
+					</div>
+					<div class="card-content">
+					<p id="card-content-city"> ${photographer.city}, ${photographer.country} </p>
+					<p id="card-content-tagline> ${photographer.tagline} </p>
+					<p card-content-price> ${photographer.price} </p>
+					</div>
+					<div card-content-tag>${photographer.tags}</div>
+			</div>		
+				`;
+				counter += 1;
+				document.querySelector(
+					'#main',
+				).innerHTML = `<div id="title">Nos photographes</div>`;
+			}
 
-// document.getElementById('22').addEventListener('click', test);
+			affichage += '';
+			document.querySelector('#main').innerHTML = affichage;
+		})
+		.catch((err) => console.log('this is the error ' + err));
+};
 
-fetch(url).then((res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	if (res.ok) {
-		console.log(res);
-		res.setHeader('Access-Control-Allow-Origin', '*');
-		return res.json();
-		res.json().then((data) => {
-			console.log('deux' + data);
-		});
-	} else {
-		console.log('erreur');
-		document.getElementById('erreur').innerHTML = 'Erreur';
-	}
-});
-
-json();
+fetchPhotographers();
