@@ -4,15 +4,6 @@
   align-items: center;
 }
 
-<<<<<<< Updated upstream
-=======
-#title, #header-nav {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-}
-
->>>>>>> Stashed changes
 html {
   --main-color: #901c1c;
   --shade-color: #d3573c;
@@ -110,52 +101,41 @@ ul {
   display: grid;
 }
 
-.test {
-  display: contents;
-}
-
 #titre {
-  grid-area: 1/3/2/4;
   justify-content: center;
   display: grid;
 }
 
-#main-items-1 {
+#card-1 {
   grid-area: item1;
-  justify-content: center;
-  display: grid;
 }
 
-#main-item2 {
+#card-2 {
   grid-area: item2;
-  justify-content: center;
-  display: grid;
 }
 
-#main-item3 {
+#card-3 {
   grid-area: item3;
   justify-content: center;
   display: grid;
 }
 
-#main-item4 {
+#card-4 {
   grid-area: item4;
   justify-content: center;
   display: grid;
 }
 
-#main-item5 {
+#card-5 {
   grid-area: item5;
   justify-content: center;
   display: grid;
 }
 
-#main-item6 {
+#card-6 {
   grid-area: item6;
-<<<<<<< Updated upstream
   justify-content: center;
   display: grid;
-=======
 }
 
 #container-card {
@@ -179,7 +159,12 @@ ul {
 }
 .card-header .card-title {
   margin: 4px 0 5px;
->>>>>>> Stashed changes
+}
+
+#title {
+  grid-area: photographer;
+  justify-content: center;
+  align-self: center;
 }
 
 /*# sourceMappingURL=style.css.map */

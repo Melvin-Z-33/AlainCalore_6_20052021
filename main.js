@@ -21,12 +21,12 @@ const fetchPhotographers = async () => {
 			console.log(value.photographers);
 			let counter = 1;
 
-			let affichage = '';
+			let affichage = ' ';
 
 			for (let photographer of value.photographers) {
 				affichage += `
 				<div id="title">Nos photographes</div>
-				<div class="cards" id="card-${counter}">
+				<li class="cards" id="card-${counter}">
 					<div class=card-header>
 						<a href="page.html?${photographer.id}"><img src="/img/Sample_Photos/Photographers_thumbnails/${photographer.portrait}" loading="lazy" alt="" /></a>
 						<h2 class="card-title">${photographer.name} </h2>
@@ -37,15 +37,14 @@ const fetchPhotographers = async () => {
 					<p card-content-price> ${photographer.price} </p>
 					</div>
 					<div card-content-tag>${photographer.tags}</div>
-			</div>		
+			</li>
 				`;
 				counter += 1;
-				document.querySelector(
-					'#main',
-				).innerHTML = `<div id="title">Nos photographes</div>`;
+				// document.querySelector(
+				// 	'#main',
+				// ).innerHTML = `<div id="title">Nos photographes</div>`;
 			}
-
-			affichage += '';
+			affichage += ' ';
 			document.querySelector('#main').innerHTML = affichage;
 		})
 		.catch((err) => console.log('this is the error ' + err));
