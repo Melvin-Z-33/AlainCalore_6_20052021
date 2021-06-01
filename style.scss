@@ -55,7 +55,6 @@ h2 {
 
 header {
 	grid-area: 1/1/2/3;
-	opacity: 0.4;
 	z-index: 3;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -114,6 +113,15 @@ ul {
 	display: grid;
 }
 
+.cards {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	width: 300px;
+	height: 300px;
+	margin: -8px 0 30px;
+}
+
 #card-1 {
 	grid-area: item1;
 }
@@ -124,44 +132,24 @@ ul {
 
 #card-3 {
 	grid-area: item3;
-
-	justify-content: center;
-	display: grid;
 }
 
 #card-4 {
 	grid-area: item4;
-
-	justify-content: center;
-	display: grid;
 }
 
 #card-5 {
 	grid-area: item5;
-
-	justify-content: center;
-	display: grid;
 }
 
 #card-6 {
 	grid-area: item6;
-
-	justify-content: center;
-	display: grid;
 }
 
 #container-card {
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
-}
-
-.cards {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	width: 300px;
-	height: 300px;
 }
 
 .card-header {
@@ -180,4 +168,6 @@ ul {
 	grid-area: photographer;
 	justify-content: center;
 	align-self: center;
+	font-size: 2rem;
+	color: var(--main-color);
 }

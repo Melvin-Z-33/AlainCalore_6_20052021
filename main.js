@@ -21,30 +21,30 @@ const fetchPhotographers = async () => {
 			console.log(value.photographers);
 			let counter = 1;
 
-			let affichage = ' ';
+			let affichage = `<div id="title">Nos photographes</div>`;
 
 			for (let photographer of value.photographers) {
 				affichage += `
-				<div id="title">Nos photographes</div>
-				<li class="cards" id="card-${counter}">
+				
+				<div class="cards" id="card-${counter}">
 					<div class=card-header>
 						<a href="page.html?${photographer.id}"><img src="/img/Sample_Photos/Photographers_thumbnails/${photographer.portrait}" loading="lazy" alt="" /></a>
 						<h2 class="card-title">${photographer.name} </h2>
 					</div>
 					<div class="card-content">
-					<p id="card-content-city"> ${photographer.city}, ${photographer.country} </p>
-					<p id="card-content-tagline> ${photographer.tagline} </p>
-					<p card-content-price> ${photographer.price} </p>
+						<p id="card-content-city"> ${photographer.city}, ${photographer.country} </p>
+						<p id="card-content-tagline"> ${photographer.tagline} </p>
+						<p card-content-price> ${photographer.price} </p>
 					</div>
 					<div card-content-tag>${photographer.tags}</div>
-			</li>
+				</div>
 				`;
 				counter += 1;
 				// document.querySelector(
 				// 	'#main',
 				// ).innerHTML = `<div id="title">Nos photographes</div>`;
 			}
-			affichage += ' ';
+			affichage += '';
 			document.querySelector('#main').innerHTML = affichage;
 		})
 		.catch((err) => console.log('this is the error ' + err));
