@@ -32,11 +32,11 @@ const fetchPhotographers = async () => {
 						<h2 class="card-title">${photographer.name} </h2>
 					</div>
 					<div class="card-content">
-						<p id="card-content-city"> ${photographer.city}, ${photographer.country} </p>
-						<p id="card-content-tagline"> ${photographer.tagline} </p>
-						<p card-content-price> ${photographer.price} </p>
+						<p class="card-content-city"> ${photographer.city}, ${photographer.country} </p>
+						<p class="card-content-tagline"> ${photographer.tagline} </p>
+						<p class="card-content-price"> ${photographer.price}€/jour </p>
 					</div>
-					<div card-content-tag>${photographer.tags}</div>
+					<div class="card-content-tag">${photographer.tags}</div>
 				</div>
 				`;
 				counter += 1;

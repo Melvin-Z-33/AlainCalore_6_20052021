@@ -153,6 +153,10 @@ ul {
   margin: 4px 0 5px;
 }
 
+.card-content {
+  display: none;
+}
+
 #title {
   grid-area: photographer;
   justify-content: center;

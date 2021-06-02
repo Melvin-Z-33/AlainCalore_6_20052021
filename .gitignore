@@ -2,9 +2,9 @@
 # Ignorer tous les fichiers nommés foo.txt
 foo.txt
 # Ignorer tous les fichiers html
-*.html
+#* .html
 # à l'exception de foo.html qui est maintenu à la main
-!foo.html
+# !foo.html
 # Ignorer les objets et les archives
 *.[oa]
 
