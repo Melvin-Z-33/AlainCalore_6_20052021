@@ -1,0 +1,50 @@
+@import '_variables';
+@import '_mixins';
+@import '_placeholders';
+
+a {
+	text-decoration: none;
+}
+
+#header-logo {
+	@extend %header-logo;
+}
+
+#main-header {
+	@extend %flex-center;
+	background-color: grey;
+	width: 90%;
+	margin: 0 auto;
+}
+
+h3 {
+	color: $shade-color;
+}
+
+#city {
+	color: $main-color;
+}
+
+#tag {
+	color: $main-color;
+}
+
+#picture {
+	border-radius: 50%;
+	background-color: black;
+	width: 150px;
+	height: 150px;
+}
+
+#flex-gallery {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.photo {
+	width: 350px;
+	height: 200px;
+	background-color: grey;
+	margin: 30px 70px;
+}

@@ -1,0 +1,54 @@
+#main-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#header-logo {
+  color: #901c1c;
+  font-size: 3rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+#main-header {
+  background-color: grey;
+  width: 90%;
+  margin: 0 auto;
+}
+
+h3 {
+  color: #d3573c;
+}
+
+#city {
+  color: #901c1c;
+}
+
+#tag {
+  color: #901c1c;
+}
+
+#picture {
+  border-radius: 50%;
+  background-color: black;
+  width: 150px;
+  height: 150px;
+}
+
+#flex-gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.photo {
+  width: 350px;
+  height: 200px;
+  background-color: grey;
+  margin: 30px 70px;
+}
+
+/*# sourceMappingURL=page.css.map */
