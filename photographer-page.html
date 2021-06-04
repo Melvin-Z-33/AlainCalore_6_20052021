@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/page.css" />
+		<script src="https://kit.fontawesome.com/a79dbf0876.js" crossorigin="anonymous"></script>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Fish Eye</title>
+	</head>
+	<body>
+		<header id="banner">
+			<a href="index.html" class="logo" aria-label="Main            Menu">
+				Fish<span><i class="fas fa-camera"></i></span>ye
+			</a>
+		</header>
+		<main>
+			<div class="photograph-header">
+				<div class="photograph-profile">
+					<h3>Mimi Keel</h3>
+					<div id="content">
+						<p id="city">London,Uk</p>
+						<p id="quote">Voir le peau dans le quotidien</p>
+					</div>
+					<p class="tag">#portrait</p>
+				</div>
+				<div id="modal">
+					<button class="cta">Contactez-moi</button>
+				</div>
+				<div class="user">
+					<img src="" alt="" />
+				</div>
+			</div>
+			<div id="main-gallery">
+				<div id="main-gallery-header">
+					<p>Trier par</p>
+					<button>popularité</button>
+				</div>
+
+				<div id="main-gallery-img">
+					<div class="photo"></div>
+					<div class="photo"></div>
+					<div class="photo"></div>
+					<div class="photo"></div>
+					<div class="photo"></div>
+					<div class="photo"></div>
+				</div>
+			</div>
+		</main>
+
+		<div class="bground">
+			<div class="content">
+				<span class="close" id="close"></span>
+				<div class="modal-body">
+					<form
+						name="reserve"
+						id="form"
+						action="index.html"
+						method="get"
+						onsubmit="return false;"
+					>
+						<div class="formData">
+							<label for="first">Prénom<span id="prenom_manquant"></span></label
+							><br />
+							<input
+								class="text-control"
+								type="text"
+								id="first"
+								name="first"
+								minlength="2"
+								pattern="[A-Za-z0-9]+"
+								value=""
+								required
+							/>
+							<small></small>
+							<br />
+						</div>
+						<div class="formData">
+							<label for="last">Nom</label><br />
+							<input
+								class="text-control"
+								type="text"
+								id="last"
+								name="last"
+								minlength="2"
+								pattern="[A-Za-z0-9]+"
+								value
+								required
+							/>
+							<small></small>
+							<br />
+						</div>
+						<div class="formData">
+							<label for="email">Email</label><br />
+							<input
+								class="text-control"
+								type="email"
+								id="email"
+								name="email"
+								required
+							/>
+							<small id="smallEmail"></small>
+							<br />
+						</div>
+
+						<div class="formData"></div>
+
+						<input
+							class="btn-submit button"
+							type="submit"
+							value="Envoyer"
+							id="buttonSubmit"
+						/>
+						<p id="text-final">Thank you for submitting your registration details</p>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script src="./photographer-page.js"></script>
+	</body>
+</html>

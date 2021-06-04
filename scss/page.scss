@@ -2,41 +2,118 @@
 @import '_mixins';
 @import '_placeholders';
 
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+body {
+	max-width: 1300px;
+	padding: 0 3rem;
+}
+
 a {
 	text-decoration: none;
+	color: #000000;
 }
 
-#header-logo {
+.logo {
 	@extend %header-logo;
+	position: absolute;
+	display: block;
+	width: 200px;
+	height: 50px;
+	top: 8.07%;
+	bottom: 22.14%;
+	height: 50px;
 }
 
-#main-header {
-	@extend %flex-center;
+main {
+	margin-top: 120px;
+	width: 100%;
+}
+
+.photograph-header {
+	width: 100%;
+	height: 313px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
 	background-color: grey;
-	width: 90%;
 	margin: 0 auto;
+	background-color: #fafafa;
+	border-radius: 5px;
 }
 
 h3 {
 	color: $shade-color;
+	width: 282px;
+	height: 83px;
+	font-weight: 400;
+	font-size: 64px;
+	line-height: 83.33px;
 }
 
 #city {
 	color: $main-color;
+	width: 124px;
+	height: 31px;
+	top: 83px;
+	@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
 }
 
-#tag {
+#quote {
+	width: 348px;
+	height: 23px;
+	top: 133px;
+	@include shortCutFont('DM Sans', 400, normal, 18px, 23.44px);
+}
+.tag {
+	width: 99px;
+	height: 24px;
+	radius: 12px;
 	color: $main-color;
+	border: 0, 5px solid #c4c4c4;
+	border-radius: 12px;
+	@include shortCutFont('DM Sans', 500, normal, 18px, 23.44px);
 }
 
-#picture {
-	border-radius: 50%;
-	background-color: black;
-	width: 150px;
-	height: 150px;
+.cta {
+	height: 69px;
+	width: 170px;
+	left: 11px;
+	top: 21px;
+	border-radius: 5px;
+	background-color: $main-color;
+	color: $text-color-2;
+
+	@include shortCutFont('DM Sans', 700, normal, 20px, 26.04px);
+	text-align: center;
 }
 
-#flex-gallery {
+.user {
+	height: 358px;
+	width: 526px;
+	left: -162px;
+	top: -50px;
+	border-radius: 0px;
+	background-color: red;
+	display: flex;
+	justify-content: center;
+
+	img {
+		height: 200px;
+		width: 200px;
+		border-radius: 50%;
+		background: #c4c4c4;
+		position: absolute;
+		background: #c4c4c4;
+		box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+	}
+}
+
+#main-gallery-img {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -44,7 +121,171 @@ h3 {
 
 .photo {
 	width: 350px;
-	height: 200px;
+	height: 300px;
+	radius: 5px;
 	background-color: grey;
 	margin: 30px 70px;
+}
+
+//**************************** Modal form *****************************/
+
+.bground {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	// background-color: rgba(26, 39, 156, 0.4);
+}
+
+@media (min-width: 319px) and (max-width: 495px) {
+	.bground {
+		padding-top: 68px;
+	}
+}
+
+.content {
+	margin: 5% auto;
+	width: 100%;
+	max-width: 500px;
+	animation-name: modalopen;
+	animation-duration: var(--modal-duration);
+	background: #232323;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+	color: #fff;
+	padding-top: 10px;
+}
+
+.modal-body {
+	padding: 15px 8%;
+	margin: 15px auto;
+}
+
+label {
+	font-family: var(--font-default);
+	font-size: 17px;
+	font-weight: normal;
+	display: inline-block;
+	margin-bottom: 11px;
+}
+
+input {
+	padding: 8px;
+	border: 0.8px solid #ccc;
+	outline: none;
+}
+
+.text-control {
+	margin: 0;
+	padding: 8px;
+	width: 100%;
+	border-radius: 8px;
+	font-size: 20px;
+	height: 48px;
+}
+
+.formData[data-error-visible='true']::after {
+	opacity: 1;
+}
+
+.formData[data-error-visible='true'] .text-control {
+	border: 2px solid #e54858;
+}
+
+.close {
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	width: 32px;
+	height: 32px;
+	opacity: 1;
+	cursor: pointer;
+	transform: scale(0.7);
+}
+
+.close:before,
+.close:after {
+	position: absolute;
+	left: 15px;
+	content: ' ';
+	height: 33px;
+	width: 3px;
+	background-color: #fff;
+}
+
+.close:before {
+	transform: rotate(45deg);
+}
+
+.close:after {
+	transform: rotate(-45deg);
+}
+
+.btn-submit,
+.btn-signup {
+	background: #fe142f;
+	display: block;
+	margin: 0 auto;
+	border-radius: 7px;
+	font-size: 1rem;
+	padding: 12px 82px;
+	color: #fff;
+	cursor: pointer;
+	border: 0;
+}
+
+/* custom select end */
+.text-label {
+	font-weight: normal;
+	font-size: 16px;
+}
+
+@keyframes modalopen {
+	from {
+		opacity: 0;
+		transform: translateY(-150px);
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+#paraph-espace {
+	height: 10px;
+}
+
+.error input,
+.error select {
+	border: 0.1em solid red;
+}
+
+#agreementText {
+	display: block;
+	color: red;
+	font-size: 12px;
+	margin-left: 2.5rem;
+	margin-bottom: -1.5rem;
+}
+
+#text-final {
+	width: 100%;
+	height: 60%;
+	display: block;
+	position: absolute;
+	top: 40px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 50% 19%;
+	text-align: center;
+	font-weight: 300;
+	font-size: 36px;
+	line-height: 47px;
+	visibility: hidden;
 }

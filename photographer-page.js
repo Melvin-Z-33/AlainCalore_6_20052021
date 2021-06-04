@@ -30,3 +30,25 @@ const research = async () => {
 		.catch((err) => console.log('this is the error ' + err));
 };
 research();
+
+// FORM
+// DOM Elements
+const modalbg = document.querySelector('.bground');
+const modalBtn = document.querySelectorAll('.cta');
+const formData = document.querySelectorAll('.formData');
+
+// launch modal event
+modalBtn.forEach((btn) => btn.addEventListener('click', launchModal));
+
+// launch modal form
+function launchModal() {
+	modalbg.style.display = 'block';
+}
+
+//close modal form
+let modalClose = document.getElementById('close');
+
+const closeModal = () => {
+	modalbg.style.display = 'none';
+};
+modalClose.addEventListener('click', closeModal);
