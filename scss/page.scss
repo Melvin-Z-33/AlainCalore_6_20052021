@@ -10,6 +10,7 @@
 
 body {
 	max-width: 1300px;
+	margin: 0 auto;
 	padding: 0 3rem;
 }
 
@@ -72,7 +73,7 @@ h3 {
 .tag {
 	width: 99px;
 	height: 24px;
-	radius: 12px;
+	border-radius: 12px;
 	color: $main-color;
 	border: 0, 5px solid #c4c4c4;
 	border-radius: 12px;
@@ -113,18 +114,119 @@ h3 {
 	}
 }
 
+#main-gallery-header {
+	display: flex;
+	align-items: center;
+	p {
+		height: 23px;
+		width: 74px;
+		left: 97px;
+		top: 466px;
+
+		@include shortCutFont('DM Sans', 700, normal, 18px, 23.44px);
+	}
+	.dropdown-open {
+		height: 170px;
+		width: 170px;
+		left: 0px;
+		top: 0px;
+		border-radius: 5px;
+		@include shortCutFont('DM Sans', 700, normal, 18px, 23.44px);
+		color: $text-color-2;
+		background-color: $main-color;
+		cursor: pointer;
+	}
+}
+
+//************************ dropdown   **************/
+
+.dropdown {
+	display: inline-block;
+	position: relative;
+	margin-left: 25px;
+}
+
+.dd-button {
+	display: inline-block;
+	border: 1px solid gray;
+	border-radius: 4px;
+	padding: 10px 30px 10px 20px;
+	cursor: pointer;
+	white-space: nowrap;
+	background-color: $main-color;
+	color: $text-color-2;
+	&:hover {
+		background-color: $shade-color;
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		right: 15px;
+		transform: translateY(-50%);
+		width: 0;
+		height: 0;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 5px solid white;
+	}
+}
+
+.dd-input {
+	display: none;
+}
+
+.dd-menu {
+	position: absolute;
+	top: 100%;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 0;
+	margin: 2px 0 0 0;
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+	background-color: $main-color;
+	list-style-type: none;
+	color: $text-color-2;
+
+	li {
+		padding: 10px 20px;
+		cursor: pointer;
+		white-space: nowrap;
+	}
+	li:hover {
+		background-color: $shade-color;
+	}
+	li.divider {
+		padding: 0;
+		border-bottom: 1px solid #cccccc;
+	}
+}
+
+.dd-input + .dd-menu {
+	display: none;
+}
+
+.dd-input:checked + .dd-menu {
+	display: block;
+}
+
+//!***************************** fin ------***/
 #main-gallery-img {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	flex-wrap: wrap;
+	margin-top: 2rem;
 }
 
 .photo {
 	width: 350px;
 	height: 300px;
-	radius: 5px;
+	border-radius: 5px;
 	background-color: grey;
-	margin: 30px 70px;
+	margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
 }
 
 //**************************** Modal form *****************************/
@@ -288,4 +390,11 @@ input {
 	font-size: 36px;
 	line-height: 47px;
 	visibility: hidden;
+}
+// ********* fin de formulaire ********/@at-root
+
+figcaption {
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
 }
