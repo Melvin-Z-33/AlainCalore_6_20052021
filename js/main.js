@@ -28,7 +28,7 @@ const fetchPhotographers = async () => {
 				
 				<div class="cards" id="card-${counter}">
 					<div class=card-header>
-						<a href="photographer-page.html?${photographer.id}"><img src="/img/Sample_Photos/Photographers_thumbnails/${photographer.portrait}" loading="lazy" alt="" /></a>
+						<a href="photographer-page.html?id=${photographer.id}"><img src="/img/Sample_Photos/Photographers_thumbnails/${photographer.portrait}" loading="lazy" alt="" /></a>
 						<h2 class="card-title">${photographer.name} </h2>
 					</div>
 					<div class="card-content">

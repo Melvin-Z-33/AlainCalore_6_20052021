@@ -1,36 +1,3 @@
-let url = 'FishEyeData.json';
-let photographers;
-
-const research = async () => {
-	photographers = await fetch(url)
-		.then((res) => res.json())
-		.then((value) => {
-			const extractIdFromUrl = window.location.search;
-			const id = extractIdFromUrl.slice(1);
-			const resultat = value.photographers.find((value) => value.id == id);
-			console.log(resultat);
-			const test = document.querySelector('.test');
-			const structureProduit = `
-
-					<div class=card-header>
-						<a href="page.html?${resultat.id}"><img src="/img/Sample_Photos/Photographers_thumbnails/${resultat.portrait}" loading="lazy" alt="" /></a>
-						<h2 class="card-title">${resultat.name} </h2>
-					</div>
-					<div class="card-content">
-						<p class="card-content-city"> ${resultat.city}, ${resultat.country} </p>
-						<p class="card-content-tagline"> ${resultat.tagline} </p>
-						<p class="card-content-price"> ${resultat.price}€/jour </p>
-					</div>
-					<div class="card-content-tag">${resultat.tags}</div>
-				</div>
-`;
-
-			test.innerHTML = structureProduit;
-		})
-		.catch((err) => console.log('this is the error ' + err));
-};
-research();
-
 // FORM
 // DOM Elements
 const modalbg = document.querySelector('.bground');
@@ -52,3 +19,47 @@ const closeModal = () => {
 	modalbg.style.display = 'none';
 };
 modalClose.addEventListener('click', closeModal);
+
+// ajout du photographer-header
+
+//Recuperer id
+let url = 'FishEyeData.json';
+const queryString_url_id = window.location.search;
+const idPhotographers = new URLSearchParams(queryString_url_id);
+const id = idPhotographers.get('id');
+console.log(id);
+let show;
+
+const displayPhotographerHeader = async () => {
+	show = await fetch(url)
+		.then((res) => res.json())
+		.then((value) => {
+			console.log(value.photographers);
+
+			const photographerSelect = value.photographers.find((object) => object.id == id);
+			console.log(photographerSelect);
+			const photographerHeader = `
+			<div class="photograph-header">
+
+			<div class="photograph-profile">
+			<h3>${photographerSelect.name}</h3>
+			<div id="content">
+				<p id="city">${photographerSelect.city}, ${photographerSelect.country}</p>
+				<p id="quote">${photographerSelect.tagline}</p>
+			</div>
+			<p class="tag">${photographerSelect.tags}</p>
+			</div>
+			<div id="modal">
+			<button class="cta">Contactez-moi</button>
+			</div>
+			<div class="user">
+			<<img src="/img/Sample_Photos/Photographers_thumbnails/${photographerSelect.portrait}" loading="lazy" alt="" />
+			</div>
+			</div>
+			`;
+
+			document.querySelector('.main').insertAdjacentHTML('afterbegin', photographerHeader);
+		})
+		.catch((err) => console.log('this is the error ' + err));
+};
+displayPhotographerHeader();

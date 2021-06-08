@@ -410,4 +410,15 @@ figcaption {
   align-items: end;
 }
 
+.content {
+  background-color: #d3573c;
+}
+.content .modal-body {
+  background-color: #d3573c;
+}
+
+#form-header {
+  color: black;
+}
+
 /*# sourceMappingURL=page.css.map */

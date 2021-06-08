@@ -398,3 +398,14 @@ figcaption {
 	justify-content: space-between;
 	align-items: end;
 }
+
+.content {
+	background-color: $shade-color;
+	.modal-body {
+		background-color: $shade-color;
+	}
+}
+
+#form-header {
+	color: black;
+}
