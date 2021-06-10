@@ -4,15 +4,6 @@
   align-items: center;
 }
 
-html {
-  --main-color: #901c1c;
-  --shade-color: #d3573c;
-  --shade-color2: crimson;
-  --background-color: white;
-  --text-color-1: #525252;
-  --text-color-2: #fafafa;
-}
-
 * {
   margin: 0px;
   padding: 0px;
@@ -30,17 +21,42 @@ ol {
 }
 
 h2 {
-  color: var(--shade-color);
+  color: var(#d3573c);
   font-weight: 300;
+}
+
+#scrollY {
+  height: 30px;
+  width: 182px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 3px;
+  border-radius: 5px;
+  background-color: #db8876;
+  position: fixed;
+  z-index: 10;
 }
 
 #context {
   position: fixed;
-  top: 0;
+  width: 170px;
+  height: 19px;
+  top: 3px;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
-  height: 20px;
+  z-index: 20;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 23.44px;
+  display: block;
+  background-color: #db8876;
+  text-align: center;
+  color: #000;
+}
+#context:hover, #context:visited {
+  color: #000;
 }
 
 #grid-container {
@@ -60,7 +76,7 @@ header {
 }
 
 #header-logo {
-  color: var(--main-color);
+  color: var(#901c1c);
   font-size: 3rem;
 }
 
@@ -73,10 +89,10 @@ header {
 }
 #header-nav #header-nav-list li {
   margin: 0 10px;
-  color: var(--main-color);
+  color: var(#901c1c);
 }
 #header-nav #header-nav-list li a {
-  color: var(--main-color);
+  color: var(#901c1c);
 }
 
 main {
@@ -154,14 +170,14 @@ ul {
 }
 
 .card-content .card-content-city {
-  color: var(--main-color);
+  color: var(#901c1c);
 }
 .card-content .card-content-price {
   color: grey;
 }
 
 .card-content-tag {
-  color: var(--main-color);
+  color: var(#901c1c);
   border: 1px solid grey;
 }
 
@@ -170,7 +186,7 @@ ul {
   justify-content: center;
   align-self: center;
   font-size: 2rem;
-  color: var(--main-color);
+  color: var(#901c1c);
 }
 
 /*# sourceMappingURL=style.css.map */

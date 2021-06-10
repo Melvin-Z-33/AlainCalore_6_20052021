@@ -1,10 +1,14 @@
 //Sticky button
 window.addEventListener('scroll', function () {
 	let context = document.getElementById('context');
+	let scrollY = document.getElementById('scrollY');
+
 	if (window.scrollY > 0) {
 		context.style.display = 'block';
+		scrollY.style.display = 'block';
 	} else {
 		context.style.display = 'none';
+		scrollY.style.display = 'none';
 	}
 });
 

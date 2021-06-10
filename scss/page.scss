@@ -9,7 +9,6 @@
 }
 
 body {
-	max-width: 1300px;
 	margin: 0 auto;
 	padding: 0 3rem;
 }
@@ -45,6 +44,12 @@ main {
 	margin: 0 auto;
 	background-color: #fafafa;
 	border-radius: 5px;
+
+	.photograph-profile {
+		width: 536px;
+		display: flex;
+		flex-direction: column;
+	}
 }
 
 h3 {
@@ -54,13 +59,15 @@ h3 {
 	font-weight: 400;
 	font-size: 64px;
 	line-height: 83.33px;
+	display: block ruby;
 }
 
 #city {
 	color: $main-color;
-	width: 124px;
+	//width: 124px;
 	height: 31px;
 	top: 83px;
+	margin: 10px 0 10px;
 	@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
 }
 
@@ -99,7 +106,7 @@ h3 {
 	left: -162px;
 	top: -50px;
 	border-radius: 0px;
-	background-color: red;
+
 	display: flex;
 	justify-content: center;
 
@@ -216,17 +223,33 @@ h3 {
 	justify-content: space-between;
 	flex-wrap: wrap;
 	margin-top: 2rem;
+	flex: 1 0 30%;
+	min-width: 350px;
+	overflow: hidden;
 }
 
 .photo {
 	width: 350px;
 	height: 300px;
 	border-radius: 5px;
-	background-color: grey;
+
 	margin-bottom: 2rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: end;
+
+	figcaption {
+		display: flex;
+		justify-content: space-between;
+		align-items: end;
+		color: $main-color;
+		@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
+		text-overflow: ellipsis;
+
+		white-space: nowrap;
+
+		bottom: -5px;
+	}
 }
 
 //**************************** Modal form *****************************/
@@ -393,12 +416,6 @@ input {
 }
 // ********* fin de formulaire ********/@at-root
 
-figcaption {
-	display: flex;
-	justify-content: space-between;
-	align-items: end;
-}
-
 .content {
 	background-color: $shade-color;
 	.modal-body {
@@ -408,4 +425,10 @@ figcaption {
 
 #form-header {
 	color: black;
+}
+
+#main-gallery-flex {
+	display: flex;
+	flex-wrap: wrap;
+	width: 90%;
 }
