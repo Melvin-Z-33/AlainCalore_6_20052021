@@ -32,12 +32,15 @@ h2 {
   transform: translateX(-50%);
   top: 3px;
   border-radius: 5px;
-  background-color: #db8876;
   position: fixed;
   z-index: 10;
 }
 
 #context {
+  display: block;
+  background-color: var(#d3573c);
+  text-align: center;
+  color: black;
   position: fixed;
   width: 170px;
   height: 19px;
@@ -50,13 +53,6 @@ h2 {
   font-style: normal;
   font-size: 18px;
   line-height: 23.44px;
-  display: block;
-  background-color: #db8876;
-  text-align: center;
-  color: #000;
-}
-#context:hover, #context:visited {
-  color: #000;
 }
 
 #grid-container {

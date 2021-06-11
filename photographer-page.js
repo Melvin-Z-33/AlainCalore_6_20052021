@@ -21,11 +21,25 @@ const fetchData = async () => {
 };
 fetchData();
 
+let array = [];
+let xena = '';
+
 const displayPhotographerHeader = async () => {
 	fetchPhotographers = await fetch(url)
 		.then((res) => res.json())
 		.then((value) => {
 			const photographerSelect = value.photographers.find((object) => object.id == id);
+
+			let dataLocalParse = JSON.parse(sessionStorage.dataLocal);
+			console.log(dataLocalParse.photographers[0].tags[0]);
+
+			let da = [``];
+
+			for (tags of photographerSelect.tags) {
+				da.push(`<button>#${tags}</button> `);
+				console.log(da);
+			}
+
 			const photographerHeader = `
 			<div class="photograph-header">
 				<div class="photograph-profile">
@@ -34,13 +48,15 @@ const displayPhotographerHeader = async () => {
 						<p id="city">${photographerSelect.city}, ${photographerSelect.country}</p>
 						<p id="quote">${photographerSelect.tagline}</p>
 					</div>
-					<p class="tag">${photographerSelect.tags}</p>
+					<p class="tag">${da.join('')}</p>
 				</div>
 				<div id="modal">
 					<button class="cta" id="#test">Contactez-moi</button>
 				</div>
 				<div class="user">
-					<img src="/img/Sample_Photos/Photographers_thumbnails/${photographerSelect.portrait}" loading="lazy" alt="" />
+					<img src="/img/Sample_Photos/Photographers_thumbnails/${
+						photographerSelect.portrait
+					}" loading="lazy" alt="" />
 				</div>
 			</div>
 			`;
@@ -50,6 +66,53 @@ const displayPhotographerHeader = async () => {
 		.catch((err) => console.log('this is the error ' + err));
 };
 displayPhotographerHeader();
+
+//*********** TEST */
+
+// let array = [];
+// let xena = '';
+
+// const displayPhotographerHeader = async () => {
+// 	fetchPhotographers = await fetch(url)
+// 		.then((res) => res.json())
+// 		.then((value) => {
+// 			const photographerSelect = value.photographers.find((object) => object.id == id);
+
+// 			const fetchTags = photographerSelect.tags;
+// 			console.log('okkkkkkkkkkk' + fetchTags[1]);
+
+// 			for (let i = 0; i < fetchTags.length; i++) {
+// 				console.log(fetchTags);
+// 				array.push('#' + fetchTags);
+// 				document.querySelector('.tag').insertAdjacentHTML('beforeend', '<div>two</div>');
+
+// 				console.log(array);
+// 			}
+
+// 			const photographerHeader = `
+// 			<div class="photograph-header">
+// 				<div class="photograph-profile">
+// 					<h3>${photographerSelect.name}</h3>
+// 					<div id="content">
+// 						<p id="city">${photographerSelect.city}, ${photographerSelect.country}</p>
+// 						<p id="quote">${photographerSelect.tagline}</p>
+// 					</div>
+// 					<p class="tag"></p>
+// 				</div>
+// 				<div id="modal">
+// 					<button class="cta" id="#test">Contactez-moi</button>
+// 				</div>
+// 				<div class="user">
+// 					<img src="/img/Sample_Photos/Photographers_thumbnails/${photographerSelect.portrait}" loading="lazy" alt="" />
+// 				</div>
+// 			</div>
+// 			`;
+
+// 			document.querySelector('.main').insertAdjacentHTML('afterbegin', photographerHeader);
+// 		})
+// 		.catch((err) => console.log('this is the error ' + err));
+// };
+// displayPhotographerHeader();
 
 let userMedia = [];
 
@@ -61,12 +124,13 @@ const fetchPhotographer = async () => {
 			const fetchName = value.photographers.find((object) => object.id == id);
 			const firstName = fetchName.name.split(' ');
 			console.log(firstName[0]);
+
 			let affichageP = '';
 			for (const element of userMedia.media) {
 				if (element.photographerId == id) {
-					console.log(userMedia);
+					//console.log(userMedia);
 					firstNamePhotographers = `${userMedia.photographers}`;
-					console.log(firstNamePhotographers[0]);
+					//console.log(firstNamePhotographers[0]);
 					affichageP += `
 						<div id="main-gallery-img">
 						<figure class="photo">
@@ -123,3 +187,5 @@ const closeModal = () => {
 	modalbg.style.display = 'none';
 };
 modalClose.addEventListener('click', closeModal);
+
+// console.log(sessionStorage.dataLocal);

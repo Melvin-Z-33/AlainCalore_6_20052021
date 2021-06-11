@@ -18,6 +18,10 @@ let url = './FishEyeData.json';
 let photographers;
 const test = document.getElementById('test');
 
+//Store data
+
+let dataLocalParse;
+
 const fetchPhotographers = async () => {
 	photographers = await fetch(url)
 		.then((res) => res.json())
@@ -40,18 +44,39 @@ const fetchPhotographers = async () => {
 						<p class="card-content-tagline"> ${photographer.tagline} </p>
 						<p class="card-content-price"> ${photographer.price}€/jour </p>
 					</div>
-					<div class="card-content-tag">${photographer.tags}</div>
+					<div class="card-content-tag">#${photographer.tags}</div>
 				</div>
 				`;
+
 				counter += 1;
-				// document.querySelector(
-				// 	'#main',
-				// ).innerHTML = `<div id="title">Nos photographes</div>`;
 			}
+
 			affichage += '';
 			document.querySelector('#main').innerHTML = affichage;
 		})
+
 		.catch((err) => console.log('this is the error ' + err));
 };
 
-fetchPhotographers();
+const storeDataLocal = async () => {
+	photographers = await fetch(url)
+		.then((res) => res.json())
+		.then((value) => {
+			sessionStorage.dataLocal = JSON.stringify(value);
+			dataLocalParse = JSON.parse(sessionStorage.dataLocal);
+			console.log(sessionStorage.datalocal);
+		})
+		.then(fetchPhotographers())
+		.then(() => {
+			for (const element in dataLocalParse.medias) {
+				console.log(element);
+			}
+		});
+};
+
+storeDataLocal();
+// d1.insertAdjacentHTML('afterend', `<div>#${element}</div>`);
+
+// ``let d1 = document.querySelector('#main');
+// d1.insertAdjacentHTML('afterend', `<div>#${element}</div>`);
+// console.log(element.tags);``

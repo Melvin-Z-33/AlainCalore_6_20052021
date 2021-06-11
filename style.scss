@@ -24,18 +24,23 @@ h2 {
 }
 
 #scrollY {
+	//background-color: var($shade-color);
 	height: 30px;
 	width: 182px;
 	left: 50%;
 	transform: translateX(-50%);
 	top: 3px;
 	border-radius: 5px;
-	background-color: #db8876;
+
 	position: fixed;
 	z-index: 10;
 }
 
 #context {
+	display: block;
+	background-color: var($shade-color);
+	text-align: center;
+	color: black;
 	position: fixed;
 	width: 170px;
 	height: 19px;
@@ -44,14 +49,6 @@ h2 {
 	transform: translateX(-50%);
 	z-index: 20;
 	@include shortCutFont('DM Sans', 700, normal, 18px, 23.44px);
-	display: block;
-	background-color: #db8876;
-	text-align: center;
-	color: #000;
-	&:hover,
-	&:visited {
-		color: #000;
-	}
 }
 
 #grid-container {
