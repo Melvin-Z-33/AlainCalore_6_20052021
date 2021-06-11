@@ -30,13 +30,21 @@ const fetchPhotographers = async () => {
 			let counter = 1;
 
 			let affichage = `<div id="title">Nos photographes</div>`;
-
+			let da = [``];
 			for (let photographer of value.photographers) {
-				affichage += `
+				for (tags of photographer.tags) {
+					da.push(`<button>#${tags}</button> `);
+					console.log(da);
+
+					affichage += `
 				
 				<div class="cards" id="card-${counter}">
 					<div class=card-header>
-						<a href="photographer-page.html?id=${photographer.id}"><img src="/img/Sample_Photos/Photographers_thumbnails/${photographer.portrait}" loading="lazy" alt="" /></a>
+						<a href="photographer-page.html?id=${
+							photographer.id
+						}"><img src="/img/Sample_Photos/Photographers_thumbnails/${
+						photographer.portrait
+					}" loading="lazy" alt="" /></a>
 						<h2 class="card-title">${photographer.name} </h2>
 					</div>
 					<div class="card-content">
@@ -44,11 +52,12 @@ const fetchPhotographers = async () => {
 						<p class="card-content-tagline"> ${photographer.tagline} </p>
 						<p class="card-content-price"> ${photographer.price}€/jour </p>
 					</div>
-					<div class="card-content-tag">#${photographer.tags}</div>
+					<div class="card-content-tag">${da.join('')}</div>
 				</div>
 				`;
-
+				}
 				counter += 1;
+				da = [``];
 			}
 
 			affichage += '';
