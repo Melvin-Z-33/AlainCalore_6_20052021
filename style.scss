@@ -19,12 +19,12 @@ ol {
 }
 
 h2 {
-	color: var($shade-color);
+	color: $shade-color;
 	font-weight: 300;
 }
 
 #scrollY {
-	//background-color: var($shade-color);
+	background-color: $shade-color;
 	height: 30px;
 	width: 182px;
 	left: 50%;
@@ -38,7 +38,7 @@ h2 {
 
 #context {
 	display: block;
-	background-color: var($shade-color);
+	background-color: $shade-color;
 	text-align: center;
 	color: black;
 	position: fixed;
@@ -72,7 +72,7 @@ header {
 
 #header-logo {
 	@extend %flex-center;
-	color: var($main-color);
+	color: $main-color;
 	font-size: 3rem;
 }
 
@@ -85,17 +85,17 @@ header {
 
 	#header-nav-list li {
 		margin: 0 10px;
-		color: var($main-color);
+		color: $main-color;
 
 		a {
-			color: var($main-color);
+			color: $main-color;
 		}
 	}
 }
 
 main {
 	grid-area: 1 / 1 / 4 / 4;
-	grid-template-columns: subgrid;
+	// grid-template-columns: subgrid;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
@@ -176,7 +176,7 @@ ul {
 
 .card-content {
 	.card-content-city {
-		color: var($main-color);
+		color: $main-color;
 	}
 
 	.card-content-price {
@@ -185,7 +185,7 @@ ul {
 }
 
 .card-content-tag {
-	color: var($main-color);
+	color: $main-color;
 	border: 1px solid grey;
 }
 
@@ -194,5 +194,5 @@ ul {
 	justify-content: center;
 	align-self: center;
 	font-size: 2rem;
-	color: var($main-color);
+	color: $main-color;
 }

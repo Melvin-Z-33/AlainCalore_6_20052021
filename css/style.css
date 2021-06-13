@@ -21,11 +21,12 @@ ol {
 }
 
 h2 {
-  color: var(#d3573c);
+  color: #d3573c;
   font-weight: 300;
 }
 
 #scrollY {
+  background-color: #d3573c;
   height: 30px;
   width: 182px;
   left: 50%;
@@ -38,7 +39,7 @@ h2 {
 
 #context {
   display: block;
-  background-color: var(#d3573c);
+  background-color: #d3573c;
   text-align: center;
   color: black;
   position: fixed;
@@ -72,7 +73,7 @@ header {
 }
 
 #header-logo {
-  color: var(#901c1c);
+  color: #901c1c;
   font-size: 3rem;
 }
 
@@ -85,15 +86,14 @@ header {
 }
 #header-nav #header-nav-list li {
   margin: 0 10px;
-  color: var(#901c1c);
+  color: #901c1c;
 }
 #header-nav #header-nav-list li a {
-  color: var(#901c1c);
+  color: #901c1c;
 }
 
 main {
   grid-area: 1/1/4/4;
-  grid-template-columns: subgrid;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -166,14 +166,14 @@ ul {
 }
 
 .card-content .card-content-city {
-  color: var(#901c1c);
+  color: #901c1c;
 }
 .card-content .card-content-price {
   color: grey;
 }
 
 .card-content-tag {
-  color: var(#901c1c);
+  color: #901c1c;
   border: 1px solid grey;
 }
 
@@ -182,7 +182,7 @@ ul {
   justify-content: center;
   align-self: center;
   font-size: 2rem;
-  color: var(#901c1c);
+  color: #901c1c;
 }
 
 /*# sourceMappingURL=style.css.map */

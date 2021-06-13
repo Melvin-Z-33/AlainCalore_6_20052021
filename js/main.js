@@ -15,29 +15,20 @@ window.addEventListener('scroll', function () {
 // Request Api
 
 let url = './FishEyeData.json';
-let photographers;
-const test = document.getElementById('test');
-
-//Store data
-
-let dataLocalParse;
 
 const fetchPhotographers = async () => {
-	photographers = await fetch(url)
+	await fetch(url)
 		.then((res) => res.json())
 		.then((value) => {
-			console.log(value.photographers);
 			let counter = 1;
 
-			let affichage = `<div id="title">Nos photographes</div>`;
-			let da = [``];
+			let showCard = `<div id="title">Nos photographes</div>`;
+			let arrayTags = [``];
 			for (let photographer of value.photographers) {
 				for (tags of photographer.tags) {
-					da.push(`<button>#${tags}</button> `);
-					console.log(da);
+					arrayTags.push(`<button>#${tags}</button> `);
 
-					affichage += `
-				
+					showCard += `
 				<div class="cards" id="card-${counter}">
 					<div class=card-header>
 						<a href="photographer-page.html?id=${
@@ -52,40 +43,28 @@ const fetchPhotographers = async () => {
 						<p class="card-content-tagline"> ${photographer.tagline} </p>
 						<p class="card-content-price"> ${photographer.price}€/jour </p>
 					</div>
-					<div class="card-content-tag">${da.join('')}</div>
+					<div class="card-content-tag">${arrayTags.join('')}</div>
 				</div>
 				`;
 				}
 				counter += 1;
-				da = [``];
+				arrayTags = [``];
 			}
-
-			affichage += '';
-			document.querySelector('#main').innerHTML = affichage;
+			showCard += '';
+			document.querySelector('#main').innerHTML = showCard;
 		})
-
 		.catch((err) => console.log('this is the error ' + err));
 };
+fetchPhotographers();
 
+//Store data
+let dataLocalParse;
 const storeDataLocal = async () => {
-	photographers = await fetch(url)
+	await fetch(url)
 		.then((res) => res.json())
 		.then((value) => {
 			sessionStorage.dataLocal = JSON.stringify(value);
 			dataLocalParse = JSON.parse(sessionStorage.dataLocal);
-			console.log(sessionStorage.datalocal);
-		})
-		.then(fetchPhotographers())
-		.then(() => {
-			for (const element in dataLocalParse.medias) {
-				console.log(element);
-			}
 		});
 };
-
 storeDataLocal();
-// d1.insertAdjacentHTML('afterend', `<div>#${element}</div>`);
-
-// ``let d1 = document.querySelector('#main');
-// d1.insertAdjacentHTML('afterend', `<div>#${element}</div>`);
-// console.log(element.tags);``

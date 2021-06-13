@@ -82,7 +82,7 @@ h3 {
 	height: 24px;
 	border-radius: 12px;
 	color: $main-color;
-	border: 0, 5px solid #c4c4c4;
+	border: 5px solid #c4c4c4;
 	border-radius: 12px;
 	@include shortCutFont('DM Sans', 500, normal, 18px, 23.44px);
 }
@@ -431,4 +431,8 @@ input {
 	display: flex;
 	flex-wrap: wrap;
 	width: 90%;
+}
+
+.cta {
+	color: red;
 }
