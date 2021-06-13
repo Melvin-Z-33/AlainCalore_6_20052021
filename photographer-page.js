@@ -7,18 +7,13 @@ const idPhotographers = new URLSearchParams(queryString_url_id);
 const id = idPhotographers.get('id');
 
 let arrayTags = [];
-const displayPhotographerHeader = async () => {
-	fetchPhotographers = await fetch(url)
-		.then((res) => res.json())
-		.then((value) => {
-			const photographerSelect = value.photographers.find((object) => object.id == id);
-			let arrayTags = [``];
-
-			for (tags of photographerSelect.tags) {
-				arrayTags.push(`<button>#${tags}</button> `);
-			}
-
-			const photographerHeader = `
+const displayPhotographerHeader = () => {
+	const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
+	let arrayTags = [``];
+	for (tags of photographerSelect.tags) {
+		arrayTags.push(`<button>#${tags}</button> `);
+	}
+	const photographerHeader = `
 			<div class="photograph-header">
 				<div class="photograph-profile">
 					<h3>${photographerSelect.name}</h3>
@@ -38,76 +33,39 @@ const displayPhotographerHeader = async () => {
 				</div>
 			</div>
 			`;
-
-			document.querySelector('.main').insertAdjacentHTML('afterbegin', photographerHeader);
-		})
-		.catch((err) => console.log('this is the error ' + err));
+	document.querySelector('.main').insertAdjacentHTML('afterbegin', photographerHeader);
 };
 displayPhotographerHeader();
 
-let photographerMedia = [];
+// FORM
 
-// const fetchPhotographer = async () => {
-// 	fetchMediasPhotographer = await fetch(url)
-// 		.then((res) => res.json())
-// 		.then((value) => {
-// 			photographerMedia = value;
-// 			const fetchName = value.photographers.find((object) => object.id == id);
-// 			const firstName = fetchName.name.split(' ');
-// 			console.log(firstName[0]);
+// const modalform = document.querySelector('content');
+// const modalBtn = document.querySelectorAll('.modal-btn');
+// const formData = document.querySelectorAll('.formData');
+const modalbg = document.querySelector('.bground');
+const buttonOpen = document.querySelector('.cta');
+const buttonClose = document.getElementById('close');
 
-// 			let showMedia = '';
-// 			for (const element of photographerMedia.media) {
-// 				if (element.photographerId == id) {
-// 					//console.log(userMedia);
-// 					firstNamePhotographers = `${photographerMedia.photographers}`;
-// 					//console.log(firstNamePhotographers[0]);
-// 					showMedia += `
-// 						<div id="main-gallery-img">
-// 						<figure class="photo">
-// 							<img src="img/Sample_Photos/${firstName[0]}/${element.image}" alt="" />
-// 							<figcaption>
-// 								<p>${element.title}</p>
-// 								<span>${element.likes} <button class="btn-like"> <i class="fas fa-heart"></i></button></span>
-// 							</figcaption>
-// 						</figure>
-// 						</div>
-// 						`;
-// 				}
-// 			}
+const launchForm = () => {
+	modalbg.style.display = 'block';
+};
+const closeForm = () => {
+	modalbg.style.display = 'none';
+};
+buttonOpen.addEventListener('click', launchForm);
+buttonClose.addEventListener('click', closeForm);
 
-// 			showMedia += '';
-// 			document
-// 				.querySelector('#main-gallery-flex')
-// 				.insertAdjacentHTML('afterbegin', showMedia);
-// 		})
-// 		.catch((err) => console.log('this is the error ' + err));
-// };
-// fetchPhotographer();
-let test;
 const fetchPhotographer = () => {
-	//fetchMediasPhotographer = await fetch(url)
-	//.then((res) => res.json())
-	//.then((value) => {
-	//photographerMedia = value;
-	//console.log(value);
-	console.log(dataLocalParse);
 	const fetchName = dataLocalParse.photographers.find((object) => object.id == id);
 	const firstName = fetchName.name.split(' ');
-	console.log(firstName[0]);
-
 	let showMedia = '';
 	for (const element of dataLocalParse.media) {
 		if (element.photographerId == id) {
-			//console.log(userMedia);
 			firstNamePhotographers = `${dataLocalParse.photographers}`;
-
-			//console.log(firstNamePhotographers[0]);
 			showMedia += `
 						<div id="main-gallery-img">
 							<figure class="photo">
 								<img src="img/Sample_Photos/${firstName[0]}/${element.image}" alt="" />
-									
 								<figcaption>
 										<p>${element.title}</p>
 										<span>
@@ -116,9 +74,8 @@ const fetchPhotographer = () => {
 										</span>
 									</figcaption>
 							</figure>
-
 						</div>
-												`;
+						`;
 		}
 	}
 	showMedia += '';
@@ -126,8 +83,8 @@ const fetchPhotographer = () => {
 };
 fetchPhotographer();
 
+// counter like
 const divs = document.querySelectorAll('.btn-counter');
-
 divs.forEach((el) =>
 	el.addEventListener('click', (event) => {
 		let value = event.target;
@@ -143,29 +100,3 @@ divs.forEach((el) =>
 		value.innerHTML = a;
 	}),
 );
-
-// FORM
-// DOM Elements
-
-const cta = document.querySelector('.cta');
-const modalform = document.querySelector('content');
-
-const modalbg = document.querySelector('.bground');
-const modalBtn = document.querySelectorAll('.modal-btn');
-const formData = document.querySelectorAll('.formData');
-
-// launch modal event
-modalBtn.forEach((button) => button.addEventListener('click', launchModal));
-
-// launch modal form
-function launchModal() {
-	modalbg.style.display = 'block';
-}
-
-//close modal form
-let modalClose = document.getElementById('close');
-
-const closeModal = () => {
-	modalbg.style.display = 'none';
-};
-modalClose.addEventListener('click', closeModal);
