@@ -16,26 +16,26 @@ window.addEventListener('scroll', function () {
 
 let url = './FishEyeData.json';
 
-const fetchPhotographers = async () => {
+const displayPhotographers = async () => {
 	await fetch(url)
 		.then((res) => res.json())
 		.then((value) => {
 			let counter = 1;
-
 			let showCard = `<div id="title">Nos photographes</div>`;
 			let arrayTags = [``];
+
 			for (let photographer of value.photographers) {
 				for (tags of photographer.tags) {
-					arrayTags.push(`<button>#${tags}</button> `);
-
-					showCard += `
+					arrayTags.push(`<a class="individual">#${tags}</a> `);
+				}
+				showCard += `
 				<div class="cards" id="card-${counter}">
 					<div class=card-header>
 						<a href="photographer-page.html?id=${
 							photographer.id
 						}"><img src="/img/Sample_Photos/Photographers_thumbnails/${
-						photographer.portrait
-					}" loading="lazy" alt="" /></a>
+					photographer.portrait
+				}" loading="lazy" alt="" /></a>
 						<h2 class="card-title">${photographer.name} </h2>
 					</div>
 					<div class="card-content">
@@ -46,16 +46,36 @@ const fetchPhotographers = async () => {
 					<div class="card-content-tag">${arrayTags.join('')}</div>
 				</div>
 				`;
-				}
+
 				counter += 1;
 				arrayTags = [``];
 			}
 			showCard += '';
 			document.querySelector('#main').innerHTML = showCard;
+			allTags = document.querySelectorAll('.card-content-tag');
+
+			//filter images
+			headerTags.forEach((el) =>
+				el.addEventListener('click', (event) => {
+					let valueElementClicked = event.target.textContent.toLowerCase();
+
+					allTags.forEach((element) => {
+						const tag = element.textContent.split(' ');
+
+						if (tag.includes(valueElementClicked)) {
+							element.closest('.cards').style.display = 'flex';
+						} else {
+							element.closest('.cards').style.display = 'none';
+						}
+					});
+				}),
+			);
 		})
 		.catch((err) => console.log('this is the error ' + err));
 };
-fetchPhotographers();
+displayPhotographers();
+const headerTags = document.querySelectorAll('.header-tag');
+let allTags;
 
 //Store data
 let dataLocalParse;
