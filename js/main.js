@@ -26,7 +26,7 @@ const displayPhotographers = async () => {
 
 			for (let photographer of value.photographers) {
 				for (tags of photographer.tags) {
-					arrayTags.push(`<a class="individual">#${tags}</a> `);
+					arrayTags.push(`<a class="card-tag">#${tags}</a> `);
 				}
 				showCard += `
 				<div class="cards" id="card-${counter}">

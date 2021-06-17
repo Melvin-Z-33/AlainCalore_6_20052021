@@ -2,13 +2,14 @@ const dataLocalParse = JSON.parse(sessionStorage.dataLocal);
 
 //Search id photographer
 let url = 'FishEyeData.json';
+
 const queryString_url_id = window.location.search;
 const idPhotographers = new URLSearchParams(queryString_url_id);
 const id = idPhotographers.get('id');
+const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
 
 let arrayTags = [];
 const displayPhotographerHeader = () => {
-	const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
 	let arrayTags = [``];
 	for (tags of photographerSelect.tags) {
 		arrayTags.push(`<button>#${tags}</button> `);
@@ -100,3 +101,44 @@ divs.forEach((el) =>
 		value.innerHTML = a;
 	}),
 );
+
+//  Factory pattern for differents medias
+let arrayDataLocal = [];
+let arrayImage = [];
+let arrayVideo = [];
+let cleanedArrayImage;
+let cleanedArrayVideo;
+
+const cleanedDataMedia = () => {
+	arrayDataLocal = dataLocalParse.media;
+	arrayDataLocal.forEach((element) => {
+		if (element.photographerId == id) {
+			arrayImage.push(element.image);
+			arrayVideo.push(element.video);
+		}
+	});
+
+	cleanedArrayImage = arrayImage.filter(function (x) {
+		return x !== undefined;
+	});
+	cleanedArrayVideo = arrayVideo.filter(function (x) {
+		return x !== undefined;
+	});
+};
+cleanedDataMedia();
+
+const MediasFactory = (array) => {
+	console.log(photographerSelect);
+	for (i = 0; i < array.length; i++) {
+		if (array[i].match('.mp4')) {
+			console.log('video');
+		} else if (array[i].match('.jpg')) {
+			console.log('image');
+		} else {
+			alert('Je ne reconnais pas ce format');
+		}
+	}
+};
+
+MediasFactory(cleanedArrayImage);
+MediasFactory(cleanedArrayVideo);

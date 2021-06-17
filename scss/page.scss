@@ -78,6 +78,7 @@ h3 {
 	@include shortCutFont('DM Sans', 400, normal, 18px, 23.44px);
 }
 .tag {
+	display: flex;
 	width: 99px;
 	height: 24px;
 	border-radius: 12px;
