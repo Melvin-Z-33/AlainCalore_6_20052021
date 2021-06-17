@@ -3,3 +3,9 @@
 	justify-content: center;
 	align-items: center;
 }
+
+//components
+%header-logo {
+	color: $main-color;
+	font-size: 3rem;
+}

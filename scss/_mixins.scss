@@ -1,0 +1,16 @@
+@mixin shortCutFont($font, $weight, $style, $size, $lineHeight) {
+	font-family: $font, sans-serif;
+	font-weight: $weight;
+	font-style: normal;
+	font-size: $size;
+	line-height: $lineHeight;
+}
+
+@mixin centerElement($top, $right, $bottom, $left, $x, $y) {
+	position: absolute;
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+	transform: trranslate($x, $y);
+}
