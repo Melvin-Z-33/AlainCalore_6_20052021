@@ -12,7 +12,7 @@ let arrayTags = [];
 const displayPhotographerHeader = () => {
 	let arrayTags = [``];
 	for (tags of photographerSelect.tags) {
-		arrayTags.push(`<button>#${tags}</button> `);
+		arrayTags.push(`<a class="card-tag">#${tags}</a> `);
 	}
 	const photographerHeader = `
 			<div class="photograph-header">
