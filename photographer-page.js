@@ -142,3 +142,24 @@ const MediasFactory = (array) => {
 
 MediasFactory(cleanedArrayImage);
 MediasFactory(cleanedArrayVideo);
+
+// ############# CSS #################################
+const chevronDown = document.querySelector('#arrow-down');
+const chevronUp = document.querySelector('#arrow-up');
+const chevron = document.querySelector('.chevron');
+const dropdownButton = document.querySelector('#dropdown-button');
+
+const buttonPopularity = () => {
+	if (chevronDown.classList.contains('inline-block')) {
+		chevronDown.classList.remove('inline-block');
+		chevronDown.classList.add('none');
+		chevronUp.classList.remove('none');
+		chevronUp.classList.add('inline-block');
+	} else if (chevronDown.classList.contains('none')) {
+		chevronDown.classList.remove('none');
+		chevronDown.classList.add('inline-block');
+		chevronUp.classList.remove('inline-block');
+		chevronUp.classList.add('none');
+	}
+};
+dropdownButton.addEventListener('click', buttonPopularity);

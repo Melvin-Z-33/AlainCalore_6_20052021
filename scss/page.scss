@@ -196,18 +196,18 @@ h3 {
 	&:hover {
 		background-color: $shade-color;
 	}
-	&:after {
-		content: '';
-		position: absolute;
-		top: 50%;
-		right: 15px;
-		transform: translateY(-50%);
-		width: 0;
-		height: 0;
-		border-left: 5px solid transparent;
-		border-right: 5px solid transparent;
-		border-top: 5px solid white;
-	}
+	// &:after {
+	// 	content: '';
+	// 	position: absolute;
+	// 	top: 50%;
+	// 	right: 15px;
+	// 	transform: translateY(-50%);
+	// 	width: 0;
+	// 	height: 0;
+	// 	border-left: 5px solid transparent;
+	// 	border-right: 5px solid transparent;
+	// 	border-top: 5px solid white;
+	//}
 }
 
 .dd-input {
@@ -252,6 +252,12 @@ h3 {
 	display: block;
 }
 
+.chevron {
+	margin-left: 24px;
+	width: 16px;
+	display: inline-block;
+	height: 9.88px;
+}
 //!***************************** fin ------***/
 #main-gallery-img {
 	display: flex;
@@ -466,4 +472,12 @@ input {
 	display: flex;
 	flex-wrap: wrap;
 	width: 90%;
+}
+
+.none {
+	display: none;
+}
+
+.inline-block {
+	display: inline-block;
 }
