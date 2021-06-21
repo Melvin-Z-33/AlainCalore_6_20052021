@@ -8,6 +8,7 @@ const idPhotographers = new URLSearchParams(queryString_url_id);
 const id = idPhotographers.get('id');
 const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
 
+//**********  PHOTOGRAPH HEADER **************************/
 let arrayTags = [];
 const displayPhotographerHeader = () => {
 	let arrayTags = [``];
@@ -38,7 +39,7 @@ const displayPhotographerHeader = () => {
 };
 displayPhotographerHeader();
 
-// FORM
+//************ FORMULAIRE ******************************/
 
 // const modalform = document.querySelector('content');
 // const modalBtn = document.querySelectorAll('.modal-btn');
@@ -56,51 +57,35 @@ const closeForm = () => {
 buttonOpen.addEventListener('click', launchForm);
 buttonClose.addEventListener('click', closeForm);
 
-const fetchPhotographer = () => {
-	const fetchName = dataLocalParse.photographers.find((object) => object.id == id);
-	const firstName = fetchName.name.split(' ');
-	let showMedia = '';
-	for (const element of dataLocalParse.media) {
-		if (element.photographerId == id) {
-			firstNamePhotographers = `${dataLocalParse.photographers}`;
-			showMedia += `
-						<div id="main-gallery-img">
-							<figure class="photo">
-								<img src="img/Sample_Photos/${firstName[0]}/${element.image}" alt="" />
-								<figcaption>
-										<p>${element.title}</p>
-										<span>
-										<button class="addone  btn-counter">${element.likes}</button>
-										<i class="fas fa-heart"></i>
-										</span>
-									</figcaption>
-							</figure>
-						</div>
-						`;
-		}
-	}
-	showMedia += '';
-	document.querySelector('#main-gallery-flex').insertAdjacentHTML('afterbegin', showMedia);
-};
-fetchPhotographer();
+//*###################### PHOTOGRAPHER MEDIA GALLERY  #############################
+// const fetchPhotographer = () => {
+// 	const fetchName = dataLocalParse.photographers.find((object) => object.id == id);
+// 	const firstName = fetchName.name.split(' ');
+// 	let showMedia = '';
+// 	for (const element of dataLocalParse.media) {
+// 		if (element.photographerId == id) {
+// 			firstNamePhotographers = `${dataLocalParse.photographers}`;
+// 			showMedia += `
+// 						<div id="main-gallery-img">
+// 							<figure class="photo">
+// 								<img src="img/Sample_Photos/${firstName[0]}/${element.image}" alt="" />
+// 								<figcaption>
+// 										<p>${element.title}</p>
 
-// counter like
-const divs = document.querySelectorAll('.btn-counter');
-divs.forEach((el) =>
-	el.addEventListener('click', (event) => {
-		let value = event.target;
-		let t = parseInt(value.textContent);
-		let a;
-		if (value.classList.contains('addone')) {
-			a = t + 1;
-			value.classList.toggle('addone');
-		} else {
-			a = t - 1;
-			value.classList.toggle('addone');
-		}
-		value.innerHTML = a;
-	}),
-);
+// 										<button class="addone btn-counter">${element.likes}</button>
+
+// 										<i class="fas fa-heart"></i>
+
+// 									</figcaption>
+// 							</figure>
+// 						</div>
+// 						`;
+// 		}
+// 	}
+// 	showMedia += '';
+// 	document.querySelector('#main-gallery-flex').insertAdjacentHTML('afterbegin', showMedia);
+// };
+//fetchPhotographer();
 
 //  Factory pattern for differents medias
 let arrayDataLocal = [];
@@ -111,12 +96,19 @@ let cleanedArrayVideo;
 
 const cleanedDataMedia = () => {
 	arrayDataLocal = dataLocalParse.media;
-	arrayDataLocal.forEach((element) => {
+	// console.log(arrayDataLocal.photopgrapherId);
+	// arrayDataLocal.forEach((element) => {
+	// 	console.log(element);
+	// 	if (element.photographerId == id) {
+	// 		arrayImage.push(element);
+	// 		arrayVideo.push(element);
+	// 	}
+	// });
+	for (const element of arrayDataLocal) {
 		if (element.photographerId == id) {
-			arrayImage.push(element.image);
-			arrayVideo.push(element.video);
+			arrayImage.push(element);
 		}
-	});
+	}
 
 	cleanedArrayImage = arrayImage.filter(function (x) {
 		return x !== undefined;
@@ -124,24 +116,83 @@ const cleanedDataMedia = () => {
 	cleanedArrayVideo = arrayVideo.filter(function (x) {
 		return x !== undefined;
 	});
+
+	//console.log(cleanedArrayVideo + 'miam miam miam');
 };
 cleanedDataMedia();
 
-const MediasFactory = (array) => {
-	console.log(photographerSelect);
-	for (i = 0; i < array.length; i++) {
-		if (array[i].match('.mp4')) {
-			console.log('video');
-		} else if (array[i].match('.jpg')) {
-			console.log('image');
+let showMedia = '';
+function MediasFactory(array) {
+	for (const element of array) {
+		//console.log(JSON.stringify(element.image).includes('jp'));
+		// .split('.')[1]
+		if (typeof element.image !== 'undefined' && element.image.includes('jpg')) {
+			showMedia += `
+							<div id="main-gallery-img">
+								<figure class="photo">
+									<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
+									<figcaption>
+											<p>${element.title}</p>
+											
+											<div>
+												<span class="addone  btn-counter">${element.likes}</span>
+												<i class="fas fa-heart"></i>
+											</div>
+									</figcaption>
+								</figure>
+							</div>
+							`;
+			console.log('ok');
+		} else if (element.video.match('.mp4')) {
+			showMedia += `
+			<div id="main-gallery-img">
+			<video class="photo" controls width="250">
+				<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.video}" alt="" />
+			</video>
+				<figcaption>
+						<p>${element.title}</p>
+						<span>
+						<button class="addone  btn-counter">${element.likes}</button>
+						
+						</span>
+						<i class="fas fa-heart"></i>
+					</figcaption>
+			
+		</div>
+		`;
+			console.log(`${element.video}`);
 		} else {
 			alert('Je ne reconnais pas ce format');
 		}
 	}
-};
+	showMedia += '';
+	document.querySelector('#main-gallery-flex').insertAdjacentHTML('afterbegin', showMedia);
+}
 
 MediasFactory(cleanedArrayImage);
-MediasFactory(cleanedArrayVideo);
+//MediasFactory(cleanedArrayVideo);
+
+//##### counter like ############################
+const divs = document.querySelectorAll('.fa-heart');
+const bttns = document.querySelectorAll('.btn-counter');
+
+divs.forEach((el) =>
+	el.addEventListener('click', (event) => {
+		let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
+		let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
+		//let t = value.textContent;
+		console.log(valueClasss);
+		let a;
+		if (valueClasss.classList.contains('addone')) {
+			a = parseInt(value) + 1;
+			valueClasss.classList.toggle('addone');
+		} else {
+			a = parseInt(value) - 1;
+			valueClasss.classList.toggle('addone');
+		}
+		valueClasss.innerHTML = a;
+	}),
+);
 
 // ############# CSS #################################
 const chevronDown = document.querySelector('#arrow-down');

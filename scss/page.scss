@@ -263,22 +263,26 @@ h3 {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	margin-top: 2rem;
+	margin: 2rem 4rem;
 	flex: 1 0 30%;
-	min-width: 350px;
+	max-width: 350px;
+	max-height: 300px;
 	overflow: hidden;
 }
 
 .photo {
-	width: 350px;
-	height: 300px;
+	max-width: 350px;
+	height: 250px;
 	border-radius: 5px;
-
 	margin-bottom: 2rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: end;
 
+	img {
+		max-width: 100%;
+		height: auto;
+	}
 	figcaption {
 		display: flex;
 		justify-content: space-between;
@@ -471,7 +475,8 @@ input {
 #main-gallery-flex {
 	display: flex;
 	flex-wrap: wrap;
-	width: 90%;
+	justify-content: space-between;
+	width: 100%;
 }
 
 .none {
