@@ -57,37 +57,7 @@ const closeForm = () => {
 buttonOpen.addEventListener('click', launchForm);
 buttonClose.addEventListener('click', closeForm);
 
-//*###################### PHOTOGRAPHER MEDIA GALLERY  #############################
-// const fetchPhotographer = () => {
-// 	const fetchName = dataLocalParse.photographers.find((object) => object.id == id);
-// 	const firstName = fetchName.name.split(' ');
-// 	let showMedia = '';
-// 	for (const element of dataLocalParse.media) {
-// 		if (element.photographerId == id) {
-// 			firstNamePhotographers = `${dataLocalParse.photographers}`;
-// 			showMedia += `
-// 						<div id="main-gallery-img">
-// 							<figure class="photo">
-// 								<img src="img/Sample_Photos/${firstName[0]}/${element.image}" alt="" />
-// 								<figcaption>
-// 										<p>${element.title}</p>
-
-// 										<button class="addone btn-counter">${element.likes}</button>
-
-// 										<i class="fas fa-heart"></i>
-
-// 									</figcaption>
-// 							</figure>
-// 						</div>
-// 						`;
-// 		}
-// 	}
-// 	showMedia += '';
-// 	document.querySelector('#main-gallery-flex').insertAdjacentHTML('afterbegin', showMedia);
-// };
-//fetchPhotographer();
-
-//  Factory pattern for differents medias
+//*  Factory pattern for differents medias
 let arrayDataLocal = [];
 let arrayImage = [];
 let arrayVideo = [];
@@ -96,14 +66,7 @@ let cleanedArrayVideo;
 
 const cleanedDataMedia = () => {
 	arrayDataLocal = dataLocalParse.media;
-	// console.log(arrayDataLocal.photopgrapherId);
-	// arrayDataLocal.forEach((element) => {
-	// 	console.log(element);
-	// 	if (element.photographerId == id) {
-	// 		arrayImage.push(element);
-	// 		arrayVideo.push(element);
-	// 	}
-	// });
+
 	for (const element of arrayDataLocal) {
 		if (element.photographerId == id) {
 			arrayImage.push(element);
@@ -116,8 +79,6 @@ const cleanedDataMedia = () => {
 	cleanedArrayVideo = arrayVideo.filter(function (x) {
 		return x !== undefined;
 	});
-
-	//console.log(cleanedArrayVideo + 'miam miam miam');
 };
 cleanedDataMedia();
 
@@ -133,7 +94,7 @@ function MediasFactory(array) {
 									<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
 									<figcaption>
 											<p>${element.title}</p>
-											
+
 											<div>
 												<span class="addone  btn-counter">${element.likes}</span>
 												<i class="fas fa-heart"></i>
@@ -142,7 +103,6 @@ function MediasFactory(array) {
 								</figure>
 							</div>
 							`;
-			console.log('ok');
 		} else if (element.video.match('.mp4')) {
 			showMedia += `
 			<div id="main-gallery-img">
@@ -153,14 +113,10 @@ function MediasFactory(array) {
 						<p>${element.title}</p>
 						<span>
 						<button class="addone  btn-counter">${element.likes}</button>
-						
 						</span>
 						<i class="fas fa-heart"></i>
-					</figcaption>
-			
 		</div>
 		`;
-			console.log(`${element.video}`);
 		} else {
 			alert('Je ne reconnais pas ce format');
 		}
@@ -172,7 +128,7 @@ function MediasFactory(array) {
 MediasFactory(cleanedArrayImage);
 //MediasFactory(cleanedArrayVideo);
 
-//##### counter like ############################
+//*##### counter like ############################
 const divs = document.querySelectorAll('.fa-heart');
 const bttns = document.querySelectorAll('.btn-counter');
 
@@ -194,7 +150,7 @@ divs.forEach((el) =>
 	}),
 );
 
-// ############# CSS #################################
+//* ############# CSS #################################
 const chevronDown = document.querySelector('#arrow-down');
 const chevronUp = document.querySelector('#arrow-up');
 const chevron = document.querySelector('.chevron');

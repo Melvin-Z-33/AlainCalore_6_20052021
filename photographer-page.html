@@ -34,9 +34,12 @@
 							</span>
 						</div>
 						<input type="checkbox" class="dd-input" id="test" />
+						
 						<ul class="dd-menu">
-							<li>Date</li>
-							<li>Titre</li>
+							<hr/>
+							<li class="dd-button">Date</li>
+							<hr/>
+							<li class="dd-button">Titre</li>
 						</ul>
 					</label>
 				</div>
@@ -46,10 +49,15 @@
 
 		<div class="bground">
 			<div class="content">
+				<span class="close" id="close"></span>
 				<div id="form-header">
-					<span class="close" id="close"></span>
-					<!-- <p id="contact">Contactez-moi</p> -->
-					<!-- <p id="form-photographer-name">Mimi Keel</p> -->
+					<!-- Contactez-moi
+					Mimi Keel -->
+					
+					<p id="contact">Contactez-moi</p>
+					
+					<p id="form-photographer-name">Mimi Keel</p>
+				
 				</div>
 
 				<div class="modal-body">
@@ -102,6 +110,12 @@
 							/>
 							<small id="smallEmail"></small>
 							<br />
+						</div>
+						<div class="formData" id="formData-flex">
+							<label for="story">Votre message </label><br/>
+							<textarea id="form-message" name="story"   rows="5" cols="33">
+							
+							</textarea>
 						</div>
 
 						<div class="formData"></div>
