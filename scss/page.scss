@@ -266,7 +266,7 @@ hr {
 	height: 9.88px;
 }
 //!***************************** fin ------***/
-#main-gallery-img {
+.main-gallery-img {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
@@ -274,7 +274,7 @@ hr {
 	flex: 1 0 30%;
 	max-width: 350px;
 	max-height: 300px;
-	overflow: hidden;
+	position: relative;
 }
 
 .photo {
@@ -285,6 +285,7 @@ hr {
 	display: flex;
 	flex-direction: column;
 	justify-content: end;
+	overflow: hidden;
 
 	img {
 		max-width: 100%;
@@ -302,6 +303,26 @@ hr {
 
 		bottom: -5px;
 	}
+}
+
+.gallery-hover {
+	opacity: 0;
+	display: flex;
+	width: 370px;
+	justify-content: revert;
+	height: 49px;
+	top: 13px;
+	left: 13px;
+	position: absolute;
+	border-radius: 5px;
+	background-color: $shade-color;
+	justify-content: space-around;
+	align-items: center;
+	@include shortCutFont('DM Sans', 500, normal, 24px, 31.25px);
+}
+
+.main-gallery-img:hover .gallery-hover {
+	opacity: 1;
 }
 
 //**************************** Modal form *****************************/

@@ -41,12 +41,12 @@ displayPhotographerHeader();
 
 //************ FORMULAIRE ******************************/
 
-// const modalform = document.querySelector('content');
-// const modalBtn = document.querySelectorAll('.modal-btn');
-// const formData = document.querySelectorAll('.formData');
 const modalbg = document.querySelector('.bground');
 const buttonOpen = document.querySelector('.cta');
 const buttonClose = document.getElementById('close');
+let namePhotographer = `<h3>${photographerSelect.name}</h3>`;
+const nameForm = document.querySelector('#form-photographer-name');
+nameForm.innerHTML = `${photographerSelect.name}`;
 
 const launchForm = () => {
 	modalbg.style.display = 'block';
@@ -57,11 +57,11 @@ const closeForm = () => {
 buttonOpen.addEventListener('click', launchForm);
 buttonClose.addEventListener('click', closeForm);
 
-//*  Factory pattern for differents medias
+//*  ##### FACTORY PATTERN FOR DIFFERENTS MEDIA ##########
 let arrayDataLocal = [];
 let arrayImage = [];
 let arrayVideo = [];
-let cleanedArrayImage;
+let cleanedArrayMedia;
 let cleanedArrayVideo;
 
 const cleanedDataMedia = () => {
@@ -73,7 +73,7 @@ const cleanedDataMedia = () => {
 		}
 	}
 
-	cleanedArrayImage = arrayImage.filter(function (x) {
+	cleanedArrayMedia = arrayImage.filter(function (x) {
 		return x !== undefined;
 	});
 	cleanedArrayVideo = arrayVideo.filter(function (x) {
@@ -85,22 +85,20 @@ cleanedDataMedia();
 let showMedia = '';
 function MediasFactory(array) {
 	for (const element of array) {
-		//console.log(JSON.stringify(element.image).includes('jp'));
-		// .split('.')[1]
 		if (typeof element.image !== 'undefined' && element.image.includes('jpg')) {
 			showMedia += `
-							<div id="main-gallery-img">
+							<div class="main-gallery-img">
 								<figure class="photo">
 									<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
 									<figcaption>
 											<p>${element.title}</p>
-
 											<div>
 												<span class="addone  btn-counter">${element.likes}</span>
 												<i class="fas fa-heart"></i>
 											</div>
 									</figcaption>
 								</figure>
+								<p class='gallery-hover'><span>${element.date}</span><span>${element.price}/jour</span> </p>
 							</div>
 							`;
 		} else if (element.video.match('.mp4')) {
@@ -115,6 +113,8 @@ function MediasFactory(array) {
 						<button class="addone  btn-counter">${element.likes}</button>
 						</span>
 						<i class="fas fa-heart"></i>
+				</figcaption>
+						<p class='gallery-hover'><span>${element.date}</span><span>${element.price}/jour</span> </p>
 		</div>
 		`;
 		} else {
@@ -125,8 +125,7 @@ function MediasFactory(array) {
 	document.querySelector('#main-gallery-flex').insertAdjacentHTML('afterbegin', showMedia);
 }
 
-MediasFactory(cleanedArrayImage);
-//MediasFactory(cleanedArrayVideo);
+MediasFactory(cleanedArrayMedia);
 
 //*##### counter like ############################
 const divs = document.querySelectorAll('.fa-heart');
