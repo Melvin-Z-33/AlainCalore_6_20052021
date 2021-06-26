@@ -181,6 +181,7 @@ h3 {
 	display: inline-block;
 	position: relative;
 	margin-left: 25px;
+	z-index: 5;
 }
 
 .dd-button {
@@ -539,4 +540,124 @@ label {
 
 .inline-block {
 	display: inline-block;
+}
+
+// ********************************************
+
+.preview-box {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.9);
+	background: #fff;
+	width: 899px;
+	height: 800px;
+	z-index: 5;
+	opacity: 0;
+	pointer-events: none;
+	border-radius: 3px;
+	padding: 0 5px 5px 5px;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+.preview-box.show {
+	opacity: 1;
+	pointer-events: auto;
+	transform: translate(-50%, -50%) scale(1);
+	transition: all 0.3s ease;
+}
+.preview-box .details {
+	display: flex;
+	align-items: center;
+	padding: 12px 15px 12px 10px;
+	justify-content: space-between;
+}
+.preview-box .details .title {
+	display: flex;
+	font-size: 18px;
+	font-weight: 400;
+	@include shortCutFont('Roboto', 400, normal, 16px, 18.75px);
+}
+.details .title p {
+	margin: 0 5px;
+}
+.details .title p.current-img {
+	font-weight: 500;
+}
+.details .icon {
+	position: absolute;
+	right: 2rem;
+	top: 3rem;
+	color: $main-color;
+	font-size: 2rem;
+	cursor: pointer;
+	z-index: 10;
+}
+.preview-box .image-box {
+	display: flex;
+	width: 100%;
+	position: relative;
+}
+.image-box .slide {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #fff;
+	font-size: 30px;
+	cursor: pointer;
+	height: 50px;
+	width: 60px;
+	line-height: 50px;
+	text-align: center;
+	border-radius: 3px;
+}
+.slide.prev {
+	left: 0px;
+	color: $main-color;
+	font-size: 3rem;
+}
+.slide.next {
+	right: 0px;
+	color: $main-color;
+	font-size: 3rem;
+}
+.image-box img {
+	width: 85%;
+	height: 44rem;
+	margin: 0 auto;
+	border-radius: 0 0 3px 3px;
+}
+.image-box video {
+	width: 85%;
+	height: 44rem;
+	margin: 0 auto;
+	border-radius: 0 0 3px 3px;
+}
+
+#lightbox-title {
+	margin-left: 71px;
+	margin-top: 8px;
+	color: $main-color;
+	@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
+}
+.shadow {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+	display: none;
+	background: rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 1000px) {
+	.gallery .image {
+		width: calc(100% / 2);
+	}
+}
+@media (max-width: 600px) {
+	.gallery .image {
+		width: 100%;
+		padding: 4px;
+	}
 }

@@ -1,17 +1,15 @@
-const dataLocalParse = JSON.parse(sessionStorage.dataLocal);
-
-//Search id photographer
+let dataLocal = JSON.parse(sessionStorage.dataLocal);
 let url = 'FishEyeData.json';
 
 const queryString_url_id = window.location.search;
 const idPhotographers = new URLSearchParams(queryString_url_id);
 const id = idPhotographers.get('id');
-const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
-
-//**********  PHOTOGRAPH HEADER **************************/
+const photographerSelect = dataLocal.photographers.find((object) => object.id == id);
+//*****************  PHOTOGRAPH HEADER **************************/
 let arrayTags = [];
 const displayPhotographerHeader = () => {
 	let arrayTags = [``];
+	let tags;
 	for (tags of photographerSelect.tags) {
 		arrayTags.push(`<a class="card-tag">#${tags}</a> `);
 	}
@@ -39,7 +37,7 @@ const displayPhotographerHeader = () => {
 };
 displayPhotographerHeader();
 
-//************ FORMULAIRE ******************************/
+//****************************** FORMULAIRE ******************************/
 
 const modalbg = document.querySelector('.bground');
 const buttonOpen = document.querySelector('.cta');
@@ -57,7 +55,7 @@ const closeForm = () => {
 buttonOpen.addEventListener('click', launchForm);
 buttonClose.addEventListener('click', closeForm);
 
-//*  ##### FACTORY PATTERN FOR DIFFERENTS MEDIA ##########
+//******************* FACTORY PATTERN FOR DIFFERENTS MEDIA **************************/
 let arrayDataLocal = [];
 let arrayImage = [];
 let arrayVideo = [];
@@ -65,7 +63,7 @@ let cleanedArrayMedia;
 let cleanedArrayVideo;
 
 const cleanedDataMedia = () => {
-	arrayDataLocal = dataLocalParse.media;
+	arrayDataLocal = dataLocal.media;
 
 	for (const element of arrayDataLocal) {
 		if (element.photographerId == id) {
@@ -97,25 +95,25 @@ function MediasFactory(array) {
 												<i class="fas fa-heart"></i>
 											</div>
 									</figcaption>
-								</figure>
+									</figure>
 								<p class='gallery-hover'><span>${element.date}</span><span>${element.price}/jour</span> </p>
 							</div>
 							`;
 		} else if (element.video.match('.mp4')) {
 			showMedia += `
-			<div id="main-gallery-img">
-			<video class="photo" controls width="250">
-				<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.video}" alt="" />
-			</video>
+			<div class="main-gallery-img" >
+				<video  class="photo"  width="350" poster="placeholder.png">
+					<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.video}" alt="" />
+				</video >
 				<figcaption>
-						<p>${element.title}</p>
-						<span>
-						<button class="addone  btn-counter">${element.likes}</button>
-						</span>
-						<i class="fas fa-heart"></i>
+					<p>${element.title}</p>
+						<div>
+							<span class="addone  btn-counter">${element.likes}</span>
+							<i class="fas fa-heart"></i>
+						</div>
 				</figcaption>
-						<p class='gallery-hover'><span>${element.date}</span><span>${element.price}/jour</span> </p>
-		</div>
+				<p class='gallery-hover'><span>${element.date}</span><span>${element.price}/jour</span> </p>
+			</div>
 		`;
 		} else {
 			alert('Je ne reconnais pas ce format');
@@ -127,7 +125,7 @@ function MediasFactory(array) {
 
 MediasFactory(cleanedArrayMedia);
 
-//*##### counter like ############################
+//************************** COUNTER LIKE  ************************/
 const divs = document.querySelectorAll('.fa-heart');
 const bttns = document.querySelectorAll('.btn-counter');
 
@@ -136,7 +134,7 @@ divs.forEach((el) =>
 		let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
 		let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
 		//let t = value.textContent;
-		console.log(valueClasss);
+
 		let a;
 		if (valueClasss.classList.contains('addone')) {
 			a = parseInt(value) + 1;
@@ -149,7 +147,7 @@ divs.forEach((el) =>
 	}),
 );
 
-//* ############# CSS #################################
+//*************************** CSS **********************************/
 const chevronDown = document.querySelector('#arrow-down');
 const chevronUp = document.querySelector('#arrow-up');
 const chevron = document.querySelector('.chevron');
@@ -169,3 +167,104 @@ const buttonPopularity = () => {
 	}
 };
 dropdownButton.addEventListener('click', buttonPopularity);
+
+//*************************** LIGHTBOX ************************/
+//let gallery = document.querySelectorAll('.photo img'),
+let previewBox = document.querySelector('.preview-box'),
+	previewImg = previewBox.querySelector('img'),
+	previewVideo = previewBox.querySelector('video'),
+	closeIcon = previewBox.querySelector('.icon'),
+	currentImg = previewBox.querySelector('.current-img'),
+	totalImg = previewBox.querySelector('.total-img'),
+	lightboxTitle = previewBox.querySelector('#lightbox-title'),
+	shadow = document.querySelector('.shadow');
+
+let galleryNew = document.querySelectorAll('.photo');
+window.onload = () => {
+	for (let i = 0; i < galleryNew.length; i++) {
+		totalImg.textContent = galleryNew.length;
+		let newIndex = i;
+		let clickedImgIndex;
+		let titlePhoto = `${cleanedArrayMedia[newIndex].title}`;
+		let empty = '';
+		galleryNew[i].onclick = () => {
+			clickedImgIndex = i;
+
+			function lightbox() {
+				if (!galleryNew[i].firstElementChild.src.split('.')[4].search('mp4')) {
+					lightboxTitle.innnerHTML = '';
+					let videoURL = galleryNew[i].firstElementChild.src;
+					previewVideo.src = videoURL;
+					previewImg.src = '';
+					previewImg.style.display = 'none';
+					previewVideo.style.display = 'block';
+
+					lightboxTitle.innerHTML = '';
+					lightboxTitle.insertAdjacentHTML(
+						'afterbegin',
+						`${cleanedArrayMedia[newIndex].title}`,
+					);
+				} else if (!galleryNew[i].firstElementChild.src.split('.')[4].search('jpg')) {
+					lightboxTitle.insertAdjacentHTML('afterbegin', empty);
+					let imageURL = galleryNew[i].firstElementChild.src;
+					previewImg.src = imageURL;
+					previewVideo.src = '';
+					previewVideo.style.display = 'none';
+					previewImg.style.display = 'block';
+
+					lightboxTitle.innerHTML = '';
+					lightboxTitle.insertAdjacentHTML(
+						'afterbegin',
+						`${cleanedArrayMedia[newIndex].title}`,
+					);
+				}
+
+				currentImg.textContent = newIndex + 1;
+			}
+
+			lightbox();
+
+			const prevBtn = document.querySelector('.prev');
+			const nextBtn = document.querySelector('.next');
+			if (newIndex == 0) {
+				prevBtn.style.display = 'none';
+			}
+			if (newIndex >= galleryNew.length - 1) {
+				nextBtn.style.display = 'none';
+			}
+			prevBtn.onclick = () => {
+				newIndex--;
+				if (newIndex == 0) {
+					lightbox(i--);
+					prevBtn.style.display = 'none';
+				} else {
+					lightbox(i--);
+					nextBtn.style.display = 'block';
+				}
+			};
+
+			nextBtn.onclick = () => {
+				newIndex++;
+				if (newIndex >= galleryNew.length - 1) {
+					lightbox(i++);
+					nextBtn.style.display = 'none';
+				} else {
+					lightbox(i++);
+					prevBtn.style.display = 'block';
+				}
+			};
+
+			document.querySelector('body').style.overflow = 'hidden';
+			previewBox.classList.add('show');
+			shadow.style.display = 'block';
+			closeIcon.onclick = () => {
+				newIndex = clickedImgIndex;
+				prevBtn.style.display = 'block';
+				nextBtn.style.display = 'block';
+				previewBox.classList.remove('show');
+				shadow.style.display = 'none';
+				document.querySelector('body').style.overflow = 'scroll';
+			};
+		};
+	}
+};

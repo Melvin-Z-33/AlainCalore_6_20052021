@@ -23,6 +23,7 @@ const displayPhotographers = async () => {
 			let counter = 1;
 			let showCard = `<div id="title">Nos photographes</div>`;
 			let arrayTags = [``];
+			let tags;
 
 			for (let photographer of value.photographers) {
 				for (tags of photographer.tags) {
