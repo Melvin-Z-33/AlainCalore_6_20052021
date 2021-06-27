@@ -282,7 +282,6 @@ hr {
   max-width: 350px;
   height: 250px;
   border-radius: 5px;
-  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -292,7 +291,9 @@ hr {
   max-width: 100%;
   height: auto;
 }
-.photo figcaption {
+
+figcaption {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: end;
@@ -304,7 +305,7 @@ hr {
   line-height: 31.25px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  bottom: -5px;
+  bottom: 0px;
 }
 
 .gallery-hover {

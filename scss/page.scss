@@ -282,7 +282,7 @@ hr {
 	max-width: 350px;
 	height: 250px;
 	border-radius: 5px;
-	margin-bottom: 2rem;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: end;
@@ -292,18 +292,18 @@ hr {
 		max-width: 100%;
 		height: auto;
 	}
-	figcaption {
-		display: flex;
-		justify-content: space-between;
-		align-items: end;
-		color: $main-color;
-		@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
-		text-overflow: ellipsis;
+}
 
-		white-space: nowrap;
-
-		bottom: -5px;
-	}
+figcaption {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+	color: $main-color;
+	@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	bottom: 0px;
 }
 
 .gallery-hover {

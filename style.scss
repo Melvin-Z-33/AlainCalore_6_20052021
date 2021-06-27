@@ -31,8 +31,8 @@ h2 {
 	transform: translateX(-50%);
 	top: 3px;
 	border-radius: 5px;
-
-	position: fixed;
+	position: absolute;
+	transform: translateY(-143%);
 	z-index: 10;
 }
 
@@ -41,7 +41,8 @@ h2 {
 	background-color: $shade-color;
 	text-align: center;
 	color: black;
-	position: fixed;
+	position: absolute;
+	transform: translateY(-143%);
 	width: 170px;
 	height: 19px;
 	top: 3px;
@@ -49,6 +50,11 @@ h2 {
 	transform: translateX(-50%);
 	z-index: 20;
 	@include shortCutFont('DM Sans', 700, normal, 18px, 23.44px);
+}
+
+#scrollY:focus,
+#contect:focus {
+	transform: translateY(0%);
 }
 
 #grid-container {

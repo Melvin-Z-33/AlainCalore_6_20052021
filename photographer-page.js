@@ -1,10 +1,9 @@
-let dataLocal = JSON.parse(sessionStorage.dataLocal);
-let url = 'FishEyeData.json';
+dataLocalParse = JSON.parse(localStorage.dataLocal);
 
 const queryString_url_id = window.location.search;
 const idPhotographers = new URLSearchParams(queryString_url_id);
 const id = idPhotographers.get('id');
-const photographerSelect = dataLocal.photographers.find((object) => object.id == id);
+const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
 //*****************  PHOTOGRAPH HEADER **************************/
 let arrayTags = [];
 const displayPhotographerHeader = () => {
@@ -63,7 +62,7 @@ let cleanedArrayMedia;
 let cleanedArrayVideo;
 
 const cleanedDataMedia = () => {
-	arrayDataLocal = dataLocal.media;
+	arrayDataLocal = dataLocalParse.media;
 
 	for (const element of arrayDataLocal) {
 		if (element.photographerId == id) {
@@ -88,6 +87,8 @@ function MediasFactory(array) {
 							<div class="main-gallery-img">
 								<figure class="photo">
 									<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
+									
+									</figure>
 									<figcaption>
 											<p>${element.title}</p>
 											<div>
@@ -95,14 +96,13 @@ function MediasFactory(array) {
 												<i class="fas fa-heart"></i>
 											</div>
 									</figcaption>
-									</figure>
 								<p class='gallery-hover'><span>${element.date}</span><span>${element.price}/jour</span> </p>
 							</div>
 							`;
 		} else if (element.video.match('.mp4')) {
 			showMedia += `
 			<div class="main-gallery-img" >
-				<video  class="photo"  width="350" poster="placeholder.png">
+				<video  class="photo"  width="350" ">
 					<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.video}" alt="" />
 				</video >
 				<figcaption>
@@ -129,6 +129,11 @@ MediasFactory(cleanedArrayMedia);
 const divs = document.querySelectorAll('.fa-heart');
 const bttns = document.querySelectorAll('.btn-counter');
 
+// functionseData() {
+//  	let pseudo = document.getEleemntById('pseudo').value;
+
+// }
+
 divs.forEach((el) =>
 	el.addEventListener('click', (event) => {
 		let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
@@ -144,6 +149,9 @@ divs.forEach((el) =>
 			valueClasss.classList.toggle('addone');
 		}
 		valueClasss.innerHTML = a;
+		//event.target.previousElementSibling.textContent = a;
+		console.log(event.target);
+		localStorage.setItem('click', a);
 	}),
 );
 
@@ -180,12 +188,13 @@ let previewBox = document.querySelector('.preview-box'),
 	shadow = document.querySelector('.shadow');
 
 let galleryNew = document.querySelectorAll('.photo');
+
 window.onload = () => {
 	for (let i = 0; i < galleryNew.length; i++) {
 		totalImg.textContent = galleryNew.length;
 		let newIndex = i;
 		let clickedImgIndex;
-		let titlePhoto = `${cleanedArrayMedia[newIndex].title}`;
+
 		let empty = '';
 		galleryNew[i].onclick = () => {
 			clickedImgIndex = i;
@@ -254,6 +263,10 @@ window.onload = () => {
 				}
 			};
 
+			if (previewBox.classList.contains('.show')) {
+				console.log('ok');
+			}
+
 			document.querySelector('body').style.overflow = 'hidden';
 			previewBox.classList.add('show');
 			shadow.style.display = 'block';
@@ -268,3 +281,24 @@ window.onload = () => {
 		};
 	}
 };
+
+//* Navigation au clavier
+function onKeyUp(e) {
+	if (e.key === 'escape') {
+		this.close(e);
+	} else if (e.key === 'ArrowLeft') {
+		this.prev(e);
+	} else if (e.key === 'ArrowRight') {
+		this.next(e);
+	}
+}
+
+function close(e) {
+	e.preventDefault();
+	this.element.classList.add('fadeOut');
+	window.setTimeout(() => {
+		this.element.parentElement.removeChild(this.element);
+	}, 500);
+	document.removeEventListener('keyup', this.onKeyUp);
+	console.log('ok');
+}

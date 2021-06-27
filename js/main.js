@@ -4,11 +4,12 @@ window.addEventListener('scroll', function () {
 	let scrollY = document.getElementById('scrollY');
 
 	if (window.scrollY > 0) {
-		context.style.display = 'block';
-		scrollY.style.display = 'block';
+		context.style.position = 'fixed';
+		scrollY.style.position = 'fixed';
+		scrollY.style.transform = 'translateY(0%)';
 	} else {
-		context.style.display = 'none';
-		scrollY.style.display = 'none';
+		// 	context.style.display = 'none';
+		scrollY.style.transform = 'translateY(-143%)';
 	}
 });
 
@@ -84,8 +85,7 @@ const storeDataLocal = async () => {
 	await fetch(url)
 		.then((res) => res.json())
 		.then((value) => {
-			sessionStorage.dataLocal = JSON.stringify(value);
-			dataLocalParse = JSON.parse(sessionStorage.dataLocal);
+			localStorage.dataLocal = JSON.stringify(value);
 		});
 };
 storeDataLocal();
