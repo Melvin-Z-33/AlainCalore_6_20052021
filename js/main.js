@@ -1,4 +1,4 @@
-//Sticky button
+//Skip button
 window.addEventListener('scroll', function () {
 	let context = document.getElementById('context');
 	let scrollY = document.getElementById('scrollY');

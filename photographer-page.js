@@ -178,7 +178,7 @@ dropdownButton.addEventListener('click', buttonPopularity);
 
 //*************************** LIGHTBOX ************************/
 //let gallery = document.querySelectorAll('.photo img'),
-let previewBox = document.querySelector('.preview-box'),
+let previewBox = document.querySelector('#litbox'),
 	previewImg = previewBox.querySelector('img'),
 	previewVideo = previewBox.querySelector('video'),
 	closeIcon = previewBox.querySelector('.icon'),
@@ -200,6 +200,10 @@ window.onload = () => {
 			clickedImgIndex = i;
 
 			function lightbox() {
+				document.querySelector('body').style.overflow = 'hidden';
+				previewBox.classList.add('show');
+				shadow.style.display = 'block';
+
 				if (!galleryNew[i].firstElementChild.src.split('.')[4].search('mp4')) {
 					lightboxTitle.innnerHTML = '';
 					let videoURL = galleryNew[i].firstElementChild.src;
@@ -241,7 +245,8 @@ window.onload = () => {
 			if (newIndex >= galleryNew.length - 1) {
 				nextBtn.style.display = 'none';
 			}
-			prevBtn.onclick = () => {
+
+			const goPreviousImage = () => {
 				newIndex--;
 				if (newIndex == 0) {
 					lightbox(i--);
@@ -252,7 +257,7 @@ window.onload = () => {
 				}
 			};
 
-			nextBtn.onclick = () => {
+			const goNextImage = () => {
 				newIndex++;
 				if (newIndex >= galleryNew.length - 1) {
 					lightbox(i++);
@@ -262,15 +267,10 @@ window.onload = () => {
 					prevBtn.style.display = 'block';
 				}
 			};
+			prevBtn.addEventListener('click', goPreviousImage);
+			nextBtn.addEventListener('click', goNextImage);
 
-			if (previewBox.classList.contains('.show')) {
-				console.log('ok');
-			}
-
-			document.querySelector('body').style.overflow = 'hidden';
-			previewBox.classList.add('show');
-			shadow.style.display = 'block';
-			closeIcon.onclick = () => {
+			const closeLightbox = () => {
 				newIndex = clickedImgIndex;
 				prevBtn.style.display = 'block';
 				nextBtn.style.display = 'block';
@@ -278,27 +278,29 @@ window.onload = () => {
 				shadow.style.display = 'none';
 				document.querySelector('body').style.overflow = 'scroll';
 			};
+			closeIcon.addEventListener('click', closeLightbox);
+
+			if (previewBox.classList.contains('show')) {
+				console.log('ok');
+				document.addEventListener('keydown', (event) => {
+					const nomTouche = event.key;
+					console.log(nomTouche);
+
+					switch (nomTouche) {
+						case 'ArrowRight':
+							goNextImage();
+							break;
+						case 'ArrowLeft':
+							goPreviousImage();
+							break;
+						case 'Escape':
+							closeLightbox();
+							break;
+						default:
+							console.log('problem with keyboard');
+					}
+				});
+			}
 		};
 	}
 };
-
-//* Navigation au clavier
-function onKeyUp(e) {
-	if (e.key === 'escape') {
-		this.close(e);
-	} else if (e.key === 'ArrowLeft') {
-		this.prev(e);
-	} else if (e.key === 'ArrowRight') {
-		this.next(e);
-	}
-}
-
-function close(e) {
-	e.preventDefault();
-	this.element.classList.add('fadeOut');
-	window.setTimeout(() => {
-		this.element.parentElement.removeChild(this.element);
-	}, 500);
-	document.removeEventListener('keyup', this.onKeyUp);
-	console.log('ok');
-}
