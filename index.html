@@ -14,15 +14,15 @@
 		<title>Fish Eye</title>
 	</head>
 	<body>
-		<div class="flex-center" id="scrollY">
-			<a href="index.html" id="context">Passer au contenu</a>
-		</div>
 		<div id="grid-container">
 			<header id="banner">
-				<a href="index.html" id="header-logo" aria-label="Main            Menu">
+				<a href="index.html" id="header-logo" aria-label="Main Menu">
 					Fish<span><i class="fas fa-camera"></i></span>ye
 				</a>
-				<nav id="header-nav" aria-label="Tag navigation">
+				<button class="flex-center" id="scrollY">
+					<a href="index.html" class="skip-link" id="context">Passer au contenu</a>
+				</button>
+				<nav id="header-nav" aria-label="photographer categories">
 					<ul role="list" id="header-nav-list">
 						<li><a href="#" class="header-tag">#Portrait</a></li>
 						<li><a href="#" class="header-tag">#Art</a></li>
@@ -36,8 +36,8 @@
 				</nav>
 			</header>
 			<main id="main"></main>
-		
+		</div>
 
-		<script src="./js/main.js"></script>
+		<script type="module" src="./js/main.js"></script>
 	</body>
 </html>

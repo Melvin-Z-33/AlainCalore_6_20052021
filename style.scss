@@ -27,12 +27,12 @@ h2 {
 	background-color: $shade-color;
 	height: 30px;
 	width: 182px;
-	left: 50%;
+	left: 46%;
 	transform: translateX(-50%);
 	top: 3px;
 	border-radius: 5px;
-
-	position: fixed;
+	position: absolute;
+	transform: translateY(-143%);
 	z-index: 10;
 }
 
@@ -41,7 +41,8 @@ h2 {
 	background-color: $shade-color;
 	text-align: center;
 	color: black;
-	position: fixed;
+	position: absolute;
+	transform: translateY(-143%);
 	width: 170px;
 	height: 19px;
 	top: 3px;
@@ -49,6 +50,11 @@ h2 {
 	transform: translateX(-50%);
 	z-index: 20;
 	@include shortCutFont('DM Sans', 700, normal, 18px, 23.44px);
+}
+
+#scrollY:focus,
+#contect:focus {
+	transform: translateY(0%);
 }
 
 #grid-container {
@@ -60,7 +66,7 @@ h2 {
 		'header navbar photographer'
 		'item1 item2 item3'
 		'item4 item5 item6';
-	margin-top: -86px;
+	margin-top: -119px;
 }
 
 header {
@@ -128,8 +134,8 @@ ul {
 	flex-direction: column;
 	text-align: center;
 	width: 35rem;
-	height: 328px;
-	margin: -18px 0 76px;
+	height: 336px;
+	margin: -16px 0 76px;
 }
 
 #card-1 {
@@ -197,7 +203,7 @@ ul {
 		@include shortCutFont('DM Sans', 500, normal, 12px, 15.62px);
 		width: 62px;
 		height: 21px;
-		margin: 5px 5px;
+		margin: 5px 1px;
 		border: 0.5px solid #c4c4c4;
 		box-sizing: border-box;
 		border-radius: 11px;
