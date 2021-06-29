@@ -1,8 +1,8 @@
-dataLocalParse = JSON.parse(localStorage.dataLocal);
-
 const queryString_url_id = window.location.search;
 const idPhotographers = new URLSearchParams(queryString_url_id);
 const id = idPhotographers.get('id');
+let dataLocalParse = JSON.parse(localStorage.dataLocal);
+
 const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
 //*****************  PHOTOGRAPH HEADER **************************/
 let arrayTags = [];
@@ -81,18 +81,20 @@ cleanedDataMedia();
 
 let showMedia = '';
 function MediasFactory(array) {
+	counterImage = 1;
+	counterVideo = 1;
+
 	for (const element of array) {
 		if (typeof element.image !== 'undefined' && element.image.includes('jpg')) {
 			showMedia += `
 							<div class="main-gallery-img">
 								<figure class="photo">
 									<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
-									
 									</figure>
 									<figcaption>
 											<p>${element.title}</p>
 											<div>
-												<span class="addone  btn-counter">${element.likes}</span>
+												<span id="image-like-${counterImage}" class="addone  btn-counter" >${element.likes}</span>
 												<i class="fas fa-heart"></i>
 											</div>
 									</figcaption>
@@ -102,13 +104,13 @@ function MediasFactory(array) {
 		} else if (element.video.match('.mp4')) {
 			showMedia += `
 			<div class="main-gallery-img" >
-				<video  class="photo"  width="350" ">
+				<video  class="photo"  width="475"  ">
 					<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.video}" alt="" />
 				</video >
 				<figcaption>
 					<p>${element.title}</p>
 						<div>
-							<span class="addone  btn-counter">${element.likes}</span>
+							<span id="video-like-${counterVideo}" class="addone  btn-counter">${element.likes}</span>
 							<i class="fas fa-heart"></i>
 						</div>
 				</figcaption>
@@ -118,6 +120,8 @@ function MediasFactory(array) {
 		} else {
 			alert('Je ne reconnais pas ce format');
 		}
+		counterImage += 1;
+		counterVideo = 1;
 	}
 	showMedia += '';
 	document.querySelector('#main-gallery-flex').insertAdjacentHTML('afterbegin', showMedia);
@@ -128,11 +132,6 @@ MediasFactory(cleanedArrayMedia);
 //************************** COUNTER LIKE  ************************/
 const divs = document.querySelectorAll('.fa-heart');
 const bttns = document.querySelectorAll('.btn-counter');
-
-// functionseData() {
-//  	let pseudo = document.getEleemntById('pseudo').value;
-
-// }
 
 divs.forEach((el) =>
 	el.addEventListener('click', (event) => {
@@ -149,9 +148,10 @@ divs.forEach((el) =>
 			valueClasss.classList.toggle('addone');
 		}
 		valueClasss.innerHTML = a;
-		//event.target.previousElementSibling.textContent = a;
-		console.log(event.target);
-		localStorage.setItem('click', a);
+
+		console.log(valueClasss.textContent);
+		console.log(valueClasss.id);
+		localStorage.setItem('this.id', 'Tom');
 	}),
 );
 
@@ -224,17 +224,14 @@ window.onload = () => {
 					previewVideo.src = '';
 					previewVideo.style.display = 'none';
 					previewImg.style.display = 'block';
-
 					lightboxTitle.innerHTML = '';
 					lightboxTitle.insertAdjacentHTML(
 						'afterbegin',
 						`${cleanedArrayMedia[newIndex].title}`,
 					);
 				}
-
 				currentImg.textContent = newIndex + 1;
 			}
-
 			lightbox();
 
 			const prevBtn = document.querySelector('.prev');
@@ -281,10 +278,8 @@ window.onload = () => {
 			closeIcon.addEventListener('click', closeLightbox);
 
 			if (previewBox.classList.contains('show')) {
-				console.log('ok');
 				document.addEventListener('keydown', (event) => {
 					const nomTouche = event.key;
-					console.log(nomTouche);
 
 					switch (nomTouche) {
 						case 'ArrowRight':

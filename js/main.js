@@ -14,7 +14,6 @@ window.addEventListener('scroll', function () {
 });
 
 // Request Api
-
 let url = './FishEyeData.json';
 
 const displayPhotographers = async () => {
@@ -48,7 +47,6 @@ const displayPhotographers = async () => {
 					<div class="card-content-tag">${arrayTags.join('')}</div>
 				</div>
 				`;
-
 				counter += 1;
 				arrayTags = [``];
 			}
@@ -89,3 +87,9 @@ const storeDataLocal = async () => {
 		});
 };
 storeDataLocal();
+
+// btn.addEventListener('click', () => {
+// 	localStorage.setItem(product, JSON.stringify(product));
+// 	btn.classList.add('invisible');
+// 	div.textContent = 'Le produit a été ajouté au panier !';
+// });

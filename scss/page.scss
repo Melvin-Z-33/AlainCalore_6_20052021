@@ -134,8 +134,8 @@ h3 {
 	right: 0px;
 
 	img {
-		height: 200px;
-		width: 200px;
+		height: 224px;
+		width: 276px;
 		border-radius: 50%;
 		background: #c4c4c4;
 		position: absolute;
@@ -271,16 +271,16 @@ hr {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	margin: 2rem 4rem;
+	margin-top: 30px;
 	flex: 1 0 30%;
-	max-width: 350px;
-	max-height: 300px;
+	max-width: 475px;
+	max-height: 475px;
 	position: relative;
 }
 
 .photo {
-	max-width: 350px;
-	height: 250px;
+	max-width: 475px;
+	height: 325px;
 	border-radius: 5px;
 
 	display: flex;
@@ -313,7 +313,7 @@ figcaption {
 	justify-content: revert;
 	height: 49px;
 	top: 13px;
-	left: 13px;
+	right: -35px;
 	position: absolute;
 	border-radius: 5px;
 	background-color: $shade-color;
