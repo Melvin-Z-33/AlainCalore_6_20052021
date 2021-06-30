@@ -88,6 +88,11 @@ header {
 	grid-row: 1 / 2;
 	align-items: center;
 	justify-content: center;
+	@media (max-width: 599px) {
+		position: absolute;
+		top: 40%;
+		left: 25%;
+	}
 
 	#header-nav-list li {
 		margin: 0 10px;

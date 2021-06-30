@@ -95,6 +95,13 @@ header {
   align-items: center;
   justify-content: center;
 }
+@media (max-width: 599px) {
+  #header-nav {
+    position: absolute;
+    top: 40%;
+    left: 25%;
+  }
+}
 #header-nav #header-nav-list li {
   margin: 0 10px;
   color: #901c1c;

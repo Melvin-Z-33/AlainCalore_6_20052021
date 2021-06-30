@@ -683,5 +683,12 @@ label {
     padding: 4px;
   }
 }
+.block {
+  display: block;
+}
+
+.none {
+  display: none;
+}
 
 /*# sourceMappingURL=page.css.map */

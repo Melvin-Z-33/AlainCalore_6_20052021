@@ -44,14 +44,33 @@ const buttonClose = document.getElementById('close');
 let namePhotographer = `<h3>${photographerSelect.name}</h3>`;
 const nameForm = document.querySelector('#form-photographer-name');
 nameForm.innerHTML = `${photographerSelect.name}`;
+const firstName = document.querySelector('#first');
+
+const closeWithKeyboard = () => {
+	document.addEventListener('keydown', (event) => {
+		console.log(event.key);
+		if (modalbg.classList.contains('block') && event.key == 'Escape') {
+			closeForm();
+		}
+	});
+};
 
 const launchForm = () => {
-	modalbg.style.display = 'block';
+	//modalbg.style.display = 'block';
+	modalbg.classList.toggle('block');
+	closeWithKeyboard();
 };
+
 const closeForm = () => {
-	modalbg.style.display = 'none';
+	//modalbg.style.display = 'none';
+	modalbg.classList.toggle('block');
 };
+focusMethod = function getFocus() {
+	document.getElementById('first').focus();
+};
+
 buttonOpen.addEventListener('click', launchForm);
+buttonOpen.addEventListener('click', focusMethod);
 buttonClose.addEventListener('click', closeForm);
 
 //******************* FACTORY PATTERN FOR DIFFERENTS MEDIA **************************/
