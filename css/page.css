@@ -261,10 +261,14 @@ hr {
 }
 
 .chevron {
-  margin-left: 24px;
   width: 16px;
+  right: 20px;
+  top: 7px;
   display: inline-block;
   height: 9.88px;
+  position: absolute;
+  color: white;
+  font-size: 17px;
 }
 
 .main-gallery-img {

@@ -28,25 +28,28 @@
 				<div id="main-gallery-header">
 					<p>Trier par</p>
 					<label class="dropdown">
-						<div class="dd-button" id="dropdown-button">
+						<div class="dd-button" id="button-popularity">
 							Popularité
-							<span class="chevron inline-block" id="arrow-down">
-								<i class="fas fa-chevron-down"></i>
-							</span>
-							<span class="chevron none" id="arrow-up">
-								<i class="fas fa-chevron-up"></i>
-							</span>
 						</div>
+						
+						<span class="chevron inline-block" id="arrow-down">
+							<i class="fas fa-chevron-down"></i>
+						</span>
+						<span class="chevron none" id="arrow-up">
+							<i class="fas fa-chevron-up"></i>
+						</span>
+						
 						<input type="checkbox" class="dd-input" id="test" />
 						<ul class="dd-menu">
 							<hr/>
-							<li class="dd-button">Date</li>
+							<li class="dd-button" id="button-date">Date</li>
 							<hr/>
-							<li class="dd-button">Titre</li>
+							<li class="dd-button" id="button-title">Titre</li>
 						</ul>
 					</label>
 				</div>
-				<div id="main-gallery-flex"></div>
+				<div id="main-gallery-flex">
+				</div>
 
 				<div class="preview-box" id="litbox">
 					<div class="details">
@@ -139,8 +142,17 @@
 				</div>
 			</div>
 		</div>
+		<section>
+				<div class="list">
+				  <div class="list__title"></div>
+				  <div class="list__content list__content--before"></div>
+				</div>
+				<div class="list">
+				  <div class="list__title"></div>
+				  <div class="list__content list__content--after"></div>
+				</div>
+		</section>
 		<script src="./photographer-page.js"></script>
-		
 	</body>
 </html>
 

@@ -1,8 +1,8 @@
 const queryString_url_id = window.location.search;
 const idPhotographers = new URLSearchParams(queryString_url_id);
 const id = idPhotographers.get('id');
-let dataLocalParse = JSON.parse(localStorage.dataLocal);
-
+const datalocal = localStorage.getItem('dataLocal');
+const dataLocalParse = JSON.parse(localStorage.getItem('dataLocal'));
 const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
 //*****************  PHOTOGRAPH HEADER **************************/
 let arrayTags = [];
@@ -41,10 +41,10 @@ displayPhotographerHeader();
 const modalbg = document.querySelector('.bground');
 const buttonOpen = document.querySelector('.cta');
 const buttonClose = document.getElementById('close');
-let namePhotographer = `<h3>${photographerSelect.name}</h3>`;
-const nameForm = document.querySelector('#form-photographer-name');
-nameForm.innerHTML = `${photographerSelect.name}`;
 const firstName = document.querySelector('#first');
+const nameForm = document.querySelector('#form-photographer-name');
+let namePhotographer = `<h3>${photographerSelect.name}</h3>`;
+nameForm.innerHTML = `${photographerSelect.name}`;
 
 const closeWithKeyboard = () => {
 	document.addEventListener('keydown', (event) => {
@@ -56,13 +56,11 @@ const closeWithKeyboard = () => {
 };
 
 const launchForm = () => {
-	//modalbg.style.display = 'block';
 	modalbg.classList.toggle('block');
 	closeWithKeyboard();
 };
 
 const closeForm = () => {
-	//modalbg.style.display = 'none';
 	modalbg.classList.toggle('block');
 };
 focusMethod = function getFocus() {
@@ -92,17 +90,17 @@ const cleanedDataMedia = () => {
 	cleanedArrayMedia = arrayImage.filter(function (x) {
 		return x !== undefined;
 	});
-	cleanedArrayVideo = arrayVideo.filter(function (x) {
-		return x !== undefined;
-	});
+	// cleanedArrayVideo = arrayVideo.filter(function (x) {
+	// 	return x !== undefined;
+	// });
 };
 cleanedDataMedia();
 
 let showMedia = '';
-function MediasFactory(array) {
+const MediasFactory = (array) => {
 	counterImage = 1;
 	counterVideo = 1;
-
+	showMedia = '';
 	for (const element of array) {
 		if (typeof element.image !== 'undefined' && element.image.includes('jpg')) {
 			showMedia += `
@@ -143,9 +141,8 @@ function MediasFactory(array) {
 		counterVideo = 1;
 	}
 	showMedia += '';
-	document.querySelector('#main-gallery-flex').insertAdjacentHTML('afterbegin', showMedia);
-}
-
+	document.querySelector('#main-gallery-flex').innerHTML = showMedia;
+};
 MediasFactory(cleanedArrayMedia);
 
 //************************** COUNTER LIKE  ************************/
@@ -178,7 +175,13 @@ divs.forEach((el) =>
 const chevronDown = document.querySelector('#arrow-down');
 const chevronUp = document.querySelector('#arrow-up');
 const chevron = document.querySelector('.chevron');
-const dropdownButton = document.querySelector('#dropdown-button');
+const dropdownButton = document.querySelector('#button-popularity');
+
+console.log(chevron);
+
+// chevron.forEach((el) =>
+// 	el.addEventListener('click', (event) => {divs.forEach((el) =>
+// 		el.addEventListener('click', (event) => {
 
 const buttonPopularity = () => {
 	if (chevronDown.classList.contains('inline-block')) {
@@ -186,17 +189,18 @@ const buttonPopularity = () => {
 		chevronDown.classList.add('none');
 		chevronUp.classList.remove('none');
 		chevronUp.classList.add('inline-block');
-	} else if (chevronDown.classList.contains('none')) {
+	} else if (chevronUp.classList.contains('inline-block')) {
 		chevronDown.classList.remove('none');
 		chevronDown.classList.add('inline-block');
 		chevronUp.classList.remove('inline-block');
 		chevronUp.classList.add('none');
 	}
 };
-dropdownButton.addEventListener('click', buttonPopularity);
+chevron.addEventListener('click', buttonPopularity);
+chevronUp.addEventListener('click', buttonPopularity);
 
 //*************************** LIGHTBOX ************************/
-//let gallery = document.querySelectorAll('.photo img'),
+
 let previewBox = document.querySelector('#litbox'),
 	previewImg = previewBox.querySelector('img'),
 	previewVideo = previewBox.querySelector('video'),
@@ -207,6 +211,7 @@ let previewBox = document.querySelector('#litbox'),
 	shadow = document.querySelector('.shadow');
 
 let galleryNew = document.querySelectorAll('.photo');
+let empty = '';
 
 window.onload = () => {
 	for (let i = 0; i < galleryNew.length; i++) {
@@ -214,7 +219,6 @@ window.onload = () => {
 		let newIndex = i;
 		let clickedImgIndex;
 
-		let empty = '';
 		galleryNew[i].onclick = () => {
 			clickedImgIndex = i;
 
@@ -230,7 +234,6 @@ window.onload = () => {
 					previewImg.src = '';
 					previewImg.style.display = 'none';
 					previewVideo.style.display = 'block';
-
 					lightboxTitle.innerHTML = '';
 					lightboxTitle.insertAdjacentHTML(
 						'afterbegin',
@@ -318,3 +321,26 @@ window.onload = () => {
 		};
 	}
 };
+
+//********* Sort Media   *********************/
+
+document.querySelector('#button-popularity').addEventListener('click', () => {
+	cleanedArrayMedia.sort((a, b) => {
+		return b.likes - a.likes;
+	});
+	MediasFactory(cleanedArrayMedia);
+});
+
+document.querySelector('#button-date').addEventListener('click', function () {
+	cleanedArrayMedia.sort((a, b) => {
+		return new Date(a.date) - new Date(b.date);
+	});
+	MediasFactory(cleanedArrayMedia);
+});
+
+document.querySelector('#button-title').addEventListener('click', function () {
+	cleanedArrayMedia.sort((a, b) => {
+		return a.title.localeCompare(b.title);
+	});
+	MediasFactory(cleanedArrayMedia);
+});
