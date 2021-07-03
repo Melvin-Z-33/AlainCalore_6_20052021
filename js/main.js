@@ -21,7 +21,7 @@ const displayPhotographers = async () => {
 		.then((res) => res.json())
 		.then((value) => {
 			let counter = 1;
-			let showCard = `<div id="title">Nos photographes</div>`;
+			let showCard = `<div id="title">Nos photographes</div><ul id='main-photographer-list'>`;
 			let arrayTags = [``];
 			let tags;
 
@@ -30,7 +30,7 @@ const displayPhotographers = async () => {
 					arrayTags.push(`<a class="card-tag">#${tags}</a> `);
 				}
 				showCard += `
-				<div class="cards" id="card-${counter}">
+				<li class="cards" id="card-${counter}">
 					<div class=card-header>
 						<a href="photographer-page.html?id=${
 							photographer.id
@@ -45,12 +45,12 @@ const displayPhotographers = async () => {
 						<p class="card-content-price"> ${photographer.price}€/jour </p>
 					</div>
 					<div class="card-content-tag">${arrayTags.join('')}</div>
-				</div>
+				</li>
 				`;
 				counter += 1;
 				arrayTags = [``];
 			}
-			showCard += '';
+			showCard += `</ul>`;
 			document.querySelector('#main').innerHTML = showCard;
 			allTags = document.querySelectorAll('.card-content-tag');
 

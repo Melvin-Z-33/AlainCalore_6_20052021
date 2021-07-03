@@ -243,21 +243,10 @@ hr {
 	li:hover {
 		background-color: $shade-color;
 	}
-	// li.divider {
-	// 	padding: 0;
-	// 	border-bottom: 1px solid #cccccc;
-	// }
-	// li:nth-child(2) {
-	// 	//	border-top: 1px solid white;
-	// }
 }
 
-.dd-input + .dd-menu {
+.dd-menu {
 	display: none;
-}
-
-.dd-input:checked + .dd-menu {
-	display: block;
 }
 
 .chevron {

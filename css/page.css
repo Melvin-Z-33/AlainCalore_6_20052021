@@ -252,12 +252,8 @@ hr {
   background-color: #d3573c;
 }
 
-.dd-input + .dd-menu {
+.dd-menu {
   display: none;
-}
-
-.dd-input:checked + .dd-menu {
-  display: block;
 }
 
 .chevron {

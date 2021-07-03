@@ -177,26 +177,22 @@ const chevronUp = document.querySelector('#arrow-up');
 const chevron = document.querySelector('.chevron');
 const dropdownButton = document.querySelector('#button-popularity');
 
-console.log(chevron);
-
-// chevron.forEach((el) =>
-// 	el.addEventListener('click', (event) => {divs.forEach((el) =>
-// 		el.addEventListener('click', (event) => {
-
 const buttonPopularity = () => {
 	if (chevronDown.classList.contains('inline-block')) {
 		chevronDown.classList.remove('inline-block');
 		chevronDown.classList.add('none');
 		chevronUp.classList.remove('none');
 		chevronUp.classList.add('inline-block');
+		document.querySelector('.dd-menu').style.display = 'block';
 	} else if (chevronUp.classList.contains('inline-block')) {
 		chevronDown.classList.remove('none');
 		chevronDown.classList.add('inline-block');
 		chevronUp.classList.remove('inline-block');
 		chevronUp.classList.add('none');
+		document.querySelector('.dd-menu').style.display = 'none';
 	}
 };
-chevron.addEventListener('click', buttonPopularity);
+chevronDown.addEventListener('click', buttonPopularity);
 chevronUp.addEventListener('click', buttonPopularity);
 
 //*************************** LIGHTBOX ************************/

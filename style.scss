@@ -9,6 +9,10 @@
 	font-family: 'Roboto', sans-serif;
 }
 
+body {
+	overflow-x: hidden;
+}
+
 a {
 	text-decoration: none;
 }
@@ -21,6 +25,14 @@ ol {
 h2 {
 	color: $shade-color;
 	@include shortCutFont('DM Sans', 400, normal, 36px, 46.872px);
+}
+
+#banner {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 43px;
+	padding-left: 176px;
 }
 
 #scrollY {
@@ -57,25 +69,6 @@ h2 {
 	transform: translateY(0%);
 }
 
-#grid-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
-	gap: 0px 0px;
-	grid-template-areas:
-		'header navbar photographer'
-		'item1 item2 item3'
-		'item4 item5 item6';
-	margin-top: -119px;
-}
-
-header {
-	grid-area: 1/1/2/3;
-	z-index: 3;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-}
-
 #header-logo {
 	@extend %flex-center;
 	color: $main-color;
@@ -83,48 +76,43 @@ header {
 }
 
 #header-nav {
-	display: grid;
-	grid-column: 2 / 3;
-	grid-row: 1 / 2;
-	align-items: center;
-	justify-content: center;
-	@media (max-width: 599px) {
-		position: absolute;
-		top: 40%;
-		left: 25%;
-	}
+	width: 553px;
+	position: absolute;
+	left: 33%;
 
-	#header-nav-list li {
-		margin: 0 10px;
-		color: $main-color;
-
-		a {
+	#header-nav-list {
+		display: flex;
+		li {
+			margin: 0 10px;
 			color: $main-color;
+			width: 6rem;
+			a:visited,
+			a {
+				color: $main-color;
+				font-size: clamp(11px 15px 17px);
+			}
 		}
 	}
 }
 
 main {
-	grid-area: 1 / 1 / 4 / 4;
-	// grid-template-columns: subgrid;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
-	gap: 0px 0px;
-	justify-items: center;
-	grid-template-areas:
-		'header navbar photographer'
-		'item1 item2 item3'
-		'item4 item5 item6';
+	display: flex;
+	position: relative;
+	top: 85px;
+	width: 100%;
+	padding: 0 60px;
+	height: 40px;
 }
 
-ul {
+#main-photographer-list {
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	height: auto;
+	width: 100%;
 }
 
 #logo {
-	/*grid-area:1/1/2/2;*/
-
 	justify-content: center;
 	display: grid;
 }
@@ -138,33 +126,9 @@ ul {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-	width: 35rem;
-	height: 336px;
-	margin: -16px 0 76px;
-}
+	width: 37.5rem;
 
-#card-1 {
-	grid-area: item1;
-}
-
-#card-2 {
-	grid-area: item2;
-}
-
-#card-3 {
-	grid-area: item3;
-}
-
-#card-4 {
-	grid-area: item4;
-}
-
-#card-5 {
-	grid-area: item5;
-}
-
-#card-6 {
-	grid-area: item6;
+	margin: -18px -66px 76px;
 }
 
 #container-card {
@@ -218,9 +182,9 @@ ul {
 }
 
 #title {
-	grid-area: photographer;
-	justify-content: center;
-	align-self: center;
 	font-size: 2rem;
 	color: $main-color;
+	position: absolute;
+	right: 166px;
+	top: -132px;
 }
