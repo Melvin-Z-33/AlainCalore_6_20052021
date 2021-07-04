@@ -95,29 +95,31 @@ const cleanedDataMedia = () => {
 	// });
 };
 cleanedDataMedia();
-
+let svgHeart;
+let buttonCounter;
 let showMedia = '';
 const MediasFactory = (array) => {
 	counterImage = 1;
 	counterVideo = 1;
 	showMedia = '';
+
 	for (const element of array) {
 		if (typeof element.image !== 'undefined' && element.image.includes('jpg')) {
 			showMedia += `
-							<div class="main-gallery-img">
-								<figure class="photo">
-									<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
-									</figure>
-									<figcaption>
-											<p>${element.title}</p>
-											<div>
-												<span id="image-like-${counterImage}" class="addone  btn-counter" >${element.likes}</span>
-												<i class="fas fa-heart"></i>
-											</div>
-									</figcaption>
-								<p class='gallery-hover'><span>${element.date}</span><span>${element.price}/jour</span> </p>
-							</div>
-							`;
+			<div class="main-gallery-img">
+			<figure class="photo">
+			<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
+			</figure>
+			<figcaption>
+			<p>${element.title}</p>
+			<div>
+			<span id="image-like-${counterImage}" class="addone  btn-counter" >${element.likes}</span>
+			<i class="fas fa-heart"></i>
+			</div>
+			</figcaption>
+			<p class='gallery-hover'> </p>
+			</div>
+			`;
 		} else if (element.video.match('.mp4')) {
 			showMedia += `
 			<div class="main-gallery-img" >
@@ -131,7 +133,7 @@ const MediasFactory = (array) => {
 							<i class="fas fa-heart"></i>
 						</div>
 				</figcaption>
-				<p class='gallery-hover'><span>${element.date}</span><span>${element.price}/jour</span> </p>
+				<p class='gallery-hover'> </p>
 			</div>
 		`;
 		} else {
@@ -142,14 +144,26 @@ const MediasFactory = (array) => {
 	}
 	showMedia += '';
 	document.querySelector('#main-gallery-flex').innerHTML = showMedia;
+	svgHeart = document.querySelectorAll('.fa-heart');
+	buttonCounter = document.querySelectorAll('.btn-counter');
 };
 MediasFactory(cleanedArrayMedia);
 
-//************************** COUNTER LIKE  ************************/
-const divs = document.querySelectorAll('.fa-heart');
-const bttns = document.querySelectorAll('.btn-counter');
+const showTotalLikes = () => {
+	let arrayTotalLikes = new Number();
+	for (element of buttonCounter) {
+		arrayTotalLikes += parseFloat(element.innerText);
+	}
+	document.querySelectorAll('.gallery-hover').forEach((element) => {
+		element.innerHTML = `<span>${arrayTotalLikes}
+		<i class="fas fa-heart"></i></span></span><span>${photographerSelect.price}€ /jour</span>`;
+	});
+};
+showTotalLikes();
 
-divs.forEach((el) =>
+//************************** COUNTER LIKE  ************************/
+
+svgHeart.forEach((el) =>
 	el.addEventListener('click', (event) => {
 		let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
 		let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
@@ -168,6 +182,7 @@ divs.forEach((el) =>
 		console.log(valueClasss.textContent);
 		console.log(valueClasss.id);
 		localStorage.setItem('this.id', 'Tom');
+		showTotalLikes();
 	}),
 );
 
