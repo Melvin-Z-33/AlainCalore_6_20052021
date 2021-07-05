@@ -112,8 +112,8 @@ const MediasFactory = (array) => {
 			</figure>
 			<figcaption>
 			<p>${element.title}</p>
-			<div>
-			<span id="image-like-${counterImage}" class="addone  btn-counter" >${element.likes}</span>
+			<div class="chatnoir">
+			<span id="${element.id}" class="ap addone" >${element.likes}</span>
 			<i class="fas fa-heart"></i>
 			</div>
 			</figcaption>
@@ -128,8 +128,8 @@ const MediasFactory = (array) => {
 				</video >
 				<figcaption>
 					<p>${element.title}</p>
-						<div>
-							<span id="video-like-${counterVideo}" class="addone  btn-counter">${element.likes}</span>
+						<div class="chatnoir">
+							<span id="${element.id}" class="a addone">${element.likes}</span>
 							<i class="fas fa-heart"></i>
 						</div>
 				</figcaption>
@@ -145,43 +145,75 @@ const MediasFactory = (array) => {
 	showMedia += '';
 	document.querySelector('#main-gallery-flex').innerHTML = showMedia;
 	svgHeart = document.querySelectorAll('.fa-heart');
-	buttonCounter = document.querySelectorAll('.btn-counter');
+	buttonCounter = document.querySelectorAll('.chatnoir span');
 };
 MediasFactory(cleanedArrayMedia);
 
 const showTotalLikes = () => {
 	let arrayTotalLikes = new Number();
+
+	// element.innerText = a.number;
 	for (element of buttonCounter) {
 		arrayTotalLikes += parseFloat(element.innerText);
+		document.querySelectorAll('.gallery-hover').forEach((element) => {
+			element.innerHTML = `<span>${arrayTotalLikes}
+				 <i class="fas fa-heart"></i></span></span><span>${photographerSelect.price}€ /jour</span>`;
+		});
 	}
-	document.querySelectorAll('.gallery-hover').forEach((element) => {
-		element.innerHTML = `<span>${arrayTotalLikes}
-		<i class="fas fa-heart"></i></span></span><span>${photographerSelect.price}€ /jour</span>`;
-	});
 };
 showTotalLikes();
 
+const checkClass = () => {
+	for (key in localStorage) {
+		for (element of buttonCounter) {
+			if (key === element.id) {
+				let a = JSON.parse(localStorage.getItem(key));
+				console.log(a.number);
+				element.textContent = a.number;
+				if (a.category === 'false') {
+					element.classList.remove('addone');
+				} else if (a.category === 'true') {
+					element.classList.add('addone');
+				}
+			}
+		}
+	}
+};
+checkClass();
 //************************** COUNTER LIKE  ************************/
 
 svgHeart.forEach((el) =>
 	el.addEventListener('click', (event) => {
 		let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
 		let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
-		//let t = value.textContent;
+		let counterNew;
+		let objetLike = {};
+		// el.classList.toggle('clicked');
+		// console.log(valueClasss.id);
 
-		let a;
 		if (valueClasss.classList.contains('addone')) {
-			a = parseInt(value) + 1;
-			valueClasss.classList.toggle('addone');
+			counterNew = parseInt(value) + 1;
+			valueClasss.classList.remove('addone');
+			objetLike = {
+				id: valueClasss.id,
+				category: 'false',
+				number: counterNew,
+			};
+			localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
 		} else {
-			a = parseInt(value) - 1;
-			valueClasss.classList.toggle('addone');
+			counterNew = parseInt(value) - 1;
+			valueClasss.classList.add('addone');
+			objetLike = {
+				id: valueClasss.id,
+				category: 'true',
+				number: counterNew,
+			};
+			localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
 		}
-		valueClasss.innerHTML = a;
+		valueClasss.innerHTML = counterNew;
 
-		console.log(valueClasss.textContent);
-		console.log(valueClasss.id);
-		localStorage.setItem('this.id', 'Tom');
+		console.log(objetLike);
+
 		showTotalLikes();
 	}),
 );
