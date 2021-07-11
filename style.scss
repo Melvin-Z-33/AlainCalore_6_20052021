@@ -9,7 +9,14 @@
 	font-family: 'Roboto', sans-serif;
 }
 
+html {
+	font-size: 62.5%;
+}
+
 body {
+	max-width: 144rem;
+	height: 100vh;
+	margin: 0 auto;
 	overflow-x: hidden;
 }
 
@@ -24,28 +31,42 @@ ol {
 
 h2 {
 	color: $shade-color;
-	@include shortCutFont('DM Sans', 400, normal, 36px, 46.872px);
+	@include shortCutFont('DM Sans', 400, normal, 3.6rem, 46.872px);
 }
 
 #banner {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	margin-top: 43px;
-	padding-left: 176px;
+	margin-top: 4.3rem;
+	// padding-left: 176px;
+	@media screen and (max-width: 414px) {
+		display: block;
+		justify-content: center;
+		padding-left: 0px;
+		margin-top: 33px;
+	}
 }
 
 #scrollY {
 	background-color: $shade-color;
 	height: 30px;
 	width: 182px;
-	left: 46%;
-	transform: translateX(-50%);
 	top: 3px;
 	border-radius: 5px;
 	position: absolute;
+	display: block;
+	left: 50%;
 	transform: translateY(-143%);
+	transform: translateX(-50%);
 	z-index: 10;
+	@media screen and (max-width: 1158px) {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	@media screen and (max-width: 414px) {
+		display: none;
+	}
 }
 
 #context {
@@ -54,54 +75,109 @@ h2 {
 	text-align: center;
 	color: black;
 	position: absolute;
-	transform: translateY(-143%);
+	// transform: translateY(-143%);
 	width: 170px;
 	height: 19px;
 	top: 3px;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 20;
-	@include shortCutFont('DM Sans', 700, normal, 18px, 23.44px);
+	@include shortCutFont('DM Sans', 700, normal, 1.8rem, 23.44px);
 }
 
 #scrollY:focus,
 #contect:focus {
-	transform: translateY(0%);
+	transform: translateY(5px);
+	// transform: translateX(-50%);
 }
 
 #header-logo {
 	@extend %flex-center;
 	color: $main-color;
-	font-size: 3rem;
+	font-size: 3.6rem;
+	margin-left: 11rem;
+	height: 5rem;
+	@media screen and (max-width: 618px) {
+		margin-left: 2rem;
+	}
+	@media screen and (max-width: 414px) {
+		display: block;
+		font-size: 3rem;
+	}
 }
 
 #header-nav {
-	width: 553px;
+	@extend %flex-center;
+	width: 55.3rem;
+	// height: 1.6rem;
 	position: absolute;
-	left: 33%;
+	left: 50%;
+	transform: translateX(-54%);
+	@include shortCutFont('DM Sans', 500, normal, 1.2rem, 1.576rem);
+	@media screen and (max-width: 1158px) {
+		transform: translateX(-50%);
+		top: 11.2rem;
+	}
+	@media screen and (max-width: 414px) {
+		left: 0px;
+		transform: translateX(0);
+		margin-top: 0;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
 
 	#header-nav-list {
-		display: flex;
+		@extend %flex-center;
+		@media screen and (max-width: 1158px) {
+			flex-wrap: wrap;
+			width: 38.2rem;
+		}
+		@media screen and (max-width: 414px) {
+			flex-wrap: wrap;
+			width: 78%;
+		}
 		li {
 			margin: 0 10px;
 			color: $main-color;
-			width: 6rem;
+
+			@media screen and (max-width: 1158px) {
+				margin: 1rem;
+			}
+			@media screen and (max-width: 414px) {
+				width: auto;
+				margin: 8px 4px;
+			}
 			a:visited,
 			a {
 				color: $main-color;
 				font-size: clamp(11px 15px 17px);
+				border: 1px solid grey;
+				border-radius: 26px;
+				padding: 5px;
+				@media screen and (max-width: 414px) {
+					padding: 4px;
+				}
 			}
 		}
+	}
+}
+
+#header-nav-list li:nth-child(5) a {
+	@media screen and (max-width: 414px) {
+		margin-left: 13px;
 	}
 }
 
 main {
 	display: flex;
 	position: relative;
-	top: 85px;
+	top: 8.5rem;
 	width: 100%;
-	padding: 0 60px;
-	height: 40px;
+
+	@media screen and (max-width: 414px) {
+		top: 141px;
+	}
 }
 
 #main-photographer-list {
@@ -110,6 +186,18 @@ main {
 	justify-content: space-between;
 	height: auto;
 	width: 100%;
+
+	@media screen and (max-width: 1158px) {
+		position: absolute;
+		top: 6rem;
+	}
+	@media screen and (max-width: 634px) {
+		justify-content: center;
+	}
+	@media screen and (max-width: 414px) {
+		justify-content: center;
+		top: 0;
+	}
 }
 
 #logo {
@@ -126,11 +214,12 @@ main {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-	width: 37.5rem;
-
-	margin: -18px -66px 76px;
+	width: 47.5rem;
+	margin: -1.8rem -5.4rem 7.6rem;
+	@media screen and (max-width: 1158px) {
+		width: 42.5rem;
+	}
 }
-
 #container-card {
 	width: 100%;
 	display: flex;
@@ -139,39 +228,39 @@ main {
 
 .card-header {
 	img {
-		width: 53%;
-		height: 200px;
+		width: 26rem;
+		height: 20rem;
 		clip-path: ellipse(50% 50%);
 	}
 
 	.card-title {
-		margin: 14px 0 7px;
+		margin: 1.4rem 0 7px;
 	}
 }
 
 .card-content {
-	@include shortCutFont('DM Sans', 700, normal, 18px, 23.44px);
+	@include shortCutFont('DM Sans', 700, normal, 1.8rem, 23.44px);
 	.card-content-city {
 		color: $main-color;
 	}
 
 	.card-content-price {
-		@include shortCutFont('DM Sans', 400, normal, 13px, 11.02px);
+		@include shortCutFont('DM Sans', 400, normal, 1.3rem, 11.02px);
 		color: grey;
-		margin: 8px 0;
+		margin: 1.172rem 0;
 	}
 }
 
 .card-content-tagline {
-	@include shortCutFont('DM Sans', 400, normal, 16px, 13.02px);
+	@include shortCutFont('DM Sans', 400, normal, 1.6rem, 13.02px);
 	margin: 5px 0;
 }
 .card-content-tag {
 	color: $main-color;
 	.card-tag {
-		@include shortCutFont('DM Sans', 500, normal, 12px, 15.62px);
-		width: 62px;
-		height: 21px;
+		@include shortCutFont('DM Sans', 500, normal, 1.2rem, 15.62px);
+		width: 6.2rem;
+		height: 2.1rem;
 		margin: 5px 1px;
 		border: 0.5px solid #c4c4c4;
 		box-sizing: border-box;
@@ -182,9 +271,21 @@ main {
 }
 
 #title {
-	font-size: 2rem;
-	color: $main-color;
+	font-size: 2.6rem;
+	color: #901c1c;
 	position: absolute;
-	right: 166px;
-	top: -132px;
+	right: 8rem;
+	top: -12.6rem;
+	width: 21.6rem;
+	height: 4.7rem;
+	text-align: center;
+	@media screen and (max-width: 618px) {
+		right: 2rem;
+	}
+
+	@media screen and (max-width: 414px) {
+		right: 0px;
+		font-size: 1.9rem;
+		top: -18rem;
+	}
 }

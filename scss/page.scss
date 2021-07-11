@@ -6,11 +6,19 @@
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+html {
+	font-size: 62.5%;
 }
 
 body {
+	max-width: 144rem;
+	height: 100vh;
 	margin: 0 auto;
-	padding: 0 4rem;
+	overflow-x: hidden;
+	padding: 0 10px;
 }
 
 a {
@@ -22,16 +30,22 @@ a {
 	@extend %header-logo;
 	position: absolute;
 	display: block;
-	width: 200px;
-	height: 50px;
+	width: 20rem;
+	height: 5rem;
 	top: 8.07%;
 	bottom: 22.14%;
-	height: 50px;
+
+	@media screen and (max-width: 380px) {
+		left: 10px;
+	}
 }
 
 main {
 	margin-top: 120px;
 	width: 100%;
+	@media screen and (max-width: 380px) {
+		margin-top: 0px;
+	}
 }
 
 .photograph-header {
@@ -46,20 +60,30 @@ main {
 	border-radius: 5px;
 	padding: 2% 31px;
 	position: relative;
+	@media screen and (max-width: 380px) {
+		left: -83px;
+		margin: 0;
+	}
 
 	.photograph-profile {
 		width: 536px;
 		display: flex;
 		flex-direction: column;
 	}
+	h3 {
+		width: 54rem;
+		@media screen and (max-width: 380px) {
+			font-size: 3.6rem;
+		}
+	}
 }
 
 h3 {
 	color: $shade-color;
-	width: 282px;
-	height: 83px;
+	width: 28.2rem;
+	height: 8.3rem;
 	font-weight: 400;
-	font-size: 64px;
+	font-size: 6.4rem;
 	line-height: 83.33px;
 	display: block ruby;
 }
@@ -90,11 +114,15 @@ h3 {
 
 	border-radius: 12px;
 	@include shortCutFont('DM Sans', 500, normal, 18px, 23.44px);
+	@media screen and (max-width: 380px) {
+		flex-wrap: wrap;
+		width: 207px;
+	}
 }
 
 .card-tag {
 	@include shortCutFont('DM Sans', 500, normal, 12px, 15.62px);
-	width: 62px;
+	// width: 62px;
 	height: 21px;
 	margin: 5px 3px;
 	border: 0.5px solid #c4c4c4;
@@ -108,18 +136,23 @@ h3 {
 #modal {
 	position: absolute;
 	left: 34rem;
+	@media screen and (max-width: 380px) {
+		left: 25%;
+		bottom: 0px;
+	}
 }
 
 .cta {
-	height: 69px;
-	width: 170px;
-	left: 11px;
-	top: 21px;
+	position: absolute;
+	height: 6.9rem;
+	width: 17rem;
+	left: 24.8rem;
+	top: 0.7rem;
 	border-radius: 5px;
 	background-color: $main-color;
 	color: $text-color-2;
 
-	@include shortCutFont('DM Sans', 700, normal, 20px, 26.04px);
+	@include shortCutFont('DM Sans', 700, normal, 2rem, 2.604rem);
 	text-align: center;
 }
 
@@ -139,20 +172,31 @@ h3 {
 		border-radius: 50%;
 		background: #c4c4c4;
 		position: absolute;
-		right: 59px;
+		right: 3px;
 		background: #c4c4c4;
 		box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
 		margin-right: 31px;
+		@media screen and (max-width: 380px) {
+			height: 200px;
+			width: 164px;
+			margin-right: -190px;
+		}
 	}
 }
 
 #main-gallery {
 	margin-top: 29px;
+	@media screen and (max-width: 380px) {
+		margin-top: 0px;
+	}
 }
 
 #main-gallery-header {
 	display: flex;
 	align-items: center;
+	@media screen and (max-width: 380px) {
+		display: none;
+	}
 	p {
 		height: 23px;
 		width: 74px;
@@ -265,39 +309,72 @@ hr {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	margin-top: 30px;
-	flex: 1 0 30%;
-	max-width: 475px;
-	max-height: 475px;
+	margin: 3rem 3px;
+	// flex: 1 0 30%;
+	// max-width: 475px;
+	// max-height: 475px;
+	width: 35rem;
 	position: relative;
+	@media screen and (max-width: 380px) {
+		justify-content: center;
+		align-items: center;
+		margin-top: 0px;
+		flex: 0;
+		width: 370px;
+		max-width: 335px;
+		// max-height: 220px;
+		// height: 220px;
+	}
+	video {
+		@media screen and (max-width: 380px) {
+			width: 370px;
+			height: 220px;
+		}
+	}
 }
 
 .photo {
-	max-width: 475px;
-	height: 325px;
+	width: 35rem;
+	height: 30rem;
 	border-radius: 5px;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: end;
 	overflow: hidden;
+	object-fit: cover;
+	@media screen and (max-width: 380px) {
+		width: 335px;
+		max-width: 335px;
+		height: 200px;
+	}
 
 	img {
-		max-width: 100%;
-		height: auto;
+		width: 35rem;
+		height: 30rem;
+
+		@media screen and (max-width: 380px) {
+			width: 335px;
+			height: 200px;
+		}
 	}
 }
 
 figcaption {
-	width: 100%;
+	width: 35rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: end;
 	color: $main-color;
-	@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
+	margin-top: 1rem;
+
+	@include shortCutFont('DM Sans', 400, normal, 2rem, 3.125rem);
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	bottom: 0px;
+	@media screen and (max-width: 380px) {
+		font-size: 17px;
+	}
 }
 
 .gallery-hover {
@@ -318,6 +395,7 @@ figcaption {
 
 .main-gallery-img:hover .gallery-hover {
 	opacity: 1;
+	z-index: 10;
 }
 
 //**************************** Modal form *****************************/
@@ -444,9 +522,9 @@ input {
 }
 
 .content {
-	background-color: $shade-color;
+	background-color: $formulary-color;
 	.modal-body {
-		background-color: $shade-color;
+		background-color: $formulary-color;
 	}
 }
 .modal-body {
@@ -513,7 +591,7 @@ label {
 	height: 50px;
 	background: #901c1c;
 	display: block;
-	font-size: 1rem;
+	font-size: 1.8rem;
 	color: #fff;
 	cursor: pointer;
 	border: 0;
@@ -526,6 +604,9 @@ label {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
+	@media screen and (max-width: 380px) {
+		justify-content: center;
+	}
 }
 
 .none {
@@ -544,20 +625,27 @@ label {
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0.9);
 	background: #fff;
-	width: 899px;
-	height: 800px;
+	width: 125.3rem;
+	height: 88.4rem;
 	z-index: 5;
 	opacity: 0;
 	pointer-events: none;
 	border-radius: 3px;
 	padding: 0 5px 5px 5px;
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+	@media screen and (max-width: 380px) {
+		width: 289.13px;
+		height: 248px;
+	}
 }
 .preview-box.show {
 	opacity: 1;
 	pointer-events: auto;
 	transform: translate(-50%, -50%) scale(1);
 	transition: all 0.3s ease;
+	@media screen and (max-width: 380px) {
+		height: 100vh;
+	}
 }
 .preview-box .details {
 	display: flex;
@@ -582,7 +670,7 @@ label {
 	right: 2rem;
 	top: 3rem;
 	color: $main-color;
-	font-size: 2rem;
+	font-size: 4.2rem;
 	cursor: pointer;
 	z-index: 10;
 }
@@ -607,18 +695,25 @@ label {
 .slide.prev {
 	left: 0px;
 	color: $main-color;
-	font-size: 3rem;
+
+	i {
+		font-size: 4.8rem;
+	}
 }
 .slide.next {
 	right: 0px;
 	color: $main-color;
-	font-size: 3rem;
+	font-size: 4.8rem;
 }
 .image-box img {
-	width: 85%;
-	height: 44rem;
+	width: 105rem;
+	height: 80rem;
 	margin: 0 auto;
 	border-radius: 0 0 3px 3px;
+	@media screen and (max-width: 380px) {
+		width: 288px;
+		height: 248px;
+	}
 }
 .image-box video {
 	width: 85%;

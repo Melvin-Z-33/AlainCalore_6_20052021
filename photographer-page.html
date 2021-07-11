@@ -1,161 +1,115 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./css/page.css" />
-		<script src="https://kit.fontawesome.com/a79dbf0876.js" crossorigin="anonymous"></script>
-		<link rel="preconnect" href="https://fonts.gstatic.com" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-			rel="stylesheet"
-		/>
-		<title>Fish Eye</title>
-	</head>
-	<body>
-		<header id="banner">
-			<a href="index.html" class="logo" aria-label="Main            Menu">
-				Fish<span><i class="fas fa-camera"></i></span>ye
-			</a>
 
-		</header>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="./css/page.css" />
+	<script src="https://kit.fontawesome.com/a79dbf0876.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+		rel="stylesheet" />
+	<title>Fish Eye</title>
+</head>
 
-
-
-		<main class="main">
-			<div id="main-gallery">
-				<div id="main-gallery-header">
-					<p>Trier par</p>
-					<label class="dropdown">
-						<div class="dd-button" id="button-popularity">
-							Popularité
-						</div>
-						
-						<span class="chevron inline-block" id="arrow-down">
-							<i class="fas fa-chevron-down"></i>
-						</span>
-						<span class="chevron none" id="arrow-up">
-							<i class="fas fa-chevron-up"></i>
-						</span>
-						
-						<input type="checkbox" class="dd-input" id="test" />
-						<ul class="dd-menu">
-							<hr/>
-							<li class="dd-button" id="button-date">Date</li>
-							<hr/>
-							<li class="dd-button" id="button-title">Titre</li>
-						</ul>
-					</label>
-				</div>
-				<div id="main-gallery-flex">
-				</div>
-
-				<div class="preview-box" id="litbox">
-					<div class="details">
+<body>
+	<header id="banner">
+		<a href="index.html" class="logo" aria-label="Main     Menu">
+			Fish<span><i class="fas fa-camera"></i></span>ye
+		</a>
+	</header>
+	<main class="main">
+		<div id="main-gallery">
+			<div id="main-gallery-header">
+				<p>Trier par</p>
+				<label class="dropdown">
+					<div class="dd-button" id="button-popularity">
+						Popularité
+					</div>
+					<span class="chevron inline-block" id="arrow-down">
+						<i class="fas fa-chevron-down"></i>
+					</span>
+					<span class="chevron none" id="arrow-up">
+						<i class="fas fa-chevron-up"></i>
+					</span>
+					<input type="checkbox" class="dd-input" id="test" />
+					<ul class="dd-menu">
+						<hr />
+						<li class="dd-button" id="button-date">Date</li>
+						<hr />
+						<li class="dd-button" id="button-title">Titre</li>
+					</ul>
+				</label>
+			</div>
+			<div id="main-gallery-flex">
+			</div>
+			<div class="preview-box" id="litbox">
+				<div class="details">
 					<span class="title">Image <p class="current-img"></p> de <p class="total-img"></p></span>
 					<span class="icon fas fa-times"></span>
+				</div>
+				<div class="image-box">
+					<div class="slide prev"><i class="fas fa-angle-left"></i></div>
+					<div class="slide next"><i class="fas fa-angle-right"></i></div>
+					<img src="" alt="">
+					<video controls width="300" src=""></video>
+				</div>
+				<div id="lightbox-title"></div>
+			</div>
+			<div class="shadow"></div>
+	</main>
+	<div class="bground">
+		<div class="content">
+			<span class="close" id="close"></span>
+			<div id="form-header">
+				<p id="contact">Contactez-moi</p>
+				<p id="form-photographer-name"></p>
+			</div>
+			<div class="modal-body">
+				<form name="reserve" id="form" action="index.html" method="get" onsubmit="return false;">
+					<div class="formData">
+						<label for="first">Prénom<span id="prenom_manquant"></span></label><br />
+						<input class="text-control" type="text" id="first" name="first" minlength="2"
+							pattern="[A-Za-z0-9]+" value="" required />
+						<small></small>
+						<br />
 					</div>
-					<div class="image-box">
-						<div class="slide prev"><i class="fas fa-angle-left"></i></div>
-						<div class="slide next"><i class="fas fa-angle-right"></i></div>
-						<img src="" alt="">
-						<video controls width="300" src=""></video>
+					<div class="formData">
+						<label for="last">Nom</label><br />
+						<input class="text-control" type="text" id="last" name="last" minlength="2"
+							pattern="[A-Za-z0-9]+" value required />
+						<small></small>
+						<br />
 					</div>
-					<div id="lightbox-title"></div>
-				</div>
-					<div class="shadow"></div>
-
-				</main>
-		<div class="bground">
-			<div class="content">
-				<span class="close" id="close"></span>
-				<div id="form-header">
-					<p id="contact">Contactez-moi</p>
-					<p id="form-photographer-name"></p>
-				</div>
-				<div class="modal-body">
-					<form
-
-						name="reserve"
-						id="form"
-						action="index.html"
-						method="get"
-						onsubmit="return false;"
-					>
-						<div class="formData">
-							<label for="first">Prénom<span id="prenom_manquant"></span></label
-							><br />
-							<input
-								class="text-control"
-								type="text"
-								id="first"
-								name="first"
-								minlength="2"
-								pattern="[A-Za-z0-9]+"
-								value=""
-								required
-							/>
-							<small></small>
-							<br />
-						</div>
-						<div class="formData">
-							<label for="last">Nom</label><br />
-							<input
-								class="text-control"
-								type="text"
-								id="last"
-								name="last"
-								minlength="2"
-								pattern="[A-Za-z0-9]+"
-								value
-								required
-							/>
-							<small></small>
-							<br />
-						</div>
-						<div class="formData">
-							<label for="email">Email</label><br />
-							<input
-								class="text-control"
-								type="email"
-								id="email"
-								name="email"
-								required
-							/>
-							<small id="smallEmail"></small>
-							<br />
-						</div>
-						<div class="formData" id="formData-flex">
-							<label for="story">Votre message </label><br/>
-							<textarea id="form-message" name="story"   rows="5" cols="33"></textarea>
-						</div>
-						<div class="formData"></div>
-						<input
-							class="btn-submit button"
-							type="submit"
-							value="Envoyer"
-							id="buttonSubmit"
-						/>
-						<p id="text-final">Thank you for submitting your registration details</p>
-					</form>
-				</div>
+					<div class="formData">
+						<label for="email">Email</label><br />
+						<input class="text-control" type="email" id="email" name="email" required />
+						<small id="smallEmail"></small>
+						<br />
+					</div>
+					<div class="formData" id="formData-flex">
+						<label for="story">Votre message </label><br />
+						<textarea id="form-message" name="story" rows="5" cols="33"></textarea>
+					</div>
+					<div class="formData"></div>
+					<input class="btn-submit button" type="submit" value="Envoyer" id="buttonSubmit" />
+					<p id="text-final">Thank you for submitting your registration details</p>
+				</form>
 			</div>
 		</div>
-		<section>
-				<div class="list">
-				  <div class="list__title"></div>
-				  <div class="list__content list__content--before"></div>
-				</div>
-				<div class="list">
-				<div class="list__title"></div>
-				<div class="list__content list__content--after"></div>
-				</div>
-		</section>
-		<script src="./photographer-page.js"></script>
-	</body>
+	</div>
+	<section>
+		<div class="list">
+			<div class="list__title"></div>
+			<div class="list__content list__content--before"></div>
+		</div>
+		<div class="list">
+			<div class="list__title"></div>
+			<div class="list__content list__content--after"></div>
+		</div>
+	</section>
+	<script src="./photographer-page.js"></script>
+</body>
+
 </html>
-
-
-
-

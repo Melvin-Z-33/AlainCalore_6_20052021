@@ -7,6 +7,7 @@ window.addEventListener('scroll', function () {
 		context.style.position = 'fixed';
 		scrollY.style.position = 'fixed';
 		scrollY.style.transform = 'translateY(0%)';
+		scrollY.style.transform = 'translateX(-50%)';
 	} else {
 		// 	context.style.display = 'none';
 		scrollY.style.transform = 'translateY(-143%)';

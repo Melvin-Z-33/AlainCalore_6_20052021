@@ -3,6 +3,7 @@ const idPhotographers = new URLSearchParams(queryString_url_id);
 const id = idPhotographers.get('id');
 const datalocal = localStorage.getItem('dataLocal');
 const dataLocalParse = JSON.parse(localStorage.getItem('dataLocal'));
+// console.log(typeof dataLocalParse);
 const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
 //*****************  PHOTOGRAPH HEADER **************************/
 let arrayTags = [];
@@ -71,12 +72,17 @@ buttonOpen.addEventListener('click', launchForm);
 buttonOpen.addEventListener('click', focusMethod);
 buttonClose.addEventListener('click', closeForm);
 
+// const log = () => {
+// 	console.log(document.querySelector('#first').value);
+// };
+
+// document.querySelector('#first').addEventListener('keyup', log(element));
+
 //******************* FACTORY PATTERN FOR DIFFERENTS MEDIA **************************/
 let arrayDataLocal = [];
 let arrayImage = [];
 let arrayVideo = [];
 let cleanedArrayMedia;
-let cleanedArrayVideo;
 
 const cleanedDataMedia = () => {
 	arrayDataLocal = dataLocalParse.media;
@@ -86,14 +92,11 @@ const cleanedDataMedia = () => {
 			arrayImage.push(element);
 		}
 	}
-
 	cleanedArrayMedia = arrayImage.filter(function (x) {
 		return x !== undefined;
 	});
-	// cleanedArrayVideo = arrayVideo.filter(function (x) {
-	// 	return x !== undefined;
-	// });
 };
+
 cleanedDataMedia();
 let svgHeart;
 let buttonCounter;
@@ -149,38 +152,36 @@ const MediasFactory = (array) => {
 };
 MediasFactory(cleanedArrayMedia);
 
+//************************** COUNTER LIKE  ************************/
 const showTotalLikes = () => {
 	let arrayTotalLikes = new Number();
 
-	// element.innerText = a.number;
 	for (element of buttonCounter) {
 		arrayTotalLikes += parseFloat(element.innerText);
 		document.querySelectorAll('.gallery-hover').forEach((element) => {
 			element.innerHTML = `<span>${arrayTotalLikes}
-				 <i class="fas fa-heart"></i></span></span><span>${photographerSelect.price}€ /jour</span>`;
+				<i class="fas fa-heart"></i></span></span><span>${photographerSelect.price}€ /jour</span>`;
 		});
 	}
 };
 showTotalLikes();
 
-const checkClass = () => {
+const checkButtonCounterClass = () => {
 	for (key in localStorage) {
 		for (element of buttonCounter) {
 			if (key === element.id) {
-				let a = JSON.parse(localStorage.getItem(key));
-				console.log(a.number);
-				element.textContent = a.number;
-				if (a.category === 'false') {
+				let dataFromLocalStorage = JSON.parse(localStorage.getItem(key));
+				element.textContent = dataFromLocalStorage.number;
+				if (dataFromLocalStorage.category === 'false') {
 					element.classList.remove('addone');
-				} else if (a.category === 'true') {
+				} else if (dataFromLocalStorage.category === 'true') {
 					element.classList.add('addone');
 				}
 			}
 		}
 	}
 };
-checkClass();
-//************************** COUNTER LIKE  ************************/
+checkButtonCounterClass();
 
 svgHeart.forEach((el) =>
 	el.addEventListener('click', (event) => {
@@ -188,9 +189,6 @@ svgHeart.forEach((el) =>
 		let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
 		let counterNew;
 		let objetLike = {};
-		// el.classList.toggle('clicked');
-		// console.log(valueClasss.id);
-
 		if (valueClasss.classList.contains('addone')) {
 			counterNew = parseInt(value) + 1;
 			valueClasss.classList.remove('addone');
@@ -211,9 +209,6 @@ svgHeart.forEach((el) =>
 			localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
 		}
 		valueClasss.innerHTML = counterNew;
-
-		console.log(objetLike);
-
 		showTotalLikes();
 	}),
 );
@@ -365,20 +360,52 @@ window.onload = () => {
 	}
 };
 
-//********* Sort Media   *********************/
+//********* Sort Medias   *********************/
+
+const incrementHeart = (event) => {
+	let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
+	let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
+	let counterNew;
+	let objetLike = {};
+	if (valueClasss.classList.contains('addone')) {
+		counterNew = parseInt(value) + 1;
+		valueClasss.classList.remove('addone');
+		objetLike = {
+			id: valueClasss.id,
+			category: 'false',
+			number: counterNew,
+		};
+		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
+	} else {
+		counterNew = parseInt(value) - 1;
+		valueClasss.classList.add('addone');
+		objetLike = {
+			id: valueClasss.id,
+			category: 'true',
+			number: counterNew,
+		};
+		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
+	}
+	valueClasss.innerHTML = counterNew;
+};
 
 document.querySelector('#button-popularity').addEventListener('click', () => {
 	cleanedArrayMedia.sort((a, b) => {
 		return b.likes - a.likes;
 	});
 	MediasFactory(cleanedArrayMedia);
+	showTotalLikes();
+	svgHeart.forEach((heart) => (heart.onclick = incrementHeart));
 });
 
 document.querySelector('#button-date').addEventListener('click', function () {
 	cleanedArrayMedia.sort((a, b) => {
 		return new Date(a.date) - new Date(b.date);
 	});
+
 	MediasFactory(cleanedArrayMedia);
+	showTotalLikes();
+	svgHeart.forEach((heart) => (heart.onclick = incrementHeart));
 });
 
 document.querySelector('#button-title').addEventListener('click', function () {
@@ -386,4 +413,6 @@ document.querySelector('#button-title').addEventListener('click', function () {
 		return a.title.localeCompare(b.title);
 	});
 	MediasFactory(cleanedArrayMedia);
+	showTotalLikes();
+	svgHeart.forEach((heart) => (heart.onclick = incrementHeart));
 });
