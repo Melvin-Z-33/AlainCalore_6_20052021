@@ -26,6 +26,16 @@ a {
 	color: #000000;
 }
 
+h3 {
+	color: $shade-color;
+	width: 28.2rem;
+	height: 8.3rem;
+	font-weight: 400;
+	font-size: 6.4rem;
+	line-height: 83.33px;
+	display: block ruby;
+}
+
 .logo {
 	@extend %header-logo;
 	position: absolute;
@@ -66,26 +76,25 @@ main {
 	}
 
 	.photograph-profile {
-		width: 536px;
+		width: 53.6rem;
 		display: flex;
 		flex-direction: column;
+		@media screen and (max-width: 1394px) {
+			width: 28rem;
+		}
 	}
 	h3 {
 		width: 54rem;
+		@media screen and (max-width: 1394px) {
+			width: 43rem;
+			display: flex;
+
+			font-size: 4.6rem;
+		}
 		@media screen and (max-width: 380px) {
 			font-size: 3.6rem;
 		}
 	}
-}
-
-h3 {
-	color: $shade-color;
-	width: 28.2rem;
-	height: 8.3rem;
-	font-weight: 400;
-	font-size: 6.4rem;
-	line-height: 83.33px;
-	display: block ruby;
 }
 
 #city {
@@ -95,6 +104,9 @@ h3 {
 	top: 83px;
 	margin: 10px 0 10px;
 	@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
+	@media screen and (max-width: 1394px) {
+		// margin-top: 4.7rem;
+	}
 }
 
 #quote {
@@ -135,25 +147,39 @@ h3 {
 
 #modal {
 	position: absolute;
-	left: 34rem;
-	@media screen and (max-width: 380px) {
-		left: 25%;
-		bottom: 0px;
+	left: 50%;
+	@media screen and (max-width: 994px) {
+		bottom: 0;
+		left: 3.5rem;
 	}
+	// @media screen and (max-width: 737px) {
+	// 	left: 50%;
+	// 	transform: translateX(-50%);
+	// 	position: fixed;
+	// 	z-index: 12;
+	// 	bottom: 32rem;
+	// }
 }
 
 .cta {
 	position: absolute;
 	height: 6.9rem;
 	width: 17rem;
-	left: 24.8rem;
+	left: 50%;
 	top: 0.7rem;
 	border-radius: 5px;
 	background-color: $main-color;
 	color: $text-color-2;
-
 	@include shortCutFont('DM Sans', 700, normal, 2rem, 2.604rem);
 	text-align: center;
+	// @media screen and (max-width: 733px) {
+	// 	height: 4.9rem;
+	// 	width: 16rem;
+	// 	position: fixed;
+	// 	bottom: 6px;
+	// 	left: 50%;
+	// 	transform: translateX(-50%);
+	// }
 }
 
 .user {
@@ -167,8 +193,8 @@ h3 {
 	right: 0px;
 
 	img {
-		height: 224px;
-		width: 276px;
+		height: 22.4rem;
+		width: 27.6rem;
 		border-radius: 50%;
 		background: #c4c4c4;
 		position: absolute;
@@ -194,7 +220,7 @@ h3 {
 #main-gallery-header {
 	display: flex;
 	align-items: center;
-	@media screen and (max-width: 380px) {
+	@media screen and (max-width: 737px) {
 		display: none;
 	}
 	p {
@@ -225,7 +251,7 @@ h3 {
 	display: inline-block;
 	position: relative;
 	margin-left: 25px;
-	z-index: 5;
+	z-index: 1;
 }
 
 .dd-button {
@@ -315,6 +341,10 @@ hr {
 	// max-height: 475px;
 	width: 35rem;
 	position: relative;
+	@media screen and (max-width: 737px) {
+		width: 36rem;
+	}
+
 	@media screen and (max-width: 380px) {
 		justify-content: center;
 		align-items: center;
@@ -519,10 +549,16 @@ input {
 	width: 420px;
 	height: 170px;
 	resize: none;
+	@media screen and (max-width: 528px) {
+		width: 315px;
+	}
 }
 
 .content {
 	background-color: $formulary-color;
+	@media screen and (max-width: 528px) {
+		width: 37.4rem;
+	}
 	.modal-body {
 		background-color: $formulary-color;
 	}
@@ -604,7 +640,7 @@ label {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
-	@media screen and (max-width: 380px) {
+	@media screen and (max-width: 737px) {
 		justify-content: center;
 	}
 }

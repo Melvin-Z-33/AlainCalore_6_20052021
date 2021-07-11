@@ -58,11 +58,15 @@ const closeWithKeyboard = () => {
 
 const launchForm = () => {
 	modalbg.classList.toggle('block');
+	modalbg.style.backgroundColor = 'rgb(255,255,255 )';
+	buttonOpen.style.display = 'none';
 	closeWithKeyboard();
 };
 
 const closeForm = () => {
 	modalbg.classList.toggle('block');
+	modalbg.style.backgroundColor = 'rgb(255,255,255,0 )';
+	buttonOpen.style.display = 'block';
 };
 focusMethod = function getFocus() {
 	document.getElementById('first').focus();
@@ -264,6 +268,7 @@ window.onload = () => {
 				document.querySelector('body').style.overflow = 'hidden';
 				previewBox.classList.add('show');
 				shadow.style.display = 'block';
+				buttonOpen.style.display = 'none';
 
 				if (!galleryNew[i].firstElementChild.src.split('.')[4].search('mp4')) {
 					lightboxTitle.innnerHTML = '';
@@ -334,6 +339,7 @@ window.onload = () => {
 				previewBox.classList.remove('show');
 				shadow.style.display = 'none';
 				document.querySelector('body').style.overflow = 'scroll';
+				buttonOpen.style.display = 'block';
 			};
 			closeIcon.addEventListener('click', closeLightbox);
 
