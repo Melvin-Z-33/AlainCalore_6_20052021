@@ -14,30 +14,34 @@
 		<title>Fish Eye</title>
 	</head>
 	<body>
-		<div id="grid-container">
-			<header id="banner">
-				<a href="index.html" id="header-logo" aria-label="Main Menu">
-					Fish<span><i class="fas fa-camera"></i></span>ye
-				</a>
-				<button class="flex-center" id="scrollY">
-					<a href="index.html" class="skip-link" id="context">Passer au contenu</a>
-				</button>
-				<nav id="header-nav" aria-label="photographer categories">
-					<ul role="list" id="header-nav-list">
-						<li><a href="#" class="header-tag">#Portrait</a></li>
-						<li><a href="#" class="header-tag">#Art</a></li>
-						<li><a href="#" class="header-tag">#Fashion</a></li>
-						<li><a href="#" class="header-tag">#Architecture</a></li>
-						<li><a href="#" class="header-tag">#Travel</a></li>
-						<li><a href="#" class="header-tag">#Sport</a></li>
-						<li><a href="#" class="header-tag">#Animals</a></li>
-						<li><a href="#" class="header-tag">#Events</a></li>
-					</ul>
-				</nav>
-			</header>
-			<main id="main"></main>
-		</div>
+		<header id="banner" role="banner">
+			<a href="index.html" id="header-logo" aria-label="Fisheye Home Page">
+				Fish<span><i class="fas fa-camera" aria-hidden="true"></i></span>ye
+			</a>
 
-		<script type="module" src="./js/main.js"></script>
+			<a href="#card-1" class="skip-link" id="context">Passer au contenu</a>
+
+			<nav id="header-nav" aria-label="photographer categories" role="navigation">
+				<ul role="list" id="header-nav-list">
+					<li>
+						<a href="#" class="header-tag" aria-label="tag-portrait">#Portrait</a>
+					</li>
+					<li><a href="#" class="header-tag" aria-label="tag-art">#Art</a></li>
+					<li><a href="#" class="header-tag" aria-label="tag-mode">#Fashion</a></li>
+					<li>
+						<a href="#" class="header-tag" aria-label="tag-architecture"
+							>#Architecture</a
+						>
+					</li>
+					<li><a href="#" class="header-tag" aria-label="tag-voyage">#Travel</a></li>
+					<li><a href="#" class="header-tag" aria-label="tag-sport">#Sport</a></li>
+					<li><a href="#" class="header-tag" aria-label="tag-animaux">#Animals</a></li>
+					<li><a href="#" class="header-tag" aria-label="tag-evenements">#Events</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main id="main"></main>
+
+		<script src="./js/main.js"></script>
 	</body>
 </html>

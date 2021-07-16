@@ -6,11 +6,19 @@
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+html {
+	font-size: 62.5%;
 }
 
 body {
+	max-width: 144rem;
+	height: 100vh;
 	margin: 0 auto;
-	padding: 0 4rem;
+	overflow-x: hidden;
+	padding: 0 10px;
 }
 
 a {
@@ -18,25 +26,42 @@ a {
 	color: #000000;
 }
 
+h3 {
+	color: $shade-color;
+	width: 28.2rem;
+	height: 8.3rem;
+	font-weight: 400;
+	font-size: 6.4rem;
+	line-height: 83.33px;
+	display: block ruby;
+}
+
 .logo {
 	@extend %header-logo;
 	position: absolute;
 	display: block;
-	width: 200px;
-	height: 50px;
-	top: 8.07%;
+	width: 20rem;
+	height: 5rem;
+	top: 4rem;
 	bottom: 22.14%;
-	height: 50px;
+
+	@media screen and (max-width: 380px) {
+		left: 10px;
+		top: 4rem;
+	}
 }
 
 main {
-	margin-top: 120px;
+	margin-top: 6rem;
 	width: 100%;
+	@media screen and (max-width: 380px) {
+		margin-top: 13rem;
+	}
 }
 
 .photograph-header {
 	width: 100%;
-	height: 278px;
+	height: 27.8rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -46,22 +71,39 @@ main {
 	border-radius: 5px;
 	padding: 2% 31px;
 	position: relative;
+	@media screen and (max-width: 774px) {
+		padding: 0 0;
+		height: 22.3rem;
+	}
+	@media screen and (max-width: 380px) {
+		left: 0;
+		margin: 0;
+	}
 
 	.photograph-profile {
-		width: 536px;
+		width: 53.6rem;
 		display: flex;
 		flex-direction: column;
+		@media screen and (max-width: 1394px) {
+			width: 28rem;
+		}
 	}
-}
-
-h3 {
-	color: $shade-color;
-	width: 282px;
-	height: 83px;
-	font-weight: 400;
-	font-size: 64px;
-	line-height: 83.33px;
-	display: block ruby;
+	h1 {
+		width: 54rem;
+		color: $shade-color;
+		@include shortCutFont('DM Sans', 400, normal, 6.4rem, 8.333rem);
+		@media screen and (max-width: 1394px) {
+			width: 43rem;
+			display: flex;
+			font-size: 4.6rem;
+		}
+		@media screen and (max-width: 737px) {
+			font-size: 3.6rem;
+		}
+		@media screen and (max-width: 380px) {
+			font-size: 3.6rem;
+		}
+	}
 }
 
 #city {
@@ -71,6 +113,12 @@ h3 {
 	top: 83px;
 	margin: 10px 0 10px;
 	@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
+	@media screen and (max-width: 1394px) {
+		// margin-top: 4.7rem;
+	}
+	@media screen and (max-width: 737px) {
+		font-size: 1.3rem;
+	}
 }
 
 #quote {
@@ -79,6 +127,9 @@ h3 {
 	top: 133px;
 	@include shortCutFont('DM Sans', 400, normal, 18px, 23.44px);
 	color: #525252;
+	@media screen and (max-width: 737px) {
+		font-size: 1.3rem;
+	}
 }
 .tag {
 	display: flex;
@@ -90,11 +141,16 @@ h3 {
 
 	border-radius: 12px;
 	@include shortCutFont('DM Sans', 500, normal, 18px, 23.44px);
+	@media screen and (max-width: 407px) {
+		flex-wrap: wrap;
+		width: 18.2rem;
+		margin-top: 0;
+	}
 }
 
 .card-tag {
 	@include shortCutFont('DM Sans', 500, normal, 12px, 15.62px);
-	width: 62px;
+	// width: 62px;
 	height: 21px;
 	margin: 5px 3px;
 	border: 0.5px solid #c4c4c4;
@@ -107,20 +163,41 @@ h3 {
 
 #modal {
 	position: absolute;
-	left: 34rem;
+	left: 50%;
+	@media screen and (max-width: 994px) {
+		bottom: 13px;
+		left: -4.5rem;
+	}
+	@media screen and (max-width: 735px) {
+		left: 50%;
+		transform: translateX(-50%);
+		position: fixed;
+		z-index: 12;
+		bottom: 5rem;
+	}
 }
 
-.cta {
-	height: 69px;
-	width: 170px;
-	left: 11px;
-	top: 21px;
+.button-form {
+	position: absolute;
+	height: 6.9rem;
+	width: 17rem;
+	left: 50%;
+	top: 0.7rem;
 	border-radius: 5px;
 	background-color: $main-color;
 	color: $text-color-2;
-
-	@include shortCutFont('DM Sans', 700, normal, 20px, 26.04px);
+	@include shortCutFont('DM Sans', 700, normal, 2rem, 2.604rem);
 	text-align: center;
+
+	@media screen and (max-width: 994px) {
+		position: relative;
+		height: 5.9rem;
+		width: 15rem;
+		font-size: 1.8rem;
+	}
+	@media screen and (max-width: 735px) {
+		position: unset;
+	}
 }
 
 .user {
@@ -134,25 +211,41 @@ h3 {
 	right: 0px;
 
 	img {
-		height: 224px;
-		width: 276px;
+		height: 22.4rem;
+		width: 27.6rem;
 		border-radius: 50%;
 		background: #c4c4c4;
 		position: absolute;
-		right: 0px;
+		right: 3px;
 		background: #c4c4c4;
 		box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
 		margin-right: 31px;
+		@media screen and (max-width: 737px) {
+			width: 17.4rem;
+			height: 19.4rem;
+			margin-right: 0;
+		}
+		@media screen and (max-width: 380px) {
+			height: 200px;
+			width: 164px;
+			margin-right: 0.9rem;
+		}
 	}
 }
 
 #main-gallery {
 	margin-top: 29px;
+	@media screen and (max-width: 380px) {
+		margin-top: 0px;
+	}
 }
 
 #main-gallery-header {
 	display: flex;
 	align-items: center;
+	@media screen and (max-width: 737px) {
+		display: none;
+	}
 	p {
 		height: 23px;
 		width: 74px;
@@ -181,7 +274,8 @@ h3 {
 	display: inline-block;
 	position: relative;
 	margin-left: 25px;
-	z-index: 5;
+	z-index: 1;
+	border: none;
 }
 
 .dd-button {
@@ -189,7 +283,7 @@ h3 {
 	display: inline-block;
 	//border: 1px solid gray;
 	//border-radius: 4px;
-	padding: 10px 30px 10px 20px;
+	padding: 1rem 3rem 1rem 1rem;
 	cursor: pointer;
 	white-space: nowrap;
 	background-color: $main-color;
@@ -198,18 +292,6 @@ h3 {
 	&:hover {
 		background-color: $shade-color;
 	}
-	// &:after {
-	// 	content: '';
-	// 	position: absolute;
-	// 	top: 50%;
-	// 	right: 15px;
-	// 	transform: translateY(-50%);
-	// 	width: 0;
-	// 	height: 0;
-	// 	border-left: 5px solid transparent;
-	// 	border-right: 5px solid transparent;
-	// 	border-top: 5px solid white;
-	//}
 }
 
 hr {
@@ -243,77 +325,108 @@ hr {
 	li:hover {
 		background-color: $shade-color;
 	}
-	// li.divider {
-	// 	padding: 0;
-	// 	border-bottom: 1px solid #cccccc;
-	// }
-	// li:nth-child(2) {
-	// 	//	border-top: 1px solid white;
-	// }
 }
 
-.dd-input + .dd-menu {
+.dd-menu {
 	display: none;
 }
 
-.dd-input:checked + .dd-menu {
-	display: block;
-}
-
 .chevron {
-	margin-left: 24px;
 	width: 16px;
+	right: 1.2rem;
+	top: 1.3rem;
 	display: inline-block;
 	height: 9.88px;
+	position: absolute;
+	color: white;
+	font-size: 17px;
 }
+
 //!***************************** fin ------***/
 .main-gallery-img {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	margin-top: 30px;
-	flex: 1 0 30%;
-	max-width: 475px;
-	max-height: 475px;
+	margin: 3rem 3px;
+	// flex: 1 0 30%;
+	// max-width: 475px;
+	// max-height: 475px;
+	width: 35rem;
 	position: relative;
+	@media screen and (max-width: 737px) {
+		width: 36rem;
+	}
+
+	@media screen and (max-width: 380px) {
+		justify-content: center;
+		align-items: center;
+		margin-top: 0px;
+		flex: 0;
+		width: 370px;
+		max-width: 335px;
+		// max-height: 220px;
+		// height: 220px;
+	}
+	video {
+		@media screen and (max-width: 380px) {
+			width: 370px;
+			height: 220px;
+		}
+	}
 }
 
 .photo {
-	max-width: 475px;
-	height: 325px;
+	width: 35rem;
+	height: 30rem;
 	border-radius: 5px;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: end;
 	overflow: hidden;
+	object-fit: cover;
+	@media screen and (max-width: 380px) {
+		width: 335px;
+		max-width: 335px;
+		height: 200px;
+	}
 
 	img {
-		max-width: 100%;
-		height: auto;
+		width: 35rem;
+		height: 30rem;
+
+		@media screen and (max-width: 380px) {
+			width: 335px;
+			height: 200px;
+		}
 	}
 }
 
 figcaption {
-	width: 100%;
+	width: 35rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: end;
 	color: $main-color;
-	@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
+	margin-top: 1rem;
+
+	@include shortCutFont('DM Sans', 400, normal, 2rem, 3.125rem);
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	bottom: 0px;
+	@media screen and (max-width: 380px) {
+		font-size: 17px;
+	}
 }
 
 .gallery-hover {
 	opacity: 0;
 	display: flex;
-	width: 370px;
+	width: 33.3rem;
 	justify-content: revert;
-	height: 49px;
-	top: 13px;
-	right: -35px;
+	height: 4.9rem;
+	top: 1.3rem;
+	right: -1.3rem;
 	position: absolute;
 	border-radius: 5px;
 	background-color: $shade-color;
@@ -324,6 +437,7 @@ figcaption {
 
 .main-gallery-img:hover .gallery-hover {
 	opacity: 1;
+	z-index: 10;
 }
 
 //**************************** Modal form *****************************/
@@ -447,12 +561,18 @@ input {
 	width: 420px;
 	height: 170px;
 	resize: none;
+	@media screen and (max-width: 528px) {
+		width: 315px;
+	}
 }
 
 .content {
-	background-color: $shade-color;
+	background-color: $formulary-color;
+	@media screen and (max-width: 528px) {
+		width: 37.4rem;
+	}
 	.modal-body {
-		background-color: $shade-color;
+		background-color: $formulary-color;
 	}
 }
 .modal-body {
@@ -519,7 +639,7 @@ label {
 	height: 50px;
 	background: #901c1c;
 	display: block;
-	font-size: 1rem;
+	font-size: 1.8rem;
 	color: #fff;
 	cursor: pointer;
 	border: 0;
@@ -532,6 +652,9 @@ label {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
+	@media screen and (max-width: 737px) {
+		justify-content: center;
+	}
 }
 
 .none {
@@ -550,14 +673,26 @@ label {
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0.9);
 	background: #fff;
-	width: 899px;
-	height: 800px;
+	width: 111.3rem;
+	height: 75.4rem;
 	z-index: 5;
 	opacity: 0;
 	pointer-events: none;
 	border-radius: 3px;
 	padding: 0 5px 5px 5px;
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+	@media screen and (max-width: 1114px) {
+		width: 70rem;
+		height: 60rem;
+	}
+	@media screen and (max-width: 710px) {
+		width: 88%;
+		height: 70%;
+	}
+	@media screen and (max-width: 380px) {
+		width: 100%;
+		height: 100vh;
+	}
 }
 .preview-box.show {
 	opacity: 1;
@@ -588,14 +723,25 @@ label {
 	right: 2rem;
 	top: 3rem;
 	color: $main-color;
-	font-size: 2rem;
+	font-size: 4.2rem;
 	cursor: pointer;
 	z-index: 10;
+	@media screen and (max-width: 1114px) {
+		top: 0;
+	}
+	@media screen and (max-width: 380px) {
+		right: 1rem;
+		top: 22rem;
+		font-size: 3.2rem;
+	}
 }
 .preview-box .image-box {
 	display: flex;
 	width: 100%;
 	position: relative;
+	@media screen and (max-width: 380px) {
+		margin-top: 50%;
+	}
 }
 .image-box .slide {
 	position: absolute;
@@ -613,18 +759,44 @@ label {
 .slide.prev {
 	left: 0px;
 	color: $main-color;
-	font-size: 3rem;
+	@media screen and (max-width: 380px) {
+		left: -1.1rem;
+	}
+
+	i {
+		font-size: 4.8rem;
+		@media screen and (max-width: 380px) {
+			font-size: 3.8rem;
+		}
+	}
 }
 .slide.next {
 	right: 0px;
 	color: $main-color;
-	font-size: 3rem;
+	font-size: 4.8rem;
+	@media screen and (max-width: 380px) {
+		right: -1.1rem;
+		font-size: 3.8rem;
+		font-weight: 400;
+	}
 }
 .image-box img {
-	width: 85%;
-	height: 44rem;
+	width: 96rem;
+	height: 66rem;
 	margin: 0 auto;
 	border-radius: 0 0 3px 3px;
+	@media screen and (max-width: 1114px) {
+		width: 60rem;
+		height: 50rem;
+	}
+	@media screen and (max-width: 710px) {
+		width: 78%;
+		height: 47.3rem;
+	}
+	@media screen and (max-width: 380px) {
+		width: 288px;
+		height: 248px;
+	}
 }
 .image-box video {
 	width: 85%;
@@ -638,6 +810,9 @@ label {
 	margin-top: 8px;
 	color: $main-color;
 	@include shortCutFont('DM Sans', 400, normal, 24px, 31.25px);
+	@media screen and (max-width: 1114px) {
+		margin-left: 4.5rem;
+	}
 }
 .shadow {
 	position: fixed;
@@ -660,4 +835,18 @@ label {
 		width: 100%;
 		padding: 4px;
 	}
+}
+
+.block {
+	display: block;
+}
+
+.none {
+	display: none;
+}
+
+.logo:focus,
+.button-form:focus,
+.fa-heart:focus {
+	transform: scale(1.2);
 }
