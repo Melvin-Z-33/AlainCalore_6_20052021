@@ -11,12 +11,12 @@ const displayPhotographerHeader = () => {
 	let arrayTags = [``];
 	let tags;
 	for (tags of photographerSelect.tags) {
-		arrayTags.push(`<a class="card-tag">#${tags}</a> `);
+		arrayTags.push(`<a class="card-tag" aria-label="tag">#${tags}</a> `);
 	}
 	const photographerHeader = `
 			<div class="photograph-header">
 				<div class="photograph-profile">
-					<h3>${photographerSelect.name}</h3>
+					<h1>${photographerSelect.name}</h1>
 					<div id="content">
 						<p id="city">${photographerSelect.city}, ${photographerSelect.country}</p>
 						<p id="quote">${photographerSelect.tagline}</p>
@@ -24,7 +24,7 @@ const displayPhotographerHeader = () => {
 					<p class="tag">${arrayTags.join('')}</p>
 				</div>
 				<div id="modal">
-					<button class="cta" id="test">Contactez-moi</button>
+					<button class="button-form"  aria-label="contact me">Contactez-moi</button>
 				</div>
 				<div class="user">
 					<img src="/img/Sample_Photos/Photographers_thumbnails/${
@@ -40,7 +40,7 @@ displayPhotographerHeader();
 //****************************** FORMULAIRE ******************************/
 
 const modalbg = document.querySelector('.bground');
-const buttonOpen = document.querySelector('.cta');
+const buttonOpen = document.querySelector('.button-form');
 const buttonClose = document.getElementById('close');
 const firstName = document.querySelector('#first');
 const nameForm = document.querySelector('#form-photographer-name');
@@ -49,7 +49,6 @@ nameForm.innerHTML = `${photographerSelect.name}`;
 
 const closeWithKeyboard = () => {
 	document.addEventListener('keydown', (event) => {
-		console.log(event.key);
 		if (modalbg.classList.contains('block') && event.key == 'Escape') {
 			closeForm();
 		}
@@ -58,7 +57,7 @@ const closeWithKeyboard = () => {
 
 const launchForm = () => {
 	modalbg.classList.toggle('block');
-	modalbg.style.backgroundColor = 'rgb(255,255,255 )';
+	modalbg.style.backgroundColor = 'rgb(255,255,255,0.7 )';
 	buttonOpen.style.display = 'none';
 	closeWithKeyboard();
 };
@@ -76,11 +75,12 @@ buttonOpen.addEventListener('click', launchForm);
 buttonOpen.addEventListener('click', focusMethod);
 buttonClose.addEventListener('click', closeForm);
 
-// const log = () => {
-// 	console.log(document.querySelector('#first').value);
-// };
-
-// document.querySelector('#first').addEventListener('keyup', log(element));
+form.onsubmit = function () {
+	// event.preventDefault();
+	console.log(document.querySelector('#first').value);
+	console.log(document.querySelector('#last').value);
+	console.log(document.querySelector('#email').value);
+};
 
 //******************* FACTORY PATTERN FOR DIFFERENTS MEDIA **************************/
 let arrayDataLocal = [];
@@ -114,15 +114,15 @@ const MediasFactory = (array) => {
 		if (typeof element.image !== 'undefined' && element.image.includes('jpg')) {
 			showMedia += `
 			<div class="main-gallery-img">
-			<figure class="photo">
-			<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
-			</figure>
+				<figure class="photo">
+					<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
+				</figure>
 			<figcaption>
-			<p>${element.title}</p>
-			<div class="chatnoir">
-			<span id="${element.id}" class="ap addone" >${element.likes}</span>
-			<i class="fas fa-heart"></i>
-			</div>
+				<p>${element.title}</p>
+				<div class="chatnoir">
+					<span id="${element.id}" class="ap addone" aria-label=likes >${element.likes}</span>
+					<i class="fas fa-heart" title="increment ou decrement nombre de like"></i>
+				</div>
 			</figcaption>
 			<p class='gallery-hover'> </p>
 			</div>

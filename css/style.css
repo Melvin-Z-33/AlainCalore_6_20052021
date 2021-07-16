@@ -20,6 +20,7 @@ body {
   height: 100vh;
   margin: 0 auto;
   overflow-x: hidden;
+  position: initial;
 }
 
 a {
@@ -40,43 +41,18 @@ h2 {
   line-height: 46.872px;
 }
 
-#banner {
+header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-top: 4.3rem;
 }
 @media screen and (max-width: 414px) {
-  #banner {
+  header {
     display: block;
     justify-content: center;
     padding-left: 0px;
     margin-top: 33px;
-  }
-}
-
-#scrollY {
-  background-color: #d3573c;
-  height: 30px;
-  width: 182px;
-  top: 3px;
-  border-radius: 5px;
-  position: absolute;
-  display: block;
-  left: 50%;
-  transform: translateY(-143%);
-  transform: translateX(-50%);
-  z-index: 10;
-}
-@media screen and (max-width: 1158px) {
-  #scrollY {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-@media screen and (max-width: 414px) {
-  #scrollY {
-    display: none;
   }
 }
 
@@ -86,9 +62,9 @@ h2 {
   text-align: center;
   color: black;
   position: absolute;
-  width: 170px;
-  height: 19px;
-  top: 3px;
+  width: 17rem;
+  height: 2.9rem;
+  top: -10rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -96,12 +72,11 @@ h2 {
   font-weight: 700;
   font-style: normal;
   font-size: 1.8rem;
-  line-height: 23.44px;
+  line-height: 2.9rem;
 }
 
-#scrollY:focus,
-#contect:focus {
-  transform: translateY(5px);
+#context:focus {
+  top: 1rem;
 }
 
 #header-logo {
@@ -123,7 +98,7 @@ h2 {
 }
 
 #header-nav {
-  width: 55.3rem;
+  width: 45.3rem;
   position: absolute;
   left: 50%;
   transform: translateX(-54%);
@@ -136,7 +111,7 @@ h2 {
 @media screen and (max-width: 1158px) {
   #header-nav {
     transform: translateX(-50%);
-    top: 11.2rem;
+    top: 8.2rem;
   }
 }
 @media screen and (max-width: 414px) {
@@ -153,6 +128,7 @@ h2 {
   #header-nav #header-nav-list {
     flex-wrap: wrap;
     width: 38.2rem;
+    margin-top: 3rem;
   }
 }
 @media screen and (max-width: 414px) {
@@ -256,6 +232,11 @@ main {
     width: 42.5rem;
   }
 }
+@media screen and (max-width: 530px) {
+  .cards {
+    width: 37.5rem;
+  }
+}
 
 #container-card {
   width: 100%;
@@ -321,26 +302,43 @@ main {
 }
 
 #title {
-  font-size: 2.6rem;
   color: #901c1c;
   position: absolute;
   right: 8rem;
-  top: -12.6rem;
-  width: 21.6rem;
+  top: -13.6rem;
+  width: 23.6rem;
   height: 4.7rem;
   text-align: center;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.7rem;
+  line-height: 4.687rem;
+}
+@media screen and (max-width: 1157px) {
+  #title {
+    right: 4.1rem;
+  }
 }
 @media screen and (max-width: 618px) {
   #title {
-    right: 2rem;
+    right: 1.2rem;
+    top: -13.1rem;
   }
 }
 @media screen and (max-width: 414px) {
   #title {
-    right: 0px;
+    right: -2rem;
     font-size: 1.9rem;
-    top: -18rem;
+    top: -19.5rem;
   }
+}
+
+#header-logo:focus,
+.header-tag:focus,
+li:focus,
+img:focus {
+  transform: scale(1.2);
 }
 
 /*# sourceMappingURL=style.css.map */

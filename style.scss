@@ -18,7 +18,7 @@ body {
 	height: 100vh;
 	margin: 0 auto;
 	overflow-x: hidden;
-	position: relative;
+	position: initial;
 }
 
 a {
@@ -35,7 +35,7 @@ h2 {
 	@include shortCutFont('DM Sans', 400, normal, 3.6rem, 46.872px);
 }
 
-#banner {
+header {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -49,26 +49,26 @@ h2 {
 	}
 }
 
-#scrollY {
-	background-color: $shade-color;
-	height: 30px;
-	width: 182px;
-	top: 3px;
-	border-radius: 5px;
-	position: absolute;
-	display: block;
-	left: 50%;
-	transform: translateY(-143%);
-	transform: translateX(-50%);
-	z-index: 10;
-	@media screen and (max-width: 1158px) {
-		left: 50%;
-		transform: translateX(-50%);
-	}
-	@media screen and (max-width: 414px) {
-		display: none;
-	}
-}
+// #scrollY {
+// 	background-color: $shade-color;
+// 	height: 30px;
+// 	width: 182px;
+// 	top: 3px;
+// 	border-radius: 5px;
+// 	position: absolute;
+// 	display: block;
+// 	left: 50%;
+// 	transform: translateY(-143%);
+// 	transform: translateX(-50%);
+// 	z-index: 10;
+// 	@media screen and (max-width: 1158px) {
+// 		left: 50%;
+// 		transform: translateX(-50%);
+// 	}
+// 	@media screen and (max-width: 414px) {
+// 		display: none;
+// 	}
+// }
 
 #context {
 	display: block;
@@ -77,19 +77,19 @@ h2 {
 	color: black;
 	position: absolute;
 	// transform: translateY(-143%);
-	width: 170px;
-	height: 19px;
-	top: 3px;
+	width: 17rem;
+	height: 2.9rem;
+	top: -10rem;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 20;
-	@include shortCutFont('DM Sans', 700, normal, 1.8rem, 23.44px);
+	@include shortCutFont('DM Sans', 700, normal, 1.8rem, 2.9rem);
 }
 
-#scrollY:focus,
-#contect:focus {
-	transform: translateY(5px);
+#context:focus {
+	// transform: translateY(5p);
 	// transform: translateX(-50%);
+	top: 1rem;
 }
 
 #header-logo {
@@ -109,7 +109,7 @@ h2 {
 
 #header-nav {
 	@extend %flex-center;
-	width: 55.3rem;
+	width: 45.3rem;
 	// height: 1.6rem;
 	position: absolute;
 	left: 50%;
@@ -117,7 +117,7 @@ h2 {
 	@include shortCutFont('DM Sans', 500, normal, 1.2rem, 1.576rem);
 	@media screen and (max-width: 1158px) {
 		transform: translateX(-50%);
-		top: 11.2rem;
+		top: 8.2rem;
 	}
 	@media screen and (max-width: 414px) {
 		left: 0px;
@@ -133,6 +133,7 @@ h2 {
 		@media screen and (max-width: 1158px) {
 			flex-wrap: wrap;
 			width: 38.2rem;
+			margin-top: 3rem;
 		}
 		@media screen and (max-width: 414px) {
 			flex-wrap: wrap;
@@ -220,6 +221,9 @@ main {
 	@media screen and (max-width: 1158px) {
 		width: 42.5rem;
 	}
+	@media screen and (max-width: 530px) {
+		width: 37.5rem;
+	}
 }
 #container-card {
 	width: 100%;
@@ -272,21 +276,32 @@ main {
 }
 
 #title {
-	font-size: 2.6rem;
 	color: #901c1c;
 	position: absolute;
 	right: 8rem;
-	top: -12.6rem;
-	width: 21.6rem;
+	top: -13.6rem;
+	width: 23.6rem;
 	height: 4.7rem;
 	text-align: center;
+	@include shortCutFont('DM Sans', 400, normal, 2.7rem, 4.687rem);
+	@media screen and (max-width: 1157px) {
+		right: 4.1rem;
+	}
 	@media screen and (max-width: 618px) {
-		right: 2rem;
+		right: 1.2rem;
+		top: -13.1rem;
 	}
 
 	@media screen and (max-width: 414px) {
-		right: 0px;
+		right: -2rem;
 		font-size: 1.9rem;
-		top: -18rem;
+		top: -19.5rem;
 	}
+}
+
+#header-logo:focus,
+.header-tag:focus,
+li:focus,
+img:focus {
+	transform: scale(1.2);
 }

@@ -42,28 +42,29 @@ h3 {
   display: block;
   width: 20rem;
   height: 5rem;
-  top: 8.07%;
+  top: 4rem;
   bottom: 22.14%;
 }
 @media screen and (max-width: 380px) {
   .logo {
     left: 10px;
+    top: 4rem;
   }
 }
 
 main {
-  margin-top: 120px;
+  margin-top: 6rem;
   width: 100%;
 }
 @media screen and (max-width: 380px) {
   main {
-    margin-top: 0px;
+    margin-top: 13rem;
   }
 }
 
 .photograph-header {
   width: 100%;
-  height: 278px;
+  height: 27.8rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -74,9 +75,15 @@ main {
   padding: 2% 31px;
   position: relative;
 }
+@media screen and (max-width: 774px) {
+  .photograph-header {
+    padding: 0 0;
+    height: 22.3rem;
+  }
+}
 @media screen and (max-width: 380px) {
   .photograph-header {
-    left: -83px;
+    left: 0;
     margin: 0;
   }
 }
@@ -90,18 +97,29 @@ main {
     width: 28rem;
   }
 }
-.photograph-header h3 {
+.photograph-header h1 {
   width: 54rem;
+  color: #d3573c;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 6.4rem;
+  line-height: 8.333rem;
 }
 @media screen and (max-width: 1394px) {
-  .photograph-header h3 {
+  .photograph-header h1 {
     width: 43rem;
     display: flex;
     font-size: 4.6rem;
   }
 }
+@media screen and (max-width: 737px) {
+  .photograph-header h1 {
+    font-size: 3.6rem;
+  }
+}
 @media screen and (max-width: 380px) {
-  .photograph-header h3 {
+  .photograph-header h1 {
     font-size: 3.6rem;
   }
 }
@@ -117,6 +135,12 @@ main {
   font-size: 24px;
   line-height: 31.25px;
 }
+@media screen and (max-width: 737px) {
+  #city {
+    font-size: 1.3rem;
+  }
+}
+
 #quote {
   width: 348px;
   height: 23px;
@@ -127,6 +151,11 @@ main {
   font-size: 18px;
   line-height: 23.44px;
   color: #525252;
+}
+@media screen and (max-width: 737px) {
+  #quote {
+    font-size: 1.3rem;
+  }
 }
 
 .tag {
@@ -143,10 +172,11 @@ main {
   font-size: 18px;
   line-height: 23.44px;
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 407px) {
   .tag {
     flex-wrap: wrap;
-    width: 207px;
+    width: 18.2rem;
+    margin-top: 0;
   }
 }
 
@@ -172,12 +202,21 @@ main {
 }
 @media screen and (max-width: 994px) {
   #modal {
-    bottom: 0;
-    left: 3.5rem;
+    bottom: 13px;
+    left: -4.5rem;
+  }
+}
+@media screen and (max-width: 735px) {
+  #modal {
+    left: 50%;
+    transform: translateX(-50%);
+    position: fixed;
+    z-index: 12;
+    bottom: 5rem;
   }
 }
 
-.cta {
+.button-form {
   position: absolute;
   height: 6.9rem;
   width: 17rem;
@@ -192,6 +231,19 @@ main {
   font-size: 2rem;
   line-height: 2.604rem;
   text-align: center;
+}
+@media screen and (max-width: 994px) {
+  .button-form {
+    position: relative;
+    height: 5.9rem;
+    width: 15rem;
+    font-size: 1.8rem;
+  }
+}
+@media screen and (max-width: 735px) {
+  .button-form {
+    position: unset;
+  }
 }
 
 .user {
@@ -214,11 +266,18 @@ main {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
   margin-right: 31px;
 }
+@media screen and (max-width: 737px) {
+  .user img {
+    width: 17.4rem;
+    height: 19.4rem;
+    margin-right: 0;
+  }
+}
 @media screen and (max-width: 380px) {
   .user img {
     height: 200px;
     width: 164px;
-    margin-right: -190px;
+    margin-right: 0.9rem;
   }
 }
 
@@ -273,12 +332,13 @@ main {
   position: relative;
   margin-left: 25px;
   z-index: 1;
+  border: none;
 }
 
 .dd-button {
   width: 100%;
   display: inline-block;
-  padding: 10px 30px 10px 20px;
+  padding: 1rem 3rem 1rem 1rem;
   cursor: pointer;
   white-space: nowrap;
   background-color: #901c1c;
@@ -329,8 +389,8 @@ hr {
 
 .chevron {
   width: 16px;
-  right: 20px;
-  top: 7px;
+  right: 1.2rem;
+  top: 1.3rem;
   display: inline-block;
   height: 9.88px;
   position: absolute;
@@ -421,11 +481,11 @@ figcaption {
 .gallery-hover {
   opacity: 0;
   display: flex;
-  width: 370px;
+  width: 33.3rem;
   justify-content: revert;
-  height: 49px;
-  top: 13px;
-  right: -35px;
+  height: 4.9rem;
+  top: 1.3rem;
+  right: -1.3rem;
   position: absolute;
   border-radius: 5px;
   background-color: #d3573c;
@@ -677,8 +737,8 @@ label {
   left: 50%;
   transform: translate(-50%, -50%) scale(0.9);
   background: #fff;
-  width: 125.3rem;
-  height: 88.4rem;
+  width: 111.3rem;
+  height: 75.4rem;
   z-index: 5;
   opacity: 0;
   pointer-events: none;
@@ -686,10 +746,22 @@ label {
   padding: 0 5px 5px 5px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
+@media screen and (max-width: 1114px) {
+  .preview-box {
+    width: 70rem;
+    height: 60rem;
+  }
+}
+@media screen and (max-width: 710px) {
+  .preview-box {
+    width: 88%;
+    height: 70%;
+  }
+}
 @media screen and (max-width: 380px) {
   .preview-box {
-    width: 289.13px;
-    height: 248px;
+    width: 100%;
+    height: 100vh;
   }
 }
 
@@ -698,11 +770,6 @@ label {
   pointer-events: auto;
   transform: translate(-50%, -50%) scale(1);
   transition: all 0.3s ease;
-}
-@media screen and (max-width: 380px) {
-  .preview-box.show {
-    height: 100vh;
-  }
 }
 
 .preview-box .details {
@@ -740,11 +807,28 @@ label {
   cursor: pointer;
   z-index: 10;
 }
+@media screen and (max-width: 1114px) {
+  .details .icon {
+    top: 0;
+  }
+}
+@media screen and (max-width: 380px) {
+  .details .icon {
+    right: 1rem;
+    top: 22rem;
+    font-size: 3.2rem;
+  }
+}
 
 .preview-box .image-box {
   display: flex;
   width: 100%;
   position: relative;
+}
+@media screen and (max-width: 380px) {
+  .preview-box .image-box {
+    margin-top: 50%;
+  }
 }
 
 .image-box .slide {
@@ -765,8 +849,18 @@ label {
   left: 0px;
   color: #901c1c;
 }
+@media screen and (max-width: 380px) {
+  .slide.prev {
+    left: -1.1rem;
+  }
+}
 .slide.prev i {
   font-size: 4.8rem;
+}
+@media screen and (max-width: 380px) {
+  .slide.prev i {
+    font-size: 3.8rem;
+  }
 }
 
 .slide.next {
@@ -774,12 +868,31 @@ label {
   color: #901c1c;
   font-size: 4.8rem;
 }
+@media screen and (max-width: 380px) {
+  .slide.next {
+    right: -1.1rem;
+    font-size: 3.8rem;
+    font-weight: 400;
+  }
+}
 
 .image-box img {
-  width: 105rem;
-  height: 80rem;
+  width: 96rem;
+  height: 66rem;
   margin: 0 auto;
   border-radius: 0 0 3px 3px;
+}
+@media screen and (max-width: 1114px) {
+  .image-box img {
+    width: 60rem;
+    height: 50rem;
+  }
+}
+@media screen and (max-width: 710px) {
+  .image-box img {
+    width: 78%;
+    height: 47.3rem;
+  }
 }
 @media screen and (max-width: 380px) {
   .image-box img {
@@ -804,6 +917,11 @@ label {
   font-style: normal;
   font-size: 24px;
   line-height: 31.25px;
+}
+@media screen and (max-width: 1114px) {
+  #lightbox-title {
+    margin-left: 4.5rem;
+  }
 }
 
 .shadow {
@@ -834,6 +952,12 @@ label {
 
 .none {
   display: none;
+}
+
+.logo:focus,
+.button-form:focus,
+.fa-heart:focus {
+  transform: scale(1.2);
 }
 
 /*# sourceMappingURL=photographer-page.css.map */

@@ -1,16 +1,25 @@
 //Skip button
+const showSkip = () => {
+	if (document.hasFocus(context)) {
+		context.style.top = '1rem';
+		context.style.position = 'fixed';
+	}
+};
+context.addEventListener('focus', showSkip);
+context.onblur = () => {
+	context.style.position = 'absolute';
+	context.style.top = '-10rem';
+};
+
 window.addEventListener('scroll', function () {
 	let context = document.getElementById('context');
-	let scrollY = document.getElementById('scrollY');
 
 	if (window.scrollY > 0) {
 		context.style.position = 'fixed';
-		scrollY.style.position = 'fixed';
-		scrollY.style.transform = 'translateY(0%)';
-		scrollY.style.transform = 'translateX(-50%)';
+		context.style.top = '1rem';
 	} else {
-		// 	context.style.display = 'none';
-		scrollY.style.transform = 'translateY(-143%)';
+		context.style.position = 'absolute';
+		context.style.top = '-10rem';
 	}
 });
 
@@ -22,22 +31,22 @@ const displayPhotographers = async () => {
 		.then((res) => res.json())
 		.then((value) => {
 			let counter = 1;
-			let showCard = `<div id="title">Nos photographes</div><ul id='main-photographer-list'>`;
+			let showCard = `<h1 id="title">Nos photographes</h1><ul id='main-photographer-list'>`;
 			let arrayTags = [``];
 			let tags;
 
 			for (let photographer of value.photographers) {
 				for (tags of photographer.tags) {
-					arrayTags.push(`<a class="card-tag">#${tags}</a> `);
+					arrayTags.push(`<a class="card-tag" aria-label="tag">#${tags}</a> `);
 				}
 				showCard += `
 				<li class="cards" id="card-${counter}">
 					<div class=card-header>
-						<a href="photographer-page.html?id=${
-							photographer.id
-						}"><img src="/img/Sample_Photos/Photographers_thumbnails/${
+						<a href="photographer-page.html?id=${photographer.id}" aria-label="${
+					photographer.name
+				}"><img src="/img/Sample_Photos/Photographers_thumbnails/${
 					photographer.portrait
-				}" loading="lazy" alt="" /></a>
+				}" loading="lazy" alt="photo du photographe - Page du photographe" /></a>
 						<h2 class="card-title">${photographer.name} </h2>
 					</div>
 					<div class="card-content">

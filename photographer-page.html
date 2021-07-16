@@ -14,44 +14,44 @@
 </head>
 
 <body>
-	<header id="banner">
-		<a href="index.html" class="logo" aria-label="Main     Menu">
-			Fish<span><i class="fas fa-camera"></i></span>ye
+	<header id="banner" role="banner">
+		<a href="index.html" class="logo" aria-label="Fisheye Home Page">
+			Fish<span><i class="fas fa-camera" aria-hidden="true" ></i></span>ye
 		</a>
 	</header>
 	<main class="main">
 		<div id="main-gallery">
 			<div id="main-gallery-header">
 				<p>Trier par</p>
-				<label class="dropdown">
-					<div class="dd-button" id="button-popularity">
+				<button class="dropdown" role="menubar" id="menu-sort-media" aria-expanded="false">
+					<option class="dd-button" id="button-popularity" role="menitem" aria-label="order by popularity">
 						Popularité
-					</div>
-					<span class="chevron inline-block" id="arrow-down">
+					</option>
+					<span class="chevron inline-block" id="arrow-down" aria-controls="menu-sort-media">
 						<i class="fas fa-chevron-down"></i>
 					</span>
-					<span class="chevron none" id="arrow-up">
+					<span class="chevron none" id="arrow-up" aria-controls="menu-sort-media">
 						<i class="fas fa-chevron-up"></i>
 					</span>
-					<input type="checkbox" class="dd-input" id="test" />
-					<ul class="dd-menu">
+					<!-- <input type="checkbox" class="dd-input" id="test" /> -->
+					<div class="dd-menu">
 						<hr />
-						<li class="dd-button" id="button-date">Date</li>
+						<option class="dd-button" id="button-date" aria-label="order by date"  role="menitem">Date</option>
 						<hr />
-						<li class="dd-button" id="button-title">Titre</li>
-					</ul>
-				</label>
+						<option class="dd-button" id="button-title" aria-label="order by title"  role="menitem">Titre</option>
+					</div>
+				</butt>
 			</div>
 			<div id="main-gallery-flex">
 			</div>
-			<div class="preview-box" id="litbox">
+			<div class="preview-box" id="litbox" role="dialog"  aria-describedby="lightbox pour les medias">
 				<div class="details">
 					<span class="title">Image <p class="current-img"></p> de <p class="total-img"></p></span>
-					<span class="icon fas fa-times"></span>
+					<span class="icon fas fa-times" title="fermer la lightbox"></span>
 				</div>
 				<div class="image-box">
-					<div class="slide prev"><i class="fas fa-angle-left"></i></div>
-					<div class="slide next"><i class="fas fa-angle-right"></i></div>
+					<div class="slide prev"><i class="fas fa-angle-left" title="flêche pour aller au media précedent"></i></div>
+					<div class="slide next"><i class="fas fa-angle-right" title="flêche pour aller au media suivant"  ></i></div>
 					<img src="" alt="">
 					<video controls width="300" src=""></video>
 				</div>
@@ -60,39 +60,39 @@
 			<div class="shadow"></div>
 	</main>
 	<div class="bground">
-		<div class="content">
+		<div class="content" aria-hidden role="dialog" aria-describedby="formulaire pour contacter le photographe" >
 			<span class="close" id="close"></span>
 			<div id="form-header">
 				<p id="contact">Contactez-moi</p>
 				<p id="form-photographer-name"></p>
 			</div>
 			<div class="modal-body">
-				<form name="reserve" id="form" action="index.html" method="get" onsubmit="return false;">
-					<div class="formData">
+				<form name="contact" id="form" action="index.html" method="get" onsubmit="return true;">
+					<!-- <div class="formData"> -->
 						<label for="first">Prénom<span id="prenom_manquant"></span></label><br />
 						<input class="text-control" type="text" id="first" name="first" minlength="2"
-							pattern="[A-Za-z0-9]+" value="" required />
+							pattern="[A-Za-z0-9]+" value="" aria-labelledby="first" required  aria-required=true/>
 						<small></small>
 						<br />
-					</div>
-					<div class="formData">
+					<!-- </div> -->
+					<!-- <div class="formData"> -->
 						<label for="last">Nom</label><br />
 						<input class="text-control" type="text" id="last" name="last" minlength="2"
-							pattern="[A-Za-z0-9]+" value required />
+							pattern="[A-Za-z0-9]+" value aria-labelledby="last" required aria-required=true />
 						<small></small>
 						<br />
-					</div>
-					<div class="formData">
+					<!-- </div> -->
+					<!-- <div class="formData"> -->
 						<label for="email">Email</label><br />
-						<input class="text-control" type="email" id="email" name="email" required />
+						<input class="text-control" type="email" id="email" name="email" aria-labelledby="email" required aria-required=true />
 						<small id="smallEmail"></small>
 						<br />
+					<!-- </div> -->
+					<div  id="formData-flex">
+						<label for="form-message">Votre message </label><br />
+						<textarea id="form-message" name="form-message" rows="5" cols="33"aria-labelledby="form-message" ></textarea>
 					</div>
-					<div class="formData" id="formData-flex">
-						<label for="story">Votre message </label><br />
-						<textarea id="form-message" name="story" rows="5" cols="33"></textarea>
-					</div>
-					<div class="formData"></div>
+					<!-- <div class="formData"></div> -->
 					<input class="btn-submit button" type="submit" value="Envoyer" id="buttonSubmit" />
 					<p id="text-final">Thank you for submitting your registration details</p>
 				</form>
