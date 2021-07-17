@@ -15,16 +15,16 @@
 
 <body>
 	<header id="banner" role="banner">
-		<a href="index.html" class="logo" aria-label="Fisheye Home Page">
+		<a href="index.html" class="logo" aria-label="Fisheye Home Page" tabindex="1">
 			Fish<span><i class="fas fa-camera" aria-hidden="true" ></i></span>ye
 		</a>
 	</header>
 	<main class="main">
 		<div id="main-gallery">
 			<div id="main-gallery-header">
-				<p>Trier par</p>
+				<p>Trier par</p>			
 				<button class="dropdown" role="menubar" id="menu-sort-media" aria-expanded="false">
-					<option class="dd-button" id="button-popularity" role="menitem" aria-label="order by popularity">
+					<option class="dd-button" id="button-popularity" role="menitem" aria-label="order by popularity" tabindex="1">
 						Popularité
 					</option>
 					<span class="chevron inline-block" id="arrow-down" aria-controls="menu-sort-media">
@@ -36,11 +36,12 @@
 					<!-- <input type="checkbox" class="dd-input" id="test" /> -->
 					<div class="dd-menu">
 						<hr />
-						<option class="dd-button" id="button-date" aria-label="order by date"  role="menitem">Date</option>
+						<option class="dd-button" id="button-date" aria-label="order by date"  role="menitem" tabindex="1" >Date</option>
 						<hr />
-						<option class="dd-button" id="button-title" aria-label="order by title"  role="menitem">Titre</option>
+						<option class="dd-button" id="button-title" aria-label="order by title"  role="menitem" tabindex="1">Titre</option>
 					</div>
-				</butt>
+				</button>
+
 			</div>
 			<div id="main-gallery-flex">
 			</div>

@@ -24,7 +24,7 @@ const displayPhotographerHeader = () => {
 					<p class="tag">${arrayTags.join('')}</p>
 				</div>
 				<div id="modal">
-					<button class="button-form"  aria-label="contact me">Contactez-moi</button>
+					<button class="button-form"  aria-label="contact me" tabindex="1">Contactez-moi</button>
 				</div>
 				<div class="user">
 					<img src="/img/Sample_Photos/Photographers_thumbnails/${
@@ -82,7 +82,7 @@ form.onsubmit = function () {
 	console.log(document.querySelector('#email').value);
 };
 
-//******************* FACTORY PATTERN FOR DIFFERENTS MEDIA **************************/
+//******************* FACTORY PATTERN FOR DIFFERENTS MEDIAS **************************/
 let arrayDataLocal = [];
 let arrayImage = [];
 let arrayVideo = [];
@@ -113,9 +113,11 @@ const MediasFactory = (array) => {
 	for (const element of array) {
 		if (typeof element.image !== 'undefined' && element.image.includes('jpg')) {
 			showMedia += `
-			<div class="main-gallery-img">
+			<button class="main-gallery-img" tabindex="2">
 				<figure class="photo">
-					<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
+					<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${
+				element.image
+			}" tabindex="2" alt="" />
 				</figure>
 			<figcaption>
 				<p>${element.title}</p>
@@ -125,13 +127,15 @@ const MediasFactory = (array) => {
 				</div>
 			</figcaption>
 			<p class='gallery-hover'> </p>
-			</div>
+			</button>
 			`;
 		} else if (element.video.match('.mp4')) {
 			showMedia += `
-			<div class="main-gallery-img" >
+			<li class="main-gallery-img" tabindex="2" >
 				<video  class="photo"  width="475"  ">
-					<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.video}" alt="" />
+					<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${
+				element.video
+			}"  tabindex="2"alt="" />
 				</video >
 				<figcaption>
 					<p>${element.title}</p>
@@ -141,7 +145,7 @@ const MediasFactory = (array) => {
 						</div>
 				</figcaption>
 				<p class='gallery-hover'> </p>
-			</div>
+			</li>
 		`;
 		} else {
 			alert('Je ne reconnais pas ce format');
@@ -217,29 +221,48 @@ svgHeart.forEach((el) =>
 	}),
 );
 
-//*************************** CSS **********************************/
+//*************************** BUTTON SORT MEDIAS **********************************/
 const chevronDown = document.querySelector('#arrow-down');
 const chevronUp = document.querySelector('#arrow-up');
 const chevron = document.querySelector('.chevron');
 const dropdownButton = document.querySelector('#button-popularity');
+const buttonSortMedias = document.querySelector('#menu-sort-media');
+const buttonTittle = document.querySelector('#button-title');
+
+const openDropdown = () => {
+	chevronDown.classList.remove('inline-block');
+	chevronDown.classList.add('none');
+	chevronUp.classList.remove('none');
+	chevronUp.classList.add('inline-block');
+	document.querySelector('.dd-menu').style.display = 'block';
+};
+
+const closeDropdown = () => {
+	chevronDown.classList.remove('none');
+	chevronDown.classList.add('inline-block');
+	chevronUp.classList.remove('inline-block');
+	chevronUp.classList.add('none');
+	document.querySelector('.dd-menu').style.display = 'none';
+};
 
 const buttonPopularity = () => {
 	if (chevronDown.classList.contains('inline-block')) {
-		chevronDown.classList.remove('inline-block');
-		chevronDown.classList.add('none');
-		chevronUp.classList.remove('none');
-		chevronUp.classList.add('inline-block');
-		document.querySelector('.dd-menu').style.display = 'block';
+		openDropdown();
 	} else if (chevronUp.classList.contains('inline-block')) {
-		chevronDown.classList.remove('none');
-		chevronDown.classList.add('inline-block');
-		chevronUp.classList.remove('inline-block');
-		chevronUp.classList.add('none');
-		document.querySelector('.dd-menu').style.display = 'none';
+		closeDropdown();
 	}
 };
+
+const navMenuDropDown = () => {
+	console.log('ok');
+};
+
 chevronDown.addEventListener('click', buttonPopularity);
 chevronUp.addEventListener('click', buttonPopularity);
+dropdownButton.addEventListener('focus', openDropdown);
+buttonTittle.onblur = function () {
+	closeDropdown();
+};
 
 //*************************** LIGHTBOX ************************/
 
