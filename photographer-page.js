@@ -66,9 +66,14 @@ const closeForm = () => {
 	modalbg.classList.toggle('block');
 	modalbg.style.backgroundColor = 'rgb(255,255,255,0 )';
 	buttonOpen.style.display = 'block';
+	buttonOpen.focus();
 };
 focusMethod = function getFocus() {
 	document.getElementById('first').focus();
+};
+
+buttonOpen.onkeydown = function (event) {
+	console.log(event.keyValue);
 };
 
 buttonOpen.addEventListener('click', launchForm);
@@ -113,7 +118,7 @@ const MediasFactory = (array) => {
 	for (const element of array) {
 		if (typeof element.image !== 'undefined' && element.image.includes('jpg')) {
 			showMedia += `
-			<button class="main-gallery-img" tabindex="2">
+			<figure class="main-gallery-img" 	>
 				<figure class="photo">
 					<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${
 				element.image
@@ -123,16 +128,16 @@ const MediasFactory = (array) => {
 				<p>${element.title}</p>
 				<div class="chatnoir">
 					<span id="${element.id}" class="ap addone" aria-label=likes >${element.likes}</span>
-					<i class="fas fa-heart" title="increment ou decrement nombre de like"></i>
+					<i class="fas fa-heart" title="increment ou decrement nombre de like" tabindex="2"></i>
 				</div>
 			</figcaption>
 			<p class='gallery-hover'> </p>
-			</button>
+			</figure>
 			`;
 		} else if (element.video.match('.mp4')) {
 			showMedia += `
-			<li class="main-gallery-img" tabindex="2" >
-				<video  class="photo"  width="475"  ">
+			<figure class="main-gallery-img"  >
+				<video  class="photo"  width="475"  " tabindex="2">
 					<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${
 				element.video
 			}"  tabindex="2"alt="" />
@@ -141,11 +146,11 @@ const MediasFactory = (array) => {
 					<p>${element.title}</p>
 						<div class="chatnoir">
 							<span id="${element.id}" class="a addone">${element.likes}</span>
-							<i class="fas fa-heart"></i>
+							<i class="fas fa-heart" tabindex="2"></i>
 						</div>
 				</figcaption>
 				<p class='gallery-hover'> </p>
-			</li>
+			</figure>
 		`;
 		} else {
 			alert('Je ne reconnais pas ce format');
@@ -191,33 +196,47 @@ const checkButtonCounterClass = () => {
 };
 checkButtonCounterClass();
 
-svgHeart.forEach((el) =>
-	el.addEventListener('click', (event) => {
-		let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
-		let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
-		let counterNew;
-		let objetLike = {};
-		if (valueClasss.classList.contains('addone')) {
-			counterNew = parseInt(value) + 1;
-			valueClasss.classList.remove('addone');
-			objetLike = {
-				id: valueClasss.id,
-				category: 'false',
-				number: counterNew,
-			};
-			localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
-		} else {
-			counterNew = parseInt(value) - 1;
-			valueClasss.classList.add('addone');
-			objetLike = {
-				id: valueClasss.id,
-				category: 'true',
-				number: counterNew,
-			};
-			localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
+const addOrSubOne = (event) => {
+	let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
+	let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
+	let counterNew;
+	let objetLike = {};
+	if (valueClasss.classList.contains('addone')) {
+		counterNew = parseInt(value) + 1;
+		valueClasss.classList.remove('addone');
+		objetLike = {
+			id: valueClasss.id,
+			category: 'false',
+			number: counterNew,
+		};
+		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
+	} else {
+		counterNew = parseInt(value) - 1;
+		valueClasss.classList.add('addone');
+		objetLike = {
+			id: valueClasss.id,
+			category: 'true',
+			number: counterNew,
+		};
+		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
+	}
+	valueClasss.innerHTML = counterNew;
+	showTotalLikes();
+};
+
+svgHeart.forEach((heart) =>
+	heart.addEventListener('click', (event) => {
+		addOrSubOne(event);
+	}),
+);
+
+svgHeart.forEach((heart) =>
+	heart.addEventListener('keydown', (event) => {
+		const nomTouche = event.key;
+
+		if (nomTouche === 'Enter') {
+			addOrSubOne(event);
 		}
-		valueClasss.innerHTML = counterNew;
-		showTotalLikes();
 	}),
 );
 
@@ -266,27 +285,25 @@ buttonTittle.onblur = function () {
 
 //*************************** LIGHTBOX ************************/
 
-let previewBox = document.querySelector('#litbox'),
-	previewImg = previewBox.querySelector('img'),
-	previewVideo = previewBox.querySelector('video'),
-	closeIcon = previewBox.querySelector('.icon'),
-	currentImg = previewBox.querySelector('.current-img'),
-	totalImg = previewBox.querySelector('.total-img'),
-	lightboxTitle = previewBox.querySelector('#lightbox-title'),
-	shadow = document.querySelector('.shadow');
+const buildLightBox = () => {
+	let previewBox = document.querySelector('#litbox'),
+		previewImg = previewBox.querySelector('img'),
+		previewVideo = previewBox.querySelector('video'),
+		closeIcon = previewBox.querySelector('.icon'),
+		currentImg = previewBox.querySelector('.current-img'),
+		totalImg = previewBox.querySelector('.total-img'),
+		lightboxTitle = previewBox.querySelector('#lightbox-title'),
+		shadow = document.querySelector('.shadow');
 
-let galleryNew = document.querySelectorAll('.photo');
-let empty = '';
+	let galleryNew = document.querySelectorAll('.photo');
+	let empty = '';
 
-window.onload = () => {
 	for (let i = 0; i < galleryNew.length; i++) {
 		totalImg.textContent = galleryNew.length;
 		let newIndex = i;
 		let clickedImgIndex;
 
-		galleryNew[i].onclick = () => {
-			clickedImgIndex = i;
-
+		const openLightBox = () => {
 			function lightbox() {
 				document.querySelector('body').style.overflow = 'hidden';
 				previewBox.classList.add('show');
@@ -369,7 +386,7 @@ window.onload = () => {
 			if (previewBox.classList.contains('show')) {
 				document.addEventListener('keydown', (event) => {
 					const nomTouche = event.key;
-
+					console.log(event.key);
 					switch (nomTouche) {
 						case 'ArrowRight':
 							goNextImage();
@@ -380,68 +397,154 @@ window.onload = () => {
 						case 'Escape':
 							closeLightbox();
 							break;
+						case 'Enter':
+							console.log('Enter no problem');
+							break;
+						case 'Tab':
+							console.log('Tab no problem');
+							break;
 						default:
 							console.log('problem with keyboard');
 					}
 				});
 			}
 		};
+
+		galleryNew[i].onclick = () => {
+			clickedImgIndex = i;
+			openLightBox();
+		};
+
+		galleryNew[i].onkeydown = (event) => {
+			clickedImgIndex = i;
+			if (event.key === 'Enter') {
+				openLightBox();
+			}
+		};
 	}
+};
+
+window.onload = () => {
+	buildLightBox();
 };
 
 //********* Sort Medias   *********************/
 
-const incrementHeart = (event) => {
-	let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
-	let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
-	let counterNew;
-	let objetLike = {};
-	if (valueClasss.classList.contains('addone')) {
-		counterNew = parseInt(value) + 1;
-		valueClasss.classList.remove('addone');
-		objetLike = {
-			id: valueClasss.id,
-			category: 'false',
-			number: counterNew,
-		};
-		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
-	} else {
-		counterNew = parseInt(value) - 1;
-		valueClasss.classList.add('addone');
-		objetLike = {
-			id: valueClasss.id,
-			category: 'true',
-			number: counterNew,
-		};
-		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
-	}
-	valueClasss.innerHTML = counterNew;
-};
+// const incrementHeart = (event) => {
+// 	let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
+// 	let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
+// 	let counterNew;
+// 	let objetLike = {};
+// 	if (valueClasss.classList.contains('addone')) {
+// 		counterNew = parseInt(value) + 1;
+// 		valueClasss.classList.remove('addone');
+// 		objetLike = {
+// 			id: valueClasss.id,
+// 			category: 'false',
+// 			number: counterNew,
+// 		};
+// 		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
+// 	} else {
+// 		counterNew = parseInt(value) - 1;
+// 		valueClasss.classList.add('addone');
+// 		objetLike = {
+// 			id: valueClasss.id,
+// 			category: 'true',
+// 			number: counterNew,
+// 		};
+// 		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
+// 	}
+// 	valueClasss.innerHTML = counterNew;
+// };
 
-document.querySelector('#button-popularity').addEventListener('click', () => {
+// * Sort by Popularity
+
+function sortByPopularity() {
 	cleanedArrayMedia.sort((a, b) => {
 		return b.likes - a.likes;
 	});
 	MediasFactory(cleanedArrayMedia);
 	showTotalLikes();
-	svgHeart.forEach((heart) => (heart.onclick = incrementHeart));
+	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
+	svgHeart.forEach((heart) =>
+		heart.addEventListener('keydown', (event) => {
+			const nomTouche = event.key;
+
+			if (nomTouche === 'Enter') {
+				addOrSubOne(event);
+			}
+		}),
+	);
+
+	closeDropdown();
+	buildLightBox();
+	let itemsMedia = document.querySelectorAll('.photo');
+	itemsMedia[0].children[0].focus();
+}
+document.querySelector('#button-popularity').addEventListener('click', sortByPopularity);
+document.querySelector('#button-popularity').addEventListener('keydown', (event) => {
+	if (event.key === 'Enter') {
+		sortByPopularity();
+	}
 });
 
-document.querySelector('#button-date').addEventListener('click', function () {
+// * Sort by Date
+
+const sortByDate = () => {
 	cleanedArrayMedia.sort((a, b) => {
 		return new Date(a.date) - new Date(b.date);
 	});
-
 	MediasFactory(cleanedArrayMedia);
 	showTotalLikes();
-	svgHeart.forEach((heart) => (heart.onclick = incrementHeart));
+	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
+	svgHeart.forEach((heart) =>
+		heart.addEventListener('keydown', (event) => {
+			const nomTouche = event.key;
+
+			if (nomTouche === 'Enter') {
+				addOrSubOne(event);
+			}
+		}),
+	);
+	closeDropdown();
+	buildLightBox();
+	let itemsMedia = document.querySelectorAll('.photo');
+	itemsMedia[0].children[0].focus();
+};
+document.querySelector('#button-date').addEventListener('click', sortByDate);
+document.querySelector('#button-date').addEventListener('keydown', (event) => {
+	if (event.key === 'Enter') {
+		sortByDate();
+	}
 });
 
-document.querySelector('#button-title').addEventListener('click', function () {
+//*Sort by title
+
+const sortByTitle = () => {
 	cleanedArrayMedia.sort((a, b) => {
 		return a.title.localeCompare(b.title);
 	});
 	MediasFactory(cleanedArrayMedia);
 	showTotalLikes();
-	svgHeart.forEach((heart) => (heart.onclick = incrementHeart));
+	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
+	svgHeart.forEach((heart) =>
+		heart.addEventListener('keydown', (event) => {
+			const nomTouche = event.key;
+
+			if (nomTouche === 'Enter') {
+				addOrSubOne(event);
+			}
+		}),
+	);
+	closeDropdown();
+	buildLightBox();
+	let itemsMedia = document.querySelectorAll('.photo');
+	itemsMedia[0].firstElementChild.focus();
+};
+
+document.querySelector('#button-title').addEventListener('click', sortByTitle);
+document.querySelector('#button-title').addEventListener('keydown', (event) => {
+	if (event.key === 'Enter') {
+		sortByTitle();
+	}
 });

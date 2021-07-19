@@ -75,10 +75,15 @@ main {
   padding: 2% 31px;
   position: relative;
 }
-@media screen and (max-width: 774px) {
+@media screen and (max-width: 994px) {
+  .photograph-header {
+    height: 29.8rem;
+  }
+}
+@media screen and (max-width: 735px) {
   .photograph-header {
     padding: 0 0;
-    height: 22.3rem;
+    height: 24.8rem;
   }
 }
 @media screen and (max-width: 380px) {
@@ -118,9 +123,10 @@ main {
     font-size: 3.6rem;
   }
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 480px) {
   .photograph-header h1 {
-    font-size: 3.6rem;
+    font-size: 2.6rem;
+    width: 25.5rem;
   }
 }
 
@@ -268,16 +274,18 @@ main {
 }
 @media screen and (max-width: 737px) {
   .user img {
-    width: 17.4rem;
+    width: 16.4rem;
     height: 19.4rem;
     margin-right: 0;
+    right: 1rem;
+    top: 1rem;
   }
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 420px) {
   .user img {
-    height: 200px;
-    width: 164px;
-    margin-right: 0.9rem;
+    width: 15.4rem;
+    height: 17.4rem;
+    right: 0rem;
   }
 }
 
@@ -337,6 +345,7 @@ main {
 
 .dd-button {
   width: 100%;
+  height: 4.544rem;
   display: inline-block;
   padding: 1rem 3rem 1rem 1rem;
   cursor: pointer;
@@ -346,8 +355,8 @@ main {
   font-family: "DM Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 18px;
-  line-height: 30.44px;
+  font-size: 1.8rem;
+  line-height: 2.544rem;
 }
 .dd-button:hover {
   background-color: #d3573c;
@@ -390,7 +399,7 @@ hr {
 .chevron {
   width: 16px;
   right: 1.2rem;
-  top: 1.3rem;
+  top: 1.6rem;
   display: inline-block;
   height: 9.88px;
   position: absolute;
@@ -903,9 +912,27 @@ label {
 
 .image-box video {
   width: 85%;
-  height: 44rem;
+  height: 66rem;
   margin: 0 auto;
   border-radius: 0 0 3px 3px;
+}
+@media screen and (max-width: 1114px) {
+  .image-box video {
+    width: 60rem;
+    height: 50rem;
+  }
+}
+@media screen and (max-width: 710px) {
+  .image-box video {
+    width: 78%;
+    height: 47.3rem;
+  }
+}
+@media screen and (max-width: 380px) {
+  .image-box video {
+    width: 288px;
+    height: 248px;
+  }
 }
 
 #lightbox-title {
