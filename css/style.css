@@ -56,7 +56,7 @@ header {
   }
 }
 
-#context {
+.skip-link {
   display: block;
   background-color: #d3573c;
   text-align: center;
@@ -75,7 +75,7 @@ header {
   line-height: 2.9rem;
 }
 
-#context:focus {
+.skip-link:focus {
   top: 1rem;
 }
 

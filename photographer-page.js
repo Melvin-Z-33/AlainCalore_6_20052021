@@ -24,7 +24,7 @@ const displayPhotographerHeader = () => {
 					<p class="tag">${arrayTags.join('')}</p>
 				</div>
 				<div id="modal">
-					<button class="button-form"  aria-label="contact me" tabindex="1">Contactez-moi</button>
+					<button class="button-form"  aria-label="contactez moi" tabindex="1">Contactez-moi</button>
 				</div>
 				<div class="user">
 					<img src="/img/Sample_Photos/Photographers_thumbnails/${
@@ -37,7 +37,7 @@ const displayPhotographerHeader = () => {
 };
 displayPhotographerHeader();
 
-//****************************** FORMULAIRE ******************************/
+//****************************** FORM ******************************/
 
 const modalbg = document.querySelector('.bground');
 const buttonOpen = document.querySelector('.button-form');
@@ -81,7 +81,7 @@ buttonOpen.addEventListener('click', focusMethod);
 buttonClose.addEventListener('click', closeForm);
 
 form.onsubmit = function () {
-	// event.preventDefault();
+	event.preventDefault();
 	console.log(document.querySelector('#first').value);
 	console.log(document.querySelector('#last').value);
 	console.log(document.querySelector('#email').value);
@@ -126,9 +126,9 @@ const MediasFactory = (array) => {
 				</figure>
 			<figcaption>
 				<p>${element.title}</p>
-				<div class="chatnoir">
+				<div class="like-container">
 					<span id="${element.id}" class="ap addone" aria-label=likes >${element.likes}</span>
-					<i class="fas fa-heart" title="increment ou decrement nombre de like" tabindex="2"></i>
+					<i class="fas fa-heart" title="increment ou decrement nombre de like" tabindex="2" ></i>
 				</div>
 			</figcaption>
 			<p class='gallery-hover'> </p>
@@ -144,7 +144,7 @@ const MediasFactory = (array) => {
 				</video >
 				<figcaption>
 					<p>${element.title}</p>
-						<div class="chatnoir">
+						<div class="like-container">
 							<span id="${element.id}" class="a addone">${element.likes}</span>
 							<i class="fas fa-heart" tabindex="2"></i>
 						</div>
@@ -161,7 +161,7 @@ const MediasFactory = (array) => {
 	showMedia += '';
 	document.querySelector('#main-gallery-flex').innerHTML = showMedia;
 	svgHeart = document.querySelectorAll('.fa-heart');
-	buttonCounter = document.querySelectorAll('.chatnoir span');
+	buttonCounter = document.querySelectorAll('.like-container span');
 };
 MediasFactory(cleanedArrayMedia);
 
@@ -254,6 +254,7 @@ const openDropdown = () => {
 	chevronUp.classList.remove('none');
 	chevronUp.classList.add('inline-block');
 	document.querySelector('.dd-menu').style.display = 'block';
+	buttonSortMedias.ariaExpanded = 'true';
 };
 
 const closeDropdown = () => {
@@ -262,6 +263,7 @@ const closeDropdown = () => {
 	chevronUp.classList.remove('inline-block');
 	chevronUp.classList.add('none');
 	document.querySelector('.dd-menu').style.display = 'none';
+	buttonSortMedias.ariaExpanded = 'false';
 };
 
 const buttonPopularity = () => {
@@ -270,10 +272,6 @@ const buttonPopularity = () => {
 	} else if (chevronUp.classList.contains('inline-block')) {
 		closeDropdown();
 	}
-};
-
-const navMenuDropDown = () => {
-	console.log('ok');
 };
 
 chevronDown.addEventListener('click', buttonPopularity);
@@ -286,7 +284,7 @@ buttonTittle.onblur = function () {
 //*************************** LIGHTBOX ************************/
 
 const buildLightBox = () => {
-	let previewBox = document.querySelector('#litbox'),
+	let previewBox = document.querySelector('#lightbox'),
 		previewImg = previewBox.querySelector('img'),
 		previewVideo = previewBox.querySelector('video'),
 		closeIcon = previewBox.querySelector('.icon'),
@@ -428,36 +426,9 @@ window.onload = () => {
 	buildLightBox();
 };
 
-//********* Sort Medias   *********************/
+//********* SORT MEDIAS   *********************/
 
-// const incrementHeart = (event) => {
-// 	let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
-// 	let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
-// 	let counterNew;
-// 	let objetLike = {};
-// 	if (valueClasss.classList.contains('addone')) {
-// 		counterNew = parseInt(value) + 1;
-// 		valueClasss.classList.remove('addone');
-// 		objetLike = {
-// 			id: valueClasss.id,
-// 			category: 'false',
-// 			number: counterNew,
-// 		};
-// 		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
-// 	} else {
-// 		counterNew = parseInt(value) - 1;
-// 		valueClasss.classList.add('addone');
-// 		objetLike = {
-// 			id: valueClasss.id,
-// 			category: 'true',
-// 			number: counterNew,
-// 		};
-// 		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
-// 	}
-// 	valueClasss.innerHTML = counterNew;
-// };
-
-// * Sort by Popularity
+// ****************** Sort by Popularity ************************/
 
 function sortByPopularity() {
 	cleanedArrayMedia.sort((a, b) => {
@@ -468,9 +439,7 @@ function sortByPopularity() {
 	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
 	svgHeart.forEach((heart) =>
 		heart.addEventListener('keydown', (event) => {
-			const nomTouche = event.key;
-
-			if (nomTouche === 'Enter') {
+			if (event.key === 'Enter') {
 				addOrSubOne(event);
 			}
 		}),
@@ -488,7 +457,7 @@ document.querySelector('#button-popularity').addEventListener('keydown', (event)
 	}
 });
 
-// * Sort by Date
+// ******************* Sort by Date  ************************/
 
 const sortByDate = () => {
 	cleanedArrayMedia.sort((a, b) => {
@@ -499,9 +468,7 @@ const sortByDate = () => {
 	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
 	svgHeart.forEach((heart) =>
 		heart.addEventListener('keydown', (event) => {
-			const nomTouche = event.key;
-
-			if (nomTouche === 'Enter') {
+			if (event.key === 'Enter') {
 				addOrSubOne(event);
 			}
 		}),
@@ -518,7 +485,7 @@ document.querySelector('#button-date').addEventListener('keydown', (event) => {
 	}
 });
 
-//*Sort by title
+//************************ Sort by title ******************/
 
 const sortByTitle = () => {
 	cleanedArrayMedia.sort((a, b) => {
@@ -529,9 +496,7 @@ const sortByTitle = () => {
 	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
 	svgHeart.forEach((heart) =>
 		heart.addEventListener('keydown', (event) => {
-			const nomTouche = event.key;
-
-			if (nomTouche === 'Enter') {
+			if (event.key === 'Enter') {
 				addOrSubOne(event);
 			}
 		}),

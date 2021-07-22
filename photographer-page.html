@@ -1,116 +1,104 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="./css/photographer-page.css" />
-	<script src="https://kit.fontawesome.com/a79dbf0876.js" crossorigin="anonymous"></script>
-	<link rel="preconnect" href="https://fonts.gstatic.com" />
-	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-		rel="stylesheet" />
-	<title>Fish Eye</title>
-</head>
-
-<body>
-	<header id="banner" role="banner">
-		<a href="index.html" class="logo" aria-label="Fisheye Home Page" tabindex="1">
-			Fish<span><i class="fas fa-camera" aria-hidden="true" ></i></span>ye
-		</a>
-	</header>
-	<main class="main">
-		<div id="main-gallery">
-			<div id="main-gallery-header">
-				<p>Trier par</p>			
-				<button class="dropdown" role="menubar" id="menu-sort-media" aria-expanded="false">
-					<option class="dd-button" id="button-popularity" role="menitem" aria-label="order by popularity" tabindex="1">
-						Popularité
-					</option>
-					<span class="chevron inline-block" id="arrow-down" aria-controls="menu-sort-media">
-						<i class="fas fa-chevron-down"></i>
-					</span>
-					<span class="chevron none" id="arrow-up" aria-controls="menu-sort-media">
-						<i class="fas fa-chevron-up"></i>
-					</span>
-					<!-- <input type="checkbox" class="dd-input" id="test" /> -->
-					<div class="dd-menu">
-						<hr />
-						<option class="dd-button" id="button-date" aria-label="order by date"  role="menitem" tabindex="1" >Date</option>
-						<hr />
-						<option class="dd-button" id="button-title" aria-label="order by title"  role="menitem" tabindex="1">Titre</option>
-					</div>
-				</button>
-
-			</div>
-			<div id="main-gallery-flex">
-			</div>
-			<div class="preview-box" id="litbox" role="dialog"  aria-describedby="lightbox pour les medias">
-				<div class="details">
-					<span class="title">Image <p class="current-img"></p> de <p class="total-img"></p></span>
-					<span class="icon fas fa-times" title="fermer la lightbox"></span>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/photographer-page.css" />
+		<script src="https://kit.fontawesome.com/a79dbf0876.js" crossorigin="anonymous"></script>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet" />
+		<title>Fish Eye</title>
+	</head>
+	<body>
+		<header id="banner" role="banner">
+			<a href="index.html" class="logo" aria-label="Fisheye page accueil" tabindex="1">
+				Fish<span><i class="fas fa-camera" aria-hidden="true" ></i></span>ye
+			</a>
+		</header>
+		<main class="main">
+			<div id="main-gallery">
+				<div id="main-gallery-header">
+					<p>Trier par</p>
+					<button class="dropdown"  id="menu-sort-media" aria-expanded="false" aria-label='button-dropdown'>
+						<div class="dd-button" id="button-popularity" role="listbox" aria-label="order by popularity" tabindex="1" role="option">
+							Popularité
+						</div>
+						<div class="chevron inline-block" id="arrow-down" aria-controls="menu-sort-media">
+							<i class="fas fa-chevron-down"></i>
+						</div>
+						<div class="chevron none" id="arrow-up" aria-controls="menu-sort-media">
+							<i class="fas fa-chevron-up"></i>
+						</div>
+						<div class="dd-menu">
+							<hr />
+							<div class="dd-button" id="button-date" aria-label="order by date"  role="listbox" tabindex="1" role="option">Date</div>
+							<hr />
+							<div class="dd-button" id="button-title" aria-label="order by title"  role="listbox" tabindex="1"role="option">Titre</div>
+						</div>
+					</button>
 				</div>
-				<div class="image-box">
-					<div class="slide prev"><i class="fas fa-angle-left" title="flêche pour aller au media précedent"></i></div>
-					<div class="slide next"><i class="fas fa-angle-right" title="flêche pour aller au media suivant"  ></i></div>
-					<img src="" alt="">
-					<video controls width="300" src=""></video>
+				<div id="main-gallery-flex">
 				</div>
-				<div id="lightbox-title"></div>
-			</div>
-			<div class="shadow"></div>
-	</main>
-	<div class="bground">
-		<div class="content" aria-hidden role="dialog" aria-describedby="formulaire pour contacter le photographe" >
-			<span class="close" id="close"></span>
-			<div id="form-header">
-				<p id="contact">Contactez-moi</p>
-				<p id="form-photographer-name"></p>
-			</div>
-			<div class="modal-body">
-				<form name="contact" id="form" action="index.html" method="get" onsubmit="return true;">
-					<!-- <div class="formData"> -->
-						<label for="first">Prénom<span id="prenom_manquant"></span></label><br />
-						<input class="text-control" type="text" id="first" name="first" minlength="2"
-							pattern="[A-Za-z0-9]+" value="" aria-labelledby="first" required  aria-required=true/>
-						<small></small>
-						<br />
-					<!-- </div> -->
-					<!-- <div class="formData"> -->
-						<label for="last">Nom</label><br />
-						<input class="text-control" type="text" id="last" name="last" minlength="2"
-							pattern="[A-Za-z0-9]+" value aria-labelledby="last" required aria-required=true />
-						<small></small>
-						<br />
-					<!-- </div> -->
-					<!-- <div class="formData"> -->
-						<label for="email">Email</label><br />
-						<input class="text-control" type="email" id="email" name="email" aria-labelledby="email" required aria-required=true />
-						<small id="smallEmail"></small>
-						<br />
-					<!-- </div> -->
-					<div  id="formData-flex">
-						<label for="form-message">Votre message </label><br />
-						<textarea id="form-message" name="form-message" rows="5" cols="33"aria-labelledby="form-message" ></textarea>
+				<div class="preview-box" id="lightbox" role="dialog"  title="lightbox pour les medias">
+					<div class="details">
+						<span class="title">Image <p class="current-img"></p> de <p class="total-img"></p></span>
+						<span class="icon fas fa-times" aria-label="fermer la lightbox"></span>
 					</div>
-					<!-- <div class="formData"></div> -->
-					<button class="btn-submit button" type="submit" value="Envoyer" id="buttonSubmit" >Envoyer</button>
-					<p id="text-final">Thank you for submitting your registration details</p>
-				</form>
+					<div class="image-box">
+						<div class="slide prev"><i class="fas fa-angle-left" aria-label="flêche pour aller au media précedent"></i></div>
+						<div class="slide next"><i class="fas fa-angle-right" aria-label="flêche pour aller au media suivant"  ></i></div>
+						<img src="" alt="">
+						<video controls width="300" src=""></video>
+					</div>
+					<div id="lightbox-title"></div>
+				</div>
+				<div class="shadow"></div>
+		</main>
+		<div class="bground">
+			<div class="content" aria-hidden role="dialog" aria-describedby="formulaire pour contacter le photographe" >
+				<span class="close" id="close"></span>
+				<div id="form-header">
+					<p id="contact">Contactez-moi</p>
+					<p id="form-photographer-name"></p>
+				</div>
+				<div class="modal-body">
+					<form name="contact" id="form" action="index.html" method="get" onsubmit="return true;">
+							<label for="first">Prénom<span id="prenom_manquant"></span></label><br />
+							<input class="text-control" type="text" id="first" name="first" minlength="2"
+								pattern="[A-Za-z0-9]+" value="" aria-labelledby="first" required  aria-required=true/>
+							<small></small>
+							<br />
+							<label for="last">Nom</label><br />
+							<input class="text-control" type="text" id="last" name="last" minlength="2"
+								pattern="[A-Za-z0-9]+" value aria-labelledby="last" required aria-required=true />
+							<small></small>
+							<br />
+							<label for="email">Email</label><br />
+							<input class="text-control" type="email" id="email" name="email" aria-labelledby="email" required aria-required=true />
+							<small id="smallEmail"></small>
+							<br />
+						<div  id="formData-flex">
+							<label for="form-message">Votre message </label><br />
+							<textarea id="form-message" name="form-message" rows="5" cols="33" aria-labelledby="form-message" ></textarea>
+						</div>
+						<button class="btn-submit button" type="submit" value="Envoyer" id="buttonSubmit" >Envoyer</button>
+						<p id="text-final">Thank you for submitting your registration details</p>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-	<section>
-		<div class="list">
-			<div class="list__title"></div>
-			<div class="list__content list__content--before"></div>
-		</div>
-		<div class="list">
-			<div class="list__title"></div>
-			<div class="list__content list__content--after"></div>
-		</div>
-	</section>
-	<script src="./photographer-page.js"></script>
-</body>
-
+		<section>
+			<div class="list">
+				<div class="list__title"></div>
+				<div class="list__content list__content--before"></div>
+			</div>
+			<div class="list">
+				<div class="list__title"></div>
+				<div class="list__content list__content--after"></div>
+			</div>
+		</section>
+		<script src="./photographer-page.js"></script>
+	</body>
 </html>
