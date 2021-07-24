@@ -35,12 +35,14 @@ h2 {
 	@include shortCutFont('DM Sans', 400, normal, 3.6rem, 46.872px);
 }
 
+//************** SECTION HEADER ********************************/
+
 header {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	margin-top: 4.3rem;
-	// padding-left: 176px;
+
 	@media screen and (max-width: 414px) {
 		display: block;
 		justify-content: center;
@@ -49,34 +51,12 @@ header {
 	}
 }
 
-// #scrollY {
-// 	background-color: $shade-color;
-// 	height: 30px;
-// 	width: 182px;
-// 	top: 3px;
-// 	border-radius: 5px;
-// 	position: absolute;
-// 	display: block;
-// 	left: 50%;
-// 	transform: translateY(-143%);
-// 	transform: translateX(-50%);
-// 	z-index: 10;
-// 	@media screen and (max-width: 1158px) {
-// 		left: 50%;
-// 		transform: translateX(-50%);
-// 	}
-// 	@media screen and (max-width: 414px) {
-// 		display: none;
-// 	}
-// }
-
-#context {
+.skip-link {
 	display: block;
 	background-color: $shade-color;
 	text-align: center;
 	color: black;
 	position: absolute;
-	// transform: translateY(-143%);
 	width: 17rem;
 	height: 2.9rem;
 	top: -10rem;
@@ -86,9 +66,7 @@ header {
 	@include shortCutFont('DM Sans', 700, normal, 1.8rem, 2.9rem);
 }
 
-#context:focus {
-	// transform: translateY(5p);
-	// transform: translateX(-50%);
+.skip-link:focus {
 	top: 1rem;
 }
 
@@ -110,7 +88,6 @@ header {
 #header-nav {
 	@extend %flex-center;
 	width: 45.3rem;
-	// height: 1.6rem;
 	position: absolute;
 	left: 50%;
 	transform: translateX(-54%);
@@ -170,6 +147,8 @@ header {
 		margin-left: 13px;
 	}
 }
+
+// ******************* SECTION MAIN ***********/
 
 main {
 	display: flex;

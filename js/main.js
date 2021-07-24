@@ -1,29 +1,28 @@
-//Skip button
+//**************  Skip button     *********/
+let buttonSkipLink = document.getElementById('button-skip-link');
 const showSkip = () => {
-	if (document.hasFocus(context)) {
-		context.style.top = '1rem';
-		context.style.position = 'fixed';
+	if (document.hasFocus(buttonSkipLink)) {
+		buttonSkipLink.style.top = '1rem';
+		buttonSkipLink.style.position = 'fixed';
 	}
 };
-context.addEventListener('focus', showSkip);
-context.onblur = () => {
-	context.style.position = 'absolute';
-	context.style.top = '-10rem';
+buttonSkipLink.addEventListener('focus', showSkip);
+buttonSkipLink.onblur = () => {
+	buttonSkipLink.style.position = 'absolute';
+	buttonSkipLink.style.top = '-10rem';
 };
 
 window.addEventListener('scroll', function () {
-	let context = document.getElementById('context');
-
-	if (window.scrollY > 0) {
-		context.style.position = 'fixed';
-		context.style.top = '1rem';
+	if (window.scrollY > 0 && window.screen.width > 500) {
+		buttonSkipLink.style.position = 'fixed';
+		buttonSkipLink.style.top = '1rem';
 	} else {
-		context.style.position = 'absolute';
-		context.style.top = '-10rem';
+		buttonSkipLink.style.position = 'absolute';
+		buttonSkipLink.style.top = '-10rem';
 	}
 });
 
-// Request Api
+//***********  Request Api     ********/
 let url = './FishEyeData.json';
 
 const displayPhotographers = async () => {
@@ -46,7 +45,7 @@ const displayPhotographers = async () => {
 					photographer.name
 				}"><img src="/img/Sample_Photos/Photographers_thumbnails/${
 					photographer.portrait
-				}" loading="lazy" alt="photo du photographe - Page du photographe" /></a>
+				}" loading="lazy" alt="${photographer.alt}" /></a>
 						<h2 class="card-title">${photographer.name} </h2>
 					</div>
 					<div class="card-content">
@@ -97,9 +96,3 @@ const storeDataLocal = async () => {
 		});
 };
 storeDataLocal();
-
-// btn.addEventListener('click', () => {
-// 	localStorage.setItem(product, JSON.stringify(product));
-// 	btn.classList.add('invisible');
-// 	div.textContent = 'Le produit a été ajouté au panier !';
-// });

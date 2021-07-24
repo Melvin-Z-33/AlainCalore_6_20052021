@@ -24,12 +24,12 @@ const displayPhotographerHeader = () => {
 					<p class="tag">${arrayTags.join('')}</p>
 				</div>
 				<div id="modal">
-					<button class="button-form"  aria-label="contact me">Contactez-moi</button>
+					<button class="button-form"  aria-label="contactez moi" tabindex="1">Contactez-moi</button>
 				</div>
 				<div class="user">
 					<img src="/img/Sample_Photos/Photographers_thumbnails/${
 						photographerSelect.portrait
-					}" loading="lazy" alt="" />
+					}" loading="lazy" alt="${photographerSelect.alt}" />
 				</div>
 			</div>
 			`;
@@ -37,7 +37,7 @@ const displayPhotographerHeader = () => {
 };
 displayPhotographerHeader();
 
-//****************************** FORMULAIRE ******************************/
+//****************************** FORM ******************************/
 
 const modalbg = document.querySelector('.bground');
 const buttonOpen = document.querySelector('.button-form');
@@ -66,9 +66,14 @@ const closeForm = () => {
 	modalbg.classList.toggle('block');
 	modalbg.style.backgroundColor = 'rgb(255,255,255,0 )';
 	buttonOpen.style.display = 'block';
+	buttonOpen.focus();
 };
 focusMethod = function getFocus() {
 	document.getElementById('first').focus();
+};
+
+buttonOpen.onkeydown = function (event) {
+	console.log(event.keyValue);
 };
 
 buttonOpen.addEventListener('click', launchForm);
@@ -76,13 +81,13 @@ buttonOpen.addEventListener('click', focusMethod);
 buttonClose.addEventListener('click', closeForm);
 
 form.onsubmit = function () {
-	// event.preventDefault();
+	event.preventDefault();
 	console.log(document.querySelector('#first').value);
 	console.log(document.querySelector('#last').value);
 	console.log(document.querySelector('#email').value);
 };
 
-//******************* FACTORY PATTERN FOR DIFFERENTS MEDIA **************************/
+//******************* FACTORY PATTERN FOR DIFFERENTS MEDIAS **************************/
 let arrayDataLocal = [];
 let arrayImage = [];
 let arrayVideo = [];
@@ -113,35 +118,39 @@ const MediasFactory = (array) => {
 	for (const element of array) {
 		if (typeof element.image !== 'undefined' && element.image.includes('jpg')) {
 			showMedia += `
-			<div class="main-gallery-img">
+			<figure class="main-gallery-img" 	>
 				<figure class="photo">
-					<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.image}" alt="" />
+					<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${
+				element.image
+			}" tabindex="2" alt="${element.alt}" />
 				</figure>
 			<figcaption>
 				<p>${element.title}</p>
-				<div class="chatnoir">
+				<div class="like-container">
 					<span id="${element.id}" class="ap addone" aria-label=likes >${element.likes}</span>
-					<i class="fas fa-heart" title="increment ou decrement nombre de like"></i>
+					<em class="fas fa-heart" title="increment ou decrement nombre de like" tabindex="2" aria-hidden="false" ></em>
 				</div>
 			</figcaption>
 			<p class='gallery-hover'> </p>
-			</div>
+			</figure>
 			`;
 		} else if (element.video.match('.mp4')) {
 			showMedia += `
-			<div class="main-gallery-img" >
-				<video  class="photo"  width="475"  ">
-					<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${element.video}" alt="" />
+			<figure class="main-gallery-img"  >
+				<video  class="photo"  width="475"  " tabindex="2">
+					<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${
+				element.video
+			}"  tabindex="2"alt="${element.alt}" />
 				</video >
 				<figcaption>
 					<p>${element.title}</p>
-						<div class="chatnoir">
+						<div class="like-container">
 							<span id="${element.id}" class="a addone">${element.likes}</span>
-							<i class="fas fa-heart"></i>
+							<em class="fas fa-heart" tabindex="2" aria-hidden="false" ></em>
 						</div>
 				</figcaption>
 				<p class='gallery-hover'> </p>
-			</div>
+			</figure>
 		`;
 		} else {
 			alert('Je ne reconnais pas ce format');
@@ -152,7 +161,7 @@ const MediasFactory = (array) => {
 	showMedia += '';
 	document.querySelector('#main-gallery-flex').innerHTML = showMedia;
 	svgHeart = document.querySelectorAll('.fa-heart');
-	buttonCounter = document.querySelectorAll('.chatnoir span');
+	buttonCounter = document.querySelectorAll('.like-container span');
 };
 MediasFactory(cleanedArrayMedia);
 
@@ -187,83 +196,112 @@ const checkButtonCounterClass = () => {
 };
 checkButtonCounterClass();
 
-svgHeart.forEach((el) =>
-	el.addEventListener('click', (event) => {
-		let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
-		let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
-		let counterNew;
-		let objetLike = {};
-		if (valueClasss.classList.contains('addone')) {
-			counterNew = parseInt(value) + 1;
-			valueClasss.classList.remove('addone');
-			objetLike = {
-				id: valueClasss.id,
-				category: 'false',
-				number: counterNew,
-			};
-			localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
-		} else {
-			counterNew = parseInt(value) - 1;
-			valueClasss.classList.add('addone');
-			objetLike = {
-				id: valueClasss.id,
-				category: 'true',
-				number: counterNew,
-			};
-			localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
-		}
-		valueClasss.innerHTML = counterNew;
-		showTotalLikes();
+const addOrSubOne = (event) => {
+	let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
+	let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
+	let counterNew;
+	let objetLike = {};
+	if (valueClasss.classList.contains('addone')) {
+		counterNew = parseInt(value) + 1;
+		valueClasss.classList.remove('addone');
+		objetLike = {
+			id: valueClasss.id,
+			category: 'false',
+			number: counterNew,
+		};
+		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
+	} else {
+		counterNew = parseInt(value) - 1;
+		valueClasss.classList.add('addone');
+		objetLike = {
+			id: valueClasss.id,
+			category: 'true',
+			number: counterNew,
+		};
+		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
+	}
+	valueClasss.innerHTML = counterNew;
+	showTotalLikes();
+};
+
+svgHeart.forEach((heart) =>
+	heart.addEventListener('click', (event) => {
+		addOrSubOne(event);
 	}),
 );
 
-//*************************** CSS **********************************/
+svgHeart.forEach((heart) =>
+	heart.addEventListener('keydown', (event) => {
+		const nomTouche = event.key;
+
+		if (nomTouche === 'Enter') {
+			addOrSubOne(event);
+		}
+	}),
+);
+
+//*************************** BUTTON SORT MEDIAS **********************************/
 const chevronDown = document.querySelector('#arrow-down');
 const chevronUp = document.querySelector('#arrow-up');
 const chevron = document.querySelector('.chevron');
 const dropdownButton = document.querySelector('#button-popularity');
+const buttonSortMedias = document.querySelector('#menu-sort-media');
+const buttonTittle = document.querySelector('#button-title');
+
+const openDropdown = () => {
+	chevronDown.classList.remove('inline-block');
+	chevronDown.classList.add('none');
+	chevronUp.classList.remove('none');
+	chevronUp.classList.add('inline-block');
+	document.querySelector('.dd-menu').style.display = 'block';
+	buttonSortMedias.ariaExpanded = 'true';
+};
+
+const closeDropdown = () => {
+	chevronDown.classList.remove('none');
+	chevronDown.classList.add('inline-block');
+	chevronUp.classList.remove('inline-block');
+	chevronUp.classList.add('none');
+	document.querySelector('.dd-menu').style.display = 'none';
+	buttonSortMedias.ariaExpanded = 'false';
+};
 
 const buttonPopularity = () => {
 	if (chevronDown.classList.contains('inline-block')) {
-		chevronDown.classList.remove('inline-block');
-		chevronDown.classList.add('none');
-		chevronUp.classList.remove('none');
-		chevronUp.classList.add('inline-block');
-		document.querySelector('.dd-menu').style.display = 'block';
+		openDropdown();
 	} else if (chevronUp.classList.contains('inline-block')) {
-		chevronDown.classList.remove('none');
-		chevronDown.classList.add('inline-block');
-		chevronUp.classList.remove('inline-block');
-		chevronUp.classList.add('none');
-		document.querySelector('.dd-menu').style.display = 'none';
+		closeDropdown();
 	}
 };
+
 chevronDown.addEventListener('click', buttonPopularity);
 chevronUp.addEventListener('click', buttonPopularity);
+dropdownButton.addEventListener('focus', openDropdown);
+buttonTittle.onblur = function () {
+	closeDropdown();
+};
 
 //*************************** LIGHTBOX ************************/
 
-let previewBox = document.querySelector('#litbox'),
-	previewImg = previewBox.querySelector('img'),
-	previewVideo = previewBox.querySelector('video'),
-	closeIcon = previewBox.querySelector('.icon'),
-	currentImg = previewBox.querySelector('.current-img'),
-	totalImg = previewBox.querySelector('.total-img'),
-	lightboxTitle = previewBox.querySelector('#lightbox-title'),
-	shadow = document.querySelector('.shadow');
+const buildLightBox = () => {
+	let previewBox = document.querySelector('#lightbox'),
+		previewImg = previewBox.querySelector('img'),
+		previewVideo = previewBox.querySelector('video'),
+		closeIcon = previewBox.querySelector('.icon'),
+		currentImg = previewBox.querySelector('.current-img'),
+		totalImg = previewBox.querySelector('.total-img'),
+		lightboxTitle = previewBox.querySelector('#lightbox-title'),
+		shadow = document.querySelector('.shadow');
 
-let galleryNew = document.querySelectorAll('.photo');
-let empty = '';
+	let galleryNew = document.querySelectorAll('.photo');
+	let empty = '';
 
-window.onload = () => {
 	for (let i = 0; i < galleryNew.length; i++) {
 		totalImg.textContent = galleryNew.length;
 		let newIndex = i;
 		let clickedImgIndex;
 
-		galleryNew[i].onclick = () => {
-			clickedImgIndex = i;
-
+		const openLightBox = () => {
 			function lightbox() {
 				document.querySelector('body').style.overflow = 'hidden';
 				previewBox.classList.add('show');
@@ -346,7 +384,7 @@ window.onload = () => {
 			if (previewBox.classList.contains('show')) {
 				document.addEventListener('keydown', (event) => {
 					const nomTouche = event.key;
-
+					console.log(event.key);
 					switch (nomTouche) {
 						case 'ArrowRight':
 							goNextImage();
@@ -357,68 +395,121 @@ window.onload = () => {
 						case 'Escape':
 							closeLightbox();
 							break;
+						case 'Enter':
+							console.log('Enter no problem');
+							break;
+						case 'Tab':
+							console.log('Tab no problem');
+							break;
 						default:
 							console.log('problem with keyboard');
 					}
 				});
 			}
 		};
+
+		galleryNew[i].onclick = () => {
+			clickedImgIndex = i;
+			openLightBox();
+		};
+
+		galleryNew[i].onkeydown = (event) => {
+			clickedImgIndex = i;
+			if (event.key === 'Enter') {
+				openLightBox();
+			}
+		};
 	}
 };
 
-//********* Sort Medias   *********************/
-
-const incrementHeart = (event) => {
-	let value = event.target.closest('div div div').firstChild.nextSibling.textContent;
-	let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
-	let counterNew;
-	let objetLike = {};
-	if (valueClasss.classList.contains('addone')) {
-		counterNew = parseInt(value) + 1;
-		valueClasss.classList.remove('addone');
-		objetLike = {
-			id: valueClasss.id,
-			category: 'false',
-			number: counterNew,
-		};
-		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
-	} else {
-		counterNew = parseInt(value) - 1;
-		valueClasss.classList.add('addone');
-		objetLike = {
-			id: valueClasss.id,
-			category: 'true',
-			number: counterNew,
-		};
-		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
-	}
-	valueClasss.innerHTML = counterNew;
+window.onload = () => {
+	buildLightBox();
 };
 
-document.querySelector('#button-popularity').addEventListener('click', () => {
+//********* SORT MEDIAS   *********************/
+
+// ****************** Sort by Popularity ************************/
+
+function sortByPopularity() {
 	cleanedArrayMedia.sort((a, b) => {
 		return b.likes - a.likes;
 	});
 	MediasFactory(cleanedArrayMedia);
 	showTotalLikes();
-	svgHeart.forEach((heart) => (heart.onclick = incrementHeart));
+	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
+	svgHeart.forEach((heart) =>
+		heart.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter') {
+				addOrSubOne(event);
+			}
+		}),
+	);
+
+	closeDropdown();
+	buildLightBox();
+	let itemsMedia = document.querySelectorAll('.photo');
+	itemsMedia[0].children[0].focus();
+}
+document.querySelector('#button-popularity').addEventListener('click', sortByPopularity);
+document.querySelector('#button-popularity').addEventListener('keydown', (event) => {
+	if (event.key === 'Enter') {
+		sortByPopularity();
+	}
 });
 
-document.querySelector('#button-date').addEventListener('click', function () {
+// ******************* Sort by Date  ************************/
+
+const sortByDate = () => {
 	cleanedArrayMedia.sort((a, b) => {
 		return new Date(a.date) - new Date(b.date);
 	});
-
 	MediasFactory(cleanedArrayMedia);
 	showTotalLikes();
-	svgHeart.forEach((heart) => (heart.onclick = incrementHeart));
+	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
+	svgHeart.forEach((heart) =>
+		heart.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter') {
+				addOrSubOne(event);
+			}
+		}),
+	);
+	closeDropdown();
+	buildLightBox();
+	let itemsMedia = document.querySelectorAll('.photo');
+	itemsMedia[0].children[0].focus();
+};
+document.querySelector('#button-date').addEventListener('click', sortByDate);
+document.querySelector('#button-date').addEventListener('keydown', (event) => {
+	if (event.key === 'Enter') {
+		sortByDate();
+	}
 });
 
-document.querySelector('#button-title').addEventListener('click', function () {
+//************************ Sort by title ******************/
+
+const sortByTitle = () => {
 	cleanedArrayMedia.sort((a, b) => {
 		return a.title.localeCompare(b.title);
 	});
 	MediasFactory(cleanedArrayMedia);
 	showTotalLikes();
-	svgHeart.forEach((heart) => (heart.onclick = incrementHeart));
+	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
+	svgHeart.forEach((heart) =>
+		heart.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter') {
+				addOrSubOne(event);
+			}
+		}),
+	);
+	closeDropdown();
+	buildLightBox();
+	let itemsMedia = document.querySelectorAll('.photo');
+	itemsMedia[0].firstElementChild.focus();
+};
+
+document.querySelector('#button-title').addEventListener('click', sortByTitle);
+document.querySelector('#button-title').addEventListener('keydown', (event) => {
+	if (event.key === 'Enter') {
+		sortByTitle();
+	}
 });
