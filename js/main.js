@@ -45,7 +45,7 @@ const displayPhotographers = async () => {
 					photographer.name
 				}"><img src="/img/Sample_Photos/Photographers_thumbnails/${
 					photographer.portrait
-				}" loading="lazy" alt="photo du photographe - Page du photographe" /></a>
+				}" loading="lazy" alt="${photographer.alt}" /></a>
 						<h2 class="card-title">${photographer.name} </h2>
 					</div>
 					<div class="card-content">

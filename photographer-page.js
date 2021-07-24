@@ -29,7 +29,7 @@ const displayPhotographerHeader = () => {
 				<div class="user">
 					<img src="/img/Sample_Photos/Photographers_thumbnails/${
 						photographerSelect.portrait
-					}" loading="lazy" alt="" />
+					}" loading="lazy" alt="${photographerSelect.alt}" />
 				</div>
 			</div>
 			`;
@@ -122,13 +122,13 @@ const MediasFactory = (array) => {
 				<figure class="photo">
 					<img src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${
 				element.image
-			}" tabindex="2" alt="" />
+			}" tabindex="2" alt="${element.alt}" />
 				</figure>
 			<figcaption>
 				<p>${element.title}</p>
 				<div class="like-container">
 					<span id="${element.id}" class="ap addone" aria-label=likes >${element.likes}</span>
-					<i class="fas fa-heart" title="increment ou decrement nombre de like" tabindex="2" ></i>
+					<em class="fas fa-heart" title="increment ou decrement nombre de like" tabindex="2" aria-hidden="false" ></em>
 				</div>
 			</figcaption>
 			<p class='gallery-hover'> </p>
@@ -140,13 +140,13 @@ const MediasFactory = (array) => {
 				<video  class="photo"  width="475"  " tabindex="2">
 					<source src="img/Sample_Photos/${photographerSelect.name.split(' ')[0]}/${
 				element.video
-			}"  tabindex="2"alt="" />
+			}"  tabindex="2"alt="${element.alt}" />
 				</video >
 				<figcaption>
 					<p>${element.title}</p>
 						<div class="like-container">
 							<span id="${element.id}" class="a addone">${element.likes}</span>
-							<i class="fas fa-heart" tabindex="2"></i>
+							<em class="fas fa-heart" tabindex="2" aria-hidden="false" ></em>
 						</div>
 				</figcaption>
 				<p class='gallery-hover'> </p>
