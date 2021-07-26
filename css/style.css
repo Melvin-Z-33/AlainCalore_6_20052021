@@ -18,7 +18,7 @@ html {
 body {
   max-width: 144rem;
   height: 100vh;
-  margin: 0 auto;
+  margin: 0 auto !important;
   overflow-x: hidden;
   position: initial;
 }

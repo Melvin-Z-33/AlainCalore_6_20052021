@@ -1,6 +1,6 @@
-@import './scss/_variables';
-@import './scss/_mixins';
-@import './scss/_placeholders';
+@import '_variables';
+@import '_mixins';
+@import '_placeholders';
 
 * {
 	margin: 0px;
@@ -16,7 +16,7 @@ html {
 body {
 	max-width: 144rem;
 	height: 100vh;
-	margin: 0 auto;
+	margin: 0 auto !important;
 	overflow-x: hidden;
 	position: initial;
 }
