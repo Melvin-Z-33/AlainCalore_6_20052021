@@ -173,7 +173,7 @@ const showTotalLikes = () => {
 		arrayTotalLikes += parseFloat(element.innerText);
 		document.querySelectorAll('.gallery-hover').forEach((element) => {
 			element.innerHTML = `<span>${arrayTotalLikes}
-				<i class="fas fa-heart"></i></span></span><span>${photographerSelect.price}€ /jour</span>`;
+				<em class="fas fa-heart"></em></span></span><span>${photographerSelect.price}€ /jour</span>`;
 		});
 	}
 };
@@ -384,7 +384,7 @@ const buildLightBox = () => {
 			if (previewBox.classList.contains('show')) {
 				document.addEventListener('keydown', (event) => {
 					const nomTouche = event.key;
-					console.log(event.key);
+
 					switch (nomTouche) {
 						case 'ArrowRight':
 							goNextImage();
