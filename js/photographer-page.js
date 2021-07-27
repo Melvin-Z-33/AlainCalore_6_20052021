@@ -417,6 +417,7 @@ const buildLightBox = () => {
 			clickedImgIndex = i;
 			if (event.key === 'Enter') {
 				openLightBox();
+				document.querySelector('.fa-angle-right').focus();
 			}
 		};
 	}

@@ -73,6 +73,8 @@ const displayPhotographers = async () => {
 
 						if (tag.includes(valueElementClicked)) {
 							element.closest('.cards').style.display = 'flex';
+							document.getElementById('main-photographer-list').style.justifyContent =
+								'center';
 						} else {
 							element.closest('.cards').style.display = 'none';
 						}

@@ -852,11 +852,14 @@ figcaption {
   line-height: 50px;
   text-align: center;
   border-radius: 3px;
+  border: none;
+  background: none;
 }
 
 .slide.prev {
   left: 0px;
   color: #901c1c;
+  font-size: 4.8rem;
 }
 @media screen and (max-width: 380px) {
   .slide.prev {
