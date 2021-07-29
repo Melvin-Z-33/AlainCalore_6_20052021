@@ -1,44 +1,16 @@
+import * as header from './header.js';
+
 const queryString_url_id = window.location.search;
 const idPhotographers = new URLSearchParams(queryString_url_id);
 const id = idPhotographers.get('id');
 const datalocal = localStorage.getItem('dataLocal');
 const dataLocalParse = JSON.parse(localStorage.getItem('dataLocal'));
-// console.log(typeof dataLocalParse);
 const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
 //*****************  PHOTOGRAPH HEADER **************************/
-let arrayTags = [];
-const displayPhotographerHeader = () => {
-	let arrayTags = [``];
-	let tags;
-	for (tags of photographerSelect.tags) {
-		arrayTags.push(`<a class="card-tag" aria-label="tag">#${tags}</a> `);
-	}
-	const photographerHeader = `
-			<div class="photograph-header">
-				<div class="photograph-profile">
-					<h1>${photographerSelect.name}</h1>
-					<div id="content">
-						<p id="city">${photographerSelect.city}, ${photographerSelect.country}</p>
-						<p id="quote">${photographerSelect.tagline}</p>
-					</div>
-					<p class="tag">${arrayTags.join('')}</p>
-				</div>
-				<div id="modal">
-					<button class="button-form"  aria-label="contactez moi" tabindex="1">Contactez-moi</button>
-				</div>
-				<div class="user">
-					<img src="/img/Sample_Photos/Photographers_thumbnails/${
-						photographerSelect.portrait
-					}" loading="lazy" alt="${photographerSelect.alt}" />
-				</div>
-			</div>
-			`;
-	document.querySelector('.main').insertAdjacentHTML('afterbegin', photographerHeader);
-};
-displayPhotographerHeader();
+
+header.displayPhotographerHeader();
 
 //****************************** FORM ******************************/
-
 const modalbg = document.querySelector('.bground');
 const buttonOpen = document.querySelector('.button-form');
 const buttonClose = document.getElementById('close');
@@ -46,14 +18,6 @@ const firstName = document.querySelector('#first');
 const nameForm = document.querySelector('#form-photographer-name');
 let namePhotographer = `<h3>${photographerSelect.name}</h3>`;
 nameForm.innerHTML = `${photographerSelect.name}`;
-
-const closeWithKeyboard = () => {
-	document.addEventListener('keydown', (event) => {
-		if (modalbg.classList.contains('block') && event.key == 'Escape') {
-			closeForm();
-		}
-	});
-};
 
 const launchForm = () => {
 	modalbg.classList.toggle('block');
@@ -68,17 +32,9 @@ const closeForm = () => {
 	buttonOpen.style.display = 'block';
 	buttonOpen.focus();
 };
-focusMethod = function getFocus() {
+const focusMethod = () => {
 	document.getElementById('first').focus();
 };
-
-buttonOpen.onkeydown = function (event) {
-	console.log(event.keyValue);
-};
-
-buttonOpen.addEventListener('click', launchForm);
-buttonOpen.addEventListener('click', focusMethod);
-buttonClose.addEventListener('click', closeForm);
 
 form.onsubmit = function () {
 	event.preventDefault();
@@ -86,6 +42,20 @@ form.onsubmit = function () {
 	console.log(document.querySelector('#last').value);
 	console.log(document.querySelector('#email').value);
 };
+const closeWithKeyboard = () => {
+	document.addEventListener('keydown', (event) => {
+		if (modalbg.classList.contains('block') && event.key == 'Escape') {
+			closeForm();
+		}
+	});
+};
+buttonOpen.onkeydown = function (event) {
+	console.log(event.keyValue);
+};
+
+buttonOpen.addEventListener('click', launchForm);
+buttonOpen.addEventListener('click', focusMethod);
+buttonClose.addEventListener('click', closeForm);
 
 //******************* FACTORY PATTERN FOR DIFFERENTS MEDIAS **************************/
 let arrayDataLocal = [];
