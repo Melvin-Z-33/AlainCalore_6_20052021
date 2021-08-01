@@ -1,11 +1,13 @@
 const queryString_url_id = window.location.search;
 const idPhotographers = new URLSearchParams(queryString_url_id);
-const id = idPhotographers.get('id');
+export const id = idPhotographers.get('id');
 const datalocal = localStorage.getItem('dataLocal');
-const dataLocalParse = JSON.parse(localStorage.getItem('dataLocal'));
-const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
-
+export const dataLocalParse = JSON.parse(localStorage.getItem('dataLocal'));
+export const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
+export const buttonOpen = document.querySelector('.button-form');
 let arrayTags = [];
+export let bouttonOpen;
+
 export const displayPhotographerHeader = () => {
 	let arrayTags = [``];
 	let tags;
@@ -33,4 +35,6 @@ export const displayPhotographerHeader = () => {
 			</div>
 			`;
 	document.querySelector('.main').insertAdjacentHTML('afterbegin', photographerHeader);
+
+	bouttonOpen = document.querySelector('.button-form');
 };
