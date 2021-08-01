@@ -1,4 +1,5 @@
 import * as header from './header.js';
+import * as factory from './factory.js';
 
 export const buildLightBox = () => {
 	let previewBox = document.querySelector('#lightbox'),
@@ -23,7 +24,7 @@ export const buildLightBox = () => {
 				document.querySelector('body').style.overflow = 'hidden';
 				previewBox.classList.add('show');
 				shadow.style.display = 'block';
-				header.buttonOpen.style.display = 'none';
+				header.bouttonOpen.style.display = 'none';
 
 				if (!galleryNew[i].firstElementChild.src.split('.')[4].search('mp4')) {
 					lightboxTitle.innnerHTML = '';
@@ -47,7 +48,7 @@ export const buildLightBox = () => {
 					lightboxTitle.innerHTML = '';
 					lightboxTitle.insertAdjacentHTML(
 						'afterbegin',
-						`${cleanedArrayMedia[newIndex].title}`,
+						`${factory.cleanedArrayMedia[newIndex].title}`,
 					);
 				}
 				currentImg.textContent = newIndex + 1;
@@ -94,7 +95,7 @@ export const buildLightBox = () => {
 				previewBox.classList.remove('show');
 				shadow.style.display = 'none';
 				document.querySelector('body').style.overflow = 'scroll';
-				buttonOpen.style.display = 'block';
+				header.bouttonOpen.style.display = 'block';
 			};
 			closeIcon.addEventListener('click', closeLightbox);
 

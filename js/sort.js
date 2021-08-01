@@ -1,3 +1,7 @@
+import * as factory from './factory.js';
+import * as counterlike from './counterLike.js';
+import * as lightbox from './lightbox.js';
+
 export const chevronDown = document.querySelector('#arrow-down');
 export const chevronUp = document.querySelector('#arrow-up');
 export const chevron = document.querySelector('.chevron');
@@ -33,54 +37,54 @@ export const buttonPopularity = () => {
 
 //******** SORT MEDIAS *********/
 export const sortByPopularity = () => {
-	header.cleanedArrayMedia.sort((a, b) => {
+	factory.cleanedArrayMedia.sort((a, b) => {
 		return b.likes - a.likes;
 	});
-	MediasFactory(cleanedArrayMedia);
-	showTotalLikes();
-	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
-	svgHeart.forEach((heart) =>
+	factory.MediasFactory(factory.cleanedArrayMedia);
+	counterlike.showTotalLikes();
+	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
+	factory.svgHeart.forEach((heart) =>
 		heart.addEventListener('keydown', (event) => {
 			if (event.key === 'Enter') {
-				addOrSubOne(event);
+				counterlike.addOrSubOne(event);
 			}
 		}),
 	);
 
 	closeDropdown();
-	buildLightBox();
+	lightbox.buildLightBox();
 	let itemsMedia = document.querySelectorAll('.photo');
 	itemsMedia[0].children[0].focus();
 };
 
 export const sortByDate = () => {
-	header.cleanedArrayMedia.sort((a, b) => {
+	factory.cleanedArrayMedia.sort((a, b) => {
 		return new Date(a.date) - new Date(b.date);
 	});
-	MediasFactory(cleanedArrayMedia);
-	showTotalLikes();
-	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
-	svgHeart.forEach((heart) =>
+	factory.MediasFactory(factory.cleanedArrayMedia);
+	counterlike.showTotalLikes();
+	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
+	factory.svgHeart.forEach((heart) =>
 		heart.addEventListener('keydown', (event) => {
 			if (event.key === 'Enter') {
-				addOrSubOne(event);
+				counterlike.addOrSubOne(event);
 			}
 		}),
 	);
 	closeDropdown();
-	buildLightBox();
+	lightbox.buildLightBox();
 	let itemsMedia = document.querySelectorAll('.photo');
 	itemsMedia[0].children[0].focus();
 };
 
 export const sortByTitle = () => {
-	header.cleanedArrayMedia.sort((a, b) => {
+	factory.cleanedArrayMedia.sort((a, b) => {
 		return a.title.localeCompare(b.title);
 	});
-	MediasFactory(cleanedArrayMedia);
-	showTotalLikes();
-	svgHeart.forEach((heart) => (heart.onclick = addOrSubOne));
-	svgHeart.forEach((heart) =>
+	factory.MediasFactory(factory.cleanedArrayMedia);
+	counterlike.showTotalLikes();
+	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
+	factory.svgHeart.forEach((heart) =>
 		heart.addEventListener('keydown', (event) => {
 			if (event.key === 'Enter') {
 				addOrSubOne(event);
@@ -88,7 +92,7 @@ export const sortByTitle = () => {
 		}),
 	);
 	closeDropdown();
-	buildLightBox();
+	lightbox.buildLightBox();
 	let itemsMedia = document.querySelectorAll('.photo');
 	itemsMedia[0].firstElementChild.focus();
 };
