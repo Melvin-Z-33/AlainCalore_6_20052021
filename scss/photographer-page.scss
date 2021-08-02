@@ -9,6 +9,9 @@
 	font-family: 'Roboto', sans-serif;
 }
 
+*:focus {
+	border: 6px solid black;
+}
 html {
 	font-size: 62.5%;
 }

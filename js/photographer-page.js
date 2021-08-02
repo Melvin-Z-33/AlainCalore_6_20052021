@@ -1,10 +1,10 @@
-import * as header from './header.js';
-import * as formulary from './form.js';
-import * as factory from './factory.js';
-import * as counterlike from './counterLike.js';
-import * as select from './sort.js';
-import * as lightbox from './lightbox.js';
-import * as sort from './sort.js';
+import * as header from './photographer-page/header.js';
+import * as formulary from './photographer-page/form.js';
+import * as factory from './photographer-page/factory.js';
+import * as counterlike from './photographer-page/counterLike.js';
+import * as select from './photographer-page/sort.js';
+import * as lightbox from './photographer-page/lightbox.js';
+import * as sort from './photographer-page/sort.js';
 
 //**** VARIABLES ********/
 //Header Variable
@@ -38,7 +38,8 @@ header.displayPhotographerHeader();
 // let arrayVideo = [];
 //Factory
 factory.cleanedDataMedia();
-factory.MediasFactory(factory.cleanedArrayMedia);
+// factory.MediasFactory(factory.cleanedArrayMedia);
+factory.factory(factory.cleanedArrayMedia);
 
 //************************** COUNTER LIKE  ************************/
 

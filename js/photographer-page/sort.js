@@ -40,7 +40,8 @@ export const sortByPopularity = () => {
 	factory.cleanedArrayMedia.sort((a, b) => {
 		return b.likes - a.likes;
 	});
-	factory.MediasFactory(factory.cleanedArrayMedia);
+	// factory.MediasFactory(factory.cleanedArrayMedia);
+	factory.factory(factory.cleanedArrayMedia);
 	counterlike.showTotalLikes();
 	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
 	factory.svgHeart.forEach((heart) =>
@@ -61,7 +62,8 @@ export const sortByDate = () => {
 	factory.cleanedArrayMedia.sort((a, b) => {
 		return new Date(a.date) - new Date(b.date);
 	});
-	factory.MediasFactory(factory.cleanedArrayMedia);
+	// factory.MediasFactory(factory.cleanedArrayMedia);
+	factory.factory(factory.cleanedArrayMedia);
 	counterlike.showTotalLikes();
 	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
 	factory.svgHeart.forEach((heart) =>
@@ -81,7 +83,8 @@ export const sortByTitle = () => {
 	factory.cleanedArrayMedia.sort((a, b) => {
 		return a.title.localeCompare(b.title);
 	});
-	factory.MediasFactory(factory.cleanedArrayMedia);
+	// factory.MediasFactory(factory.cleanedArrayMedia);
+	factory.factory(factory.cleanedArrayMedia);
 	counterlike.showTotalLikes();
 	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
 	factory.svgHeart.forEach((heart) =>
