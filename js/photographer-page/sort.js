@@ -36,12 +36,15 @@ export const buttonPopularity = () => {
 };
 
 //******** SORT MEDIAS *********/
+
 export const sortByPopularity = () => {
+	console.log(factory.cleanedArrayMedia);
 	factory.cleanedArrayMedia.sort((a, b) => {
 		return b.likes - a.likes;
 	});
-	factory.MediasFactory(factory.cleanedArrayMedia);
-	counterlike.showTotalLikes();
+
+	factory.factoryMedia(factory.cleanedArrayMedia);
+
 	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
 	factory.svgHeart.forEach((heart) =>
 		heart.addEventListener('keydown', (event) => {
@@ -61,7 +64,8 @@ export const sortByDate = () => {
 	factory.cleanedArrayMedia.sort((a, b) => {
 		return new Date(a.date) - new Date(b.date);
 	});
-	factory.MediasFactory(factory.cleanedArrayMedia);
+
+	factory.factoryMedia(factory.cleanedArrayMedia);
 	counterlike.showTotalLikes();
 	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
 	factory.svgHeart.forEach((heart) =>
@@ -71,17 +75,21 @@ export const sortByDate = () => {
 			}
 		}),
 	);
+
 	closeDropdown();
 	lightbox.buildLightBox();
 	let itemsMedia = document.querySelectorAll('.photo');
 	itemsMedia[0].children[0].focus();
+	// console.table(factory.buttonCounter[0]);
+	// counterlike.showTotalLikes(factory.cleanedArrayMedia);
 };
 
 export const sortByTitle = () => {
 	factory.cleanedArrayMedia.sort((a, b) => {
 		return a.title.localeCompare(b.title);
 	});
-	factory.MediasFactory(factory.cleanedArrayMedia);
+
+	factory.factoryMedia(factory.cleanedArrayMedia);
 	counterlike.showTotalLikes();
 	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
 	factory.svgHeart.forEach((heart) =>
@@ -91,6 +99,7 @@ export const sortByTitle = () => {
 			}
 		}),
 	);
+
 	closeDropdown();
 	lightbox.buildLightBox();
 	let itemsMedia = document.querySelectorAll('.photo');
