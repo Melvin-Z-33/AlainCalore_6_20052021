@@ -71,9 +71,17 @@ export const factoryMedia = (array) => {
 				.insertAdjacentHTML('beforeend', htmlForVideo);
 		};
 
-		return { image, video, id, title, alt, likes, displayImage, displayVideo };
+		return {
+			image,
+			video,
+			id,
+			title,
+			alt,
+			likes,
+			displayImage,
+			displayVideo,
+		};
 	};
-
 	for (const element of array) {
 		let objet = objetfactory(
 			element.image,

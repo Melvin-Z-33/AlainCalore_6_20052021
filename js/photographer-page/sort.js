@@ -38,13 +38,13 @@ export const buttonPopularity = () => {
 //******** SORT MEDIAS *********/
 
 export const sortByPopularity = () => {
-	console.log(factory.cleanedArrayMedia);
 	factory.cleanedArrayMedia.sort((a, b) => {
 		return b.likes - a.likes;
 	});
 
 	factory.factoryMedia(factory.cleanedArrayMedia);
-
+	counterlike.checkButtonCounterClass();
+	counterlike.showTotalLikes();
 	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
 	factory.svgHeart.forEach((heart) =>
 		heart.addEventListener('keydown', (event) => {
@@ -66,6 +66,7 @@ export const sortByDate = () => {
 	});
 
 	factory.factoryMedia(factory.cleanedArrayMedia);
+	counterlike.checkButtonCounterClass();
 	counterlike.showTotalLikes();
 	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
 	factory.svgHeart.forEach((heart) =>
@@ -80,8 +81,6 @@ export const sortByDate = () => {
 	lightbox.buildLightBox();
 	let itemsMedia = document.querySelectorAll('.photo');
 	itemsMedia[0].children[0].focus();
-	// console.table(factory.buttonCounter[0]);
-	// counterlike.showTotalLikes(factory.cleanedArrayMedia);
 };
 
 export const sortByTitle = () => {
@@ -90,6 +89,7 @@ export const sortByTitle = () => {
 	});
 
 	factory.factoryMedia(factory.cleanedArrayMedia);
+	counterlike.checkButtonCounterClass();
 	counterlike.showTotalLikes();
 	factory.svgHeart.forEach((heart) => (heart.onclick = counterlike.addOrSubOne));
 	factory.svgHeart.forEach((heart) =>
