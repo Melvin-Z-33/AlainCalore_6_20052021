@@ -3,13 +3,12 @@ import * as factory from './factory.js';
 
 export const showTotalLikes = () => {
 	let arrayTotalLikes = new Number();
+
 	for (const element of factory.buttonCounter) {
 		arrayTotalLikes += parseFloat(element.innerText);
 
-		document.querySelectorAll('.gallery-hover').forEach((element) => {
-			element.innerHTML = `<span>${arrayTotalLikes}
+		document.querySelector('#totalLikes-price').innerHTML = `<span>${arrayTotalLikes}
 				<em class="fas fa-heart"></em></span></span><span>${header.photographerSelect.price}€ /jour</span>`;
-		});
 	}
 };
 
@@ -19,6 +18,7 @@ export const checkButtonCounterClass = () => {
 			if (key === element.id) {
 				let dataFromLocalStorage = JSON.parse(localStorage.getItem(key));
 				element.textContent = dataFromLocalStorage.number;
+
 				if (dataFromLocalStorage.category === 'false') {
 					element.classList.remove('addone');
 				} else if (dataFromLocalStorage.category === 'true') {
@@ -34,6 +34,7 @@ export const addOrSubOne = (event) => {
 	let valueClasss = event.target.closest('div div div').firstChild.nextSibling;
 	let counterNew;
 	let objetLike = {};
+
 	if (valueClasss.classList.contains('addone')) {
 		counterNew = parseInt(value) + 1;
 		valueClasss.classList.remove('addone');
@@ -53,6 +54,7 @@ export const addOrSubOne = (event) => {
 		};
 		localStorage.setItem(valueClasss.id, JSON.stringify(objetLike));
 	}
+
 	valueClasss.innerHTML = counterNew;
 	showTotalLikes();
 };

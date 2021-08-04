@@ -5,15 +5,17 @@ const datalocal = localStorage.getItem('dataLocal');
 export const dataLocalParse = JSON.parse(localStorage.getItem('dataLocal'));
 export const photographerSelect = dataLocalParse.photographers.find((object) => object.id == id);
 export const buttonOpen = document.querySelector('.button-form');
-let arrayTags = [];
 export let bouttonOpen;
+// let arrayTags = [];
 
 export const displayPhotographerHeader = () => {
 	let arrayTags = [``];
 	let tags;
+
 	for (tags of photographerSelect.tags) {
 		arrayTags.push(`<a class="card-tag" aria-label="tag">#${tags}</a> `);
 	}
+
 	const photographerHeader = `
 			<div class="photograph-header">
 				<div class="photograph-profile">

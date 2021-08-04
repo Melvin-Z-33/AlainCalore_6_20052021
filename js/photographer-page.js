@@ -20,30 +20,17 @@ const nameForm = document.querySelector('#form-photographer-name');
 let namePhotographer = `<h3>${header.photographerSelect.name}</h3>`;
 nameForm.innerHTML = `${header.photographerSelect.name}`;
 
-//Factory
-// let arrayDataLocal = [];
-
 //*****************  PHOTOGRAPH HEADER **************************/
 
 header.displayPhotographerHeader();
 
-//****************************** FORM ******************************/
+//******************* FACTORY PATTERN FOR DIFFERENTS MEDIAS *******/
 
-// buttonOpen.onkeydown = function (event) {
-// 	console.log(event.keyValue);
-// };
-
-//******************* FACTORY PATTERN FOR DIFFERENTS MEDIAS **************************/
-
-// let arrayVideo = [];
-//Factory
 factory.cleanedDataMedia();
-// factory.MediasFactory(factory.cleanedArrayMedia);
-factory.factory(factory.cleanedArrayMedia);
+factory.factoryMedia(factory.cleanedArrayMedia);
 
 //************************** COUNTER LIKE  ************************/
 
-counterlike.showTotalLikes();
 counterlike.checkButtonCounterClass();
 
 factory.svgHeart.forEach((heart) =>
@@ -62,7 +49,7 @@ factory.svgHeart.forEach((heart) =>
 	}),
 );
 
-//*************************** BUTTON SORT MEDIAS **********************************/
+//*************************** BUTTON TO SORT MEDIAS **********************************/
 
 select.chevronDown.addEventListener('click', select.buttonPopularity);
 select.chevronUp.addEventListener('click', select.buttonPopularity);
@@ -71,11 +58,9 @@ select.buttonTittle.onblur = function () {
 	select.closeDropdown();
 };
 
-//*************************** LIGHTBOX ************************/
-
 //********* SORT MEDIAS   *********************/
 
-// ****************** Sort by Popularity
+// by Popularity
 
 document.querySelector('#button-popularity').addEventListener('click', sort.sortByPopularity);
 document.querySelector('#button-popularity').addEventListener('keydown', (event) => {
@@ -84,7 +69,7 @@ document.querySelector('#button-popularity').addEventListener('keydown', (event)
 	}
 });
 
-// ******************* Sort by Date  ************************/
+// by Date
 document.querySelector('#button-date').addEventListener('click', sort.sortByDate);
 document.querySelector('#button-date').addEventListener('keydown', (event) => {
 	if (event.key === 'Enter') {
@@ -92,7 +77,7 @@ document.querySelector('#button-date').addEventListener('keydown', (event) => {
 	}
 });
 
-//************************ Sort by title ******************/
+// by Title
 document.querySelector('#button-title').addEventListener('click', sort.sortByTitle);
 document.querySelector('#button-title').addEventListener('keydown', (event) => {
 	if (event.key === 'Enter') {
@@ -114,6 +99,7 @@ window.onload = () => {
 		console.log(document.querySelector('#last').value);
 		console.log(document.querySelector('#email').value);
 	};
-
+	// lightbox
 	lightbox.buildLightBox();
+	counterlike.showTotalLikes();
 };

@@ -9,9 +9,9 @@
 	font-family: 'Roboto', sans-serif;
 }
 
-*:focus {
-	border: 6px solid black;
-}
+// *:focus {
+// 	border: 6px solid black;
+// }
 html {
 	font-size: 62.5%;
 }
@@ -627,15 +627,15 @@ figcaption {
 	}
 }
 
-.gallery-hover {
-	opacity: 0;
+#totalLikes-price {
+	opacity: 1;
 	display: flex;
 	width: 33.3rem;
 	justify-content: revert;
 	height: 4.9rem;
-	top: 1.3rem;
-	right: -1.3rem;
-	position: absolute;
+	bottom: 2.4rem;
+	right: 14.3rem;
+	position: fixed;
 	border-radius: 5px;
 	background-color: $shade-color;
 	justify-content: space-around;

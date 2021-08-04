@@ -1,6 +1,11 @@
 import * as header from './header.js';
+import * as counterlike from './counterLike.js';
 
 export let cleanedArrayMedia;
+export let showMedia = '';
+export let svgHeart;
+export let buttonCounter = document.querySelectorAll('.like-container span');
+
 export const cleanedDataMedia = () => {
 	let arrayDataLocal = header.dataLocalParse.media;
 	let arrayImage = [];
@@ -14,12 +19,9 @@ export const cleanedDataMedia = () => {
 	});
 };
 
-export let showMedia = '';
-export let svgHeart;
-export let buttonCounter;
-
-export const factory = (array) => {
+export const factoryMedia = (array) => {
 	document.querySelector('#main-gallery-flex').innerHTML = '';
+
 	const objetfactory = (image, video, id, title, alt, likes) => {
 		image, video, id, title, alt, likes;
 
@@ -45,6 +47,7 @@ export const factory = (array) => {
 				.querySelector('#main-gallery-flex')
 				.insertAdjacentHTML('beforeend', htmlforImage);
 		};
+
 		const displayVideo = () => {
 			let htmlForVideo = `
 			<figure class="main-gallery-img"  >
@@ -67,11 +70,12 @@ export const factory = (array) => {
 				.querySelector('#main-gallery-flex')
 				.insertAdjacentHTML('beforeend', htmlForVideo);
 		};
+
 		return { image, video, id, title, alt, likes, displayImage, displayVideo };
 	};
 
 	for (const element of array) {
-		let obj = objetfactory(
+		let objet = objetfactory(
 			element.image,
 			element.video,
 			element.id,
@@ -79,13 +83,14 @@ export const factory = (array) => {
 			element.alt,
 			element.likes,
 		);
-		if (obj.video === undefined) {
-			obj.displayImage();
-		} else if (obj.image === undefined) {
-			obj.displayVideo();
+		if (objet.video === undefined) {
+			objet.displayImage();
+		} else if (objet.image === undefined) {
+			objet.displayVideo();
 		}
 
 		svgHeart = document.querySelectorAll('.fa-heart');
 		buttonCounter = document.querySelectorAll('.like-container span');
+		counterlike.showTotalLikes();
 	}
 };

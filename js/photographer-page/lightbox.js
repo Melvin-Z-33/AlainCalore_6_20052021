@@ -9,15 +9,16 @@ export const buildLightBox = () => {
 		currentImg = previewBox.querySelector('.current-img'),
 		totalImg = previewBox.querySelector('.total-img'),
 		lightboxTitle = previewBox.querySelector('#lightbox-title'),
-		shadow = document.querySelector('.shadow');
-
-	let galleryNew = document.querySelectorAll('.photo');
-	let empty = '';
+		shadow = document.querySelector('.shadow'),
+		galleryNew = document.querySelectorAll('.photo'),
+		empty = '';
 
 	for (let i = 0; i < galleryNew.length; i++) {
-		totalImg.textContent = galleryNew.length;
 		let newIndex = i;
 		let clickedImgIndex;
+		const prevBtn = document.querySelector('.prev');
+		const nextBtn = document.querySelector('.next');
+		totalImg.textContent = galleryNew.length;
 
 		const openLightBox = () => {
 			function lightbox() {
@@ -36,7 +37,7 @@ export const buildLightBox = () => {
 					lightboxTitle.innerHTML = '';
 					lightboxTitle.insertAdjacentHTML(
 						'afterbegin',
-						`${cleanedArrayMedia[newIndex].title}`,
+						`${factory.cleanedArrayMedia[newIndex].title}`,
 					);
 				} else if (!galleryNew[i].firstElementChild.src.split('.')[4].search('jpg')) {
 					lightboxTitle.insertAdjacentHTML('afterbegin', empty);
@@ -51,12 +52,11 @@ export const buildLightBox = () => {
 						`${factory.cleanedArrayMedia[newIndex].title}`,
 					);
 				}
+
 				currentImg.textContent = newIndex + 1;
 			}
 			lightbox();
 
-			const prevBtn = document.querySelector('.prev');
-			const nextBtn = document.querySelector('.next');
 			if (newIndex == 0) {
 				prevBtn.style.display = 'none';
 			}
