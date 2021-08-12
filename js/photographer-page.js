@@ -14,7 +14,6 @@ header.photographerSelect;
 header.buttonOpen;
 
 //Form Variable
-
 const firstName = document.querySelector('#first');
 const nameForm = document.querySelector('#form-photographer-name');
 let namePhotographer = `<h3>${header.photographerSelect.name}</h3>`;

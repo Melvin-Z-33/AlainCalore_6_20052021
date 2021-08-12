@@ -1,6 +1,8 @@
 import * as header from './header.js';
+//Variables
 const modalbg = document.querySelector('.bground');
 
+//Function
 export const launchForm = () => {
 	modalbg.classList.toggle('block');
 

@@ -4,17 +4,18 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		
+
 		<link rel="stylesheet" href="./css/photographer-page.css" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" />
 		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
 		rel="stylesheet" />
-		
+
 		<script src="https://kit.fontawesome.com/a79dbf0876.js" crossorigin="anonymous"></script>
-			<script type='module' src="./js/photographer-page.js" async></script>
+		<script type='module' src="./js/photographer-page.js" async></script>
 		<title>Fish Eye</title>
 	</head>
 	<body>
+
 		<header id="banner" role="banner">
 			<a href="index.html" class="logo" aria-label="Fisheye page accueil" tabindex="1">
 				Fish<span><em class="fas fa-camera" aria-hidden="true" ></em></span>ye
@@ -22,6 +23,7 @@
 		</header>
 		<main class="main">
 			<div id="main-gallery">
+	<!-- GALLERY-HEADER -->
 				<div id="main-gallery-header">
 					<p>Trier par</p>
 					<button class="dropdown"  id="menu-sort-media" aria-expanded="false" aria-label='button-dropdown'>
@@ -42,24 +44,26 @@
 						</div>
 					</button>
 				</div>
-				<div id="main-gallery-flex">
-				</div>
+	<!--GALLERY TO DISPLAY MEDIAS  -->
+				<div id="main-gallery-flex"></div>
+	<!-- LIGHTBOX -->
 				<div class="preview-box" id="lightbox" role="dialog"  title="lightbox pour les medias">
 					<div class="details">
 						<span class="title">Image <p class="current-img"></p> de <p class="total-img"></p></span>
 						<span class="icon fas fa-times" aria-label="fermer la lightbox"></span>
 					</div>
-					<div class="image-box">
+					<div class="image-box" rol="affiche les medias">
+						<img src="" alt="" aria-label=""  >
+						<video controls width="300" src="" alt="" aria-label=""></video>
 						<button class="slide prev"><em class="fas fa-angle-left" aria-label="flêche pour aller au media précedent"></em></button>
 						<button class="slide next"><em class="fas fa-angle-right" aria-label="flêche pour aller au media suivant"  ></em></button>
-						<img src="" alt="">
-						<video controls width="300" src=""></video>
 					</div>
 					<div id="lightbox-title"></div>
 				</div>
 				<div class="shadow"></div>
 				<div id="totalLikes-price"></div>
 		</main>
+	<!-- FORM -->
 		<div class="bground">
 			<div class="content" aria-hidden role="dialog" aria-describedby="formulaire pour contacter le photographe" >
 				<span class="close" id="close"></span>
@@ -103,6 +107,5 @@
 				<div class="list__content list__content--after"></div>
 			</div>
 		</section>
-		
 	</body>
 </html>

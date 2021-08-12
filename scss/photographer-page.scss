@@ -9,9 +9,6 @@
 	font-family: 'Roboto', sans-serif;
 }
 
-// *:focus {
-// 	border: 6px solid black;
-// }
 html {
 	font-size: 62.5%;
 }
@@ -299,7 +296,7 @@ input {
 	visibility: hidden;
 }
 
-//* ############### FORM #################
+//*** FORM ***********
 
 .content {
 	margin: 5% auto;
@@ -441,7 +438,7 @@ label {
 	}
 }
 
-// **********************************  MAIN GALLERY ******************************************************/
+// **********************************  MAIN GALLERY ********************/
 main {
 	margin-top: 6rem;
 	width: 100%;
@@ -666,7 +663,7 @@ figcaption {
 	display: inline-block;
 }
 
-// ******************************************** LIGHTBOX ******************/
+// ************* LIGHTBOX ******************/
 
 .preview-box {
 	position: fixed;

@@ -2,6 +2,7 @@ import * as factory from './factory.js';
 import * as counterlike from './counterLike.js';
 import * as lightbox from './lightbox.js';
 
+//Variables
 export const chevronDown = document.querySelector('#arrow-down');
 export const chevronUp = document.querySelector('#arrow-up');
 export const chevron = document.querySelector('.chevron');
@@ -9,6 +10,7 @@ export const dropdownButton = document.querySelector('#button-popularity');
 export const buttonSortMedias = document.querySelector('#menu-sort-media');
 export const buttonTittle = document.querySelector('#button-title');
 
+//Functions
 export const openDropdown = () => {
 	chevronDown.classList.remove('inline-block');
 	chevronDown.classList.add('none');
@@ -95,7 +97,7 @@ export const sortByTitle = () => {
 	factory.svgHeart.forEach((heart) =>
 		heart.addEventListener('keydown', (event) => {
 			if (event.key === 'Enter') {
-				addOrSubOne(event);
+				counterlike.addOrSubOne(event);
 			}
 		}),
 	);

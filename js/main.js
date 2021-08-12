@@ -1,5 +1,6 @@
 //**************  Skip button     *********/
 let buttonSkipLink = document.getElementById('button-skip-link');
+
 const showSkip = () => {
 	if (document.hasFocus(buttonSkipLink)) {
 		buttonSkipLink.style.top = '1rem';

@@ -11,8 +11,8 @@ export const buildLightBox = () => {
 		lightboxTitle = previewBox.querySelector('#lightbox-title'),
 		shadow = document.querySelector('.shadow'),
 		galleryNew = document.querySelectorAll('.photo'),
+		imageBox = document.querySelectorAll('.image-box'),
 		empty = '';
-
 	for (let i = 0; i < galleryNew.length; i++) {
 		let newIndex = i;
 		let clickedImgIndex;
@@ -24,17 +24,22 @@ export const buildLightBox = () => {
 			function lightbox() {
 				document.querySelector('body').style.overflow = 'hidden';
 				previewBox.classList.add('show');
+
 				shadow.style.display = 'block';
 				header.bouttonOpen.style.display = 'none';
+				nextBtn.focus();
 
 				if (!galleryNew[i].firstElementChild.src.split('.')[4].search('mp4')) {
 					lightboxTitle.innnerHTML = '';
 					let videoURL = galleryNew[i].firstElementChild.src;
 					previewVideo.src = videoURL;
+					previewVideo.alt = galleryNew[i].firstElementChild.alt;
+					previewVideo.ariaLabel = galleryNew[i].firstElementChild.alt;
 					previewImg.src = '';
 					previewImg.style.display = 'none';
 					previewVideo.style.display = 'block';
 					lightboxTitle.innerHTML = '';
+
 					lightboxTitle.insertAdjacentHTML(
 						'afterbegin',
 						`${factory.cleanedArrayMedia[newIndex].title}`,
@@ -43,10 +48,13 @@ export const buildLightBox = () => {
 					lightboxTitle.insertAdjacentHTML('afterbegin', empty);
 					let imageURL = galleryNew[i].firstElementChild.src;
 					previewImg.src = imageURL;
+					previewImg.alt = galleryNew[i].firstElementChild.alt;
+					previewImg.ariaLabel = galleryNew[i].firstElementChild.alt;
 					previewVideo.src = '';
 					previewVideo.style.display = 'none';
 					previewImg.style.display = 'block';
 					lightboxTitle.innerHTML = '';
+					previewImg.focus();
 					lightboxTitle.insertAdjacentHTML(
 						'afterbegin',
 						`${factory.cleanedArrayMedia[newIndex].title}`,
@@ -73,6 +81,7 @@ export const buildLightBox = () => {
 					lightbox(i--);
 					nextBtn.style.display = 'block';
 				}
+				prevBtn.focus();
 			};
 
 			const goNextImage = () => {
@@ -84,6 +93,7 @@ export const buildLightBox = () => {
 					lightbox(i++);
 					prevBtn.style.display = 'block';
 				}
+				nextBtn.focus();
 			};
 			prevBtn.addEventListener('click', goPreviousImage);
 			nextBtn.addEventListener('click', goNextImage);
@@ -114,7 +124,7 @@ export const buildLightBox = () => {
 							closeLightbox();
 							break;
 						case 'Enter':
-							console.log('Enter no problem');
+							console.log('no problem');
 							break;
 						case 'Tab':
 							console.log('Tab no problem');
@@ -135,7 +145,7 @@ export const buildLightBox = () => {
 			clickedImgIndex = i;
 			if (event.key === 'Enter') {
 				openLightBox();
-				document.querySelector('.fa-angle-right').focus();
+				//document.querySelector('.fa-angle-right').focus();
 			}
 		};
 	}
