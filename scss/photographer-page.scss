@@ -638,6 +638,9 @@ figcaption {
 	justify-content: space-around;
 	align-items: center;
 	@include shortCutFont('DM Sans', 500, normal, 24px, 31.25px);
+	@media screen and (max-width: 737px) {
+		display: none;
+	}
 }
 
 .main-gallery-img:hover .gallery-hover {

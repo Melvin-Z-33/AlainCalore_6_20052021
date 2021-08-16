@@ -123,9 +123,9 @@ export const buildLightBox = () => {
 						case 'Escape':
 							closeLightbox();
 							break;
-						case 'Enter':
-							console.log('no problem');
-							break;
+						// case 'Enter':
+						// 	console.log('no problem');
+						// 	break;
 						case 'Tab':
 							console.log('Tab no problem');
 							break;

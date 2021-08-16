@@ -714,6 +714,11 @@ figcaption {
   font-size: 24px;
   line-height: 31.25px;
 }
+@media screen and (max-width: 737px) {
+  #totalLikes-price {
+    display: none;
+  }
+}
 
 .main-gallery-img:hover .gallery-hover {
   opacity: 1;

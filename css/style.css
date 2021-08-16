@@ -328,7 +328,7 @@ main {
 }
 @media screen and (max-width: 414px) {
   #title {
-    right: -2rem;
+    right: -1rem;
     font-size: 1.9rem;
     top: -19.5rem;
   }
